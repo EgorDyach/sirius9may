@@ -34,6 +34,234 @@ export type RootState = {
     }
 }
 
+// const initialState = {
+//     contentForApp: {
+//         mainPage: {
+//             heroSlides: [
+//                 {
+//                     img: Img1,
+//                     name: "Федотов Владимир Сергеевич",
+//                     dateOfLife: "(1924-2001)"
+//                 },
+//                 {
+//                     img: Img2,
+//                     name: "Бойков Дмитрий Валерьевич",
+//                     dateOfLife: "(1915-1944)"
+//                 },
+//                 {
+//                     img: Img3,
+//                     name: "Орлов Семен Александрович",
+//                     dateOfLife: "(1932-1999)"
+//                 },
+//                 {
+//                     img: Img4,
+//                     name: "Бобров Даниил Анатольевич",
+//                     dateOfLife: "(1910-1966)"
+//                 },
+//             ],
+//         },
+//         historiesPage: {
+//             historiesSlides: [
+//                 {
+//                     img: Img1,
+//                     name: 'Федетов Семён Игоревич',
+//                     dateOfLife: '1924 - 2001)',
+
+//                 }
+//             ]
+//         },
+//         gallaryPage: {
+//             gallaryItems: [
+//                 {
+//                     img: gal4,
+//                     text: 'qeqweqwe',
+//                     published: new Date(22, 6, 2007),
+//                 },
+//                 {
+//                     img: gal5,
+//                     text: '',
+//                     published: new Date(9, 2, 2008),
+//                 },
+//                 {
+//                     img: gal1,
+//                     text: '',
+//                     published: new Date(7, 3, 2022),
+//                 },
+//                 {
+//                     img: gal2,
+//                     text: 'qweqweqweq',
+//                     published: new Date(9, 6, 2022),
+//                 },
+//                 {
+//                     img: gal3,
+//                     text: '',
+//                     published: new Date(8, 4, 2024),
+//                 },
+//                 {
+//                     img: gal2,
+//                     text: 'qweqweqweq',
+//                     published: new Date(9, 6, 2022),
+//                 },
+//                 {
+//                     img: gal1,
+//                     text: '',
+//                     published: new Date(7, 3, 2022),
+//                 },
+//                 {
+//                     img: gal2,
+//                     text: 'qweqweqweq',
+//                     published: new Date(9, 6, 2022),
+//                 },
+//                 {
+//                     img: gal3,
+//                     text: '',
+//                     published: new Date(8, 4, 2024),
+//                 },
+//                 {
+//                     img: gal2,
+//                     text: 'qweqweqweq',
+//                     published: new Date(9, 6, 2022),
+//                 },
+//                 {
+//                     img: gal1,
+//                     text: '',
+//                     published: new Date(7, 3, 2022),
+//                 },
+//                 {
+//                     img: gal2,
+//                     text: 'qweqweqweq',
+//                     published: new Date(9, 6, 2022),
+//                 },
+//                 {
+//                     img: gal2,
+//                     text: 'qweqweqweq',
+//                     published: new Date(9, 6, 2022),
+//                 },
+//                 {
+//                     img: gal3,
+//                     text: '',
+//                     published: new Date(8, 4, 2024),
+//                 },
+//                 {
+//                     img: gal2,
+//                     text: 'qweqweqweq',
+//                     published: new Date(9, 6, 2022),
+//                 },
+//                 {
+//                     img: gal1,
+//                     text: '',
+//                     published: new Date(7, 3, 2022),
+//                 },
+//                 {
+//                     img: gal2,
+//                     text: 'qweqweqweq',
+//                     published: new Date(9, 6, 2022),
+//                 },
+//                 {
+//                     img: gal2,
+//                     text: 'qweqweqweq',
+//                     published: new Date(9, 6, 2022),
+//                 },
+//                 {
+//                     img: gal3,
+//                     text: '',
+//                     published: new Date(8, 4, 2024),
+//                 },
+//                 {
+//                     img: gal2,
+//                     text: 'qweqweqweq',
+//                     published: new Date(9, 6, 2022),
+//                 },
+//                 {
+//                     img: gal1,
+//                     text: '',
+//                     published: new Date(7, 3, 2022),
+//                 },
+//                 {
+//                     img: gal2,
+//                     text: 'qweqweqweq',
+//                     published: new Date(9, 6, 2022),
+//                 },
+//                 {
+//                     img: gal2,
+//                     text: 'qweqweqweq',
+//                     published: new Date(9, 6, 2022),
+//                 },
+//                 {
+//                     img: gal3,
+//                     text: '',
+//                     published: new Date(8, 4, 2024),
+//                 },
+//                 {
+//                     img: gal2,
+//                     text: 'qweqweqweq',
+//                     published: new Date(9, 6, 2022),
+//                 },
+//                 {
+//                     img: gal1,
+//                     text: '',
+//                     published: new Date(7, 3, 2022),
+//                 },
+//                 {
+//                     img: gal2,
+//                     text: 'qweqweqweq',
+//                     published: new Date(9, 6, 2022),
+//                 },
+//                 {
+//                     img: gal3,
+//                     text: '',
+//                     published: new Date(8, 4, 2024),
+//                 },
+//                 {
+//                     img: gal2,
+//                     text: 'qweqweqweq',
+//                     published: new Date(9, 6, 2022),
+//                 },
+//                 {
+//                     img: gal1,
+//                     text: '',
+//                     published: new Date(7, 3, 2022),
+//                 },
+//                 {
+//                     img: gal2,
+//                     text: 'qweqweqweq',
+//                     published: new Date(9, 6, 2022),
+//                 },
+//                 {
+//                     img: gal3,
+//                     text: '',
+//                     published: new Date(8, 4, 2024),
+//                 },
+//                 {
+//                     img: gal2,
+//                     text: 'qweqweqweq',
+//                     published: new Date(9, 6, 2022),
+//                 },
+//                 {
+//                     img: gal1,
+//                     text: '',
+//                     published: new Date(7, 3, 2022),
+//                 },
+//                 {
+//                     img: gal2,
+//                     text: 'qweqweqweq',
+//                     published: new Date(9, 6, 2022),
+//                 },
+//                 {
+//                     img: gal3,
+//                     text: '',
+//                     published: new Date(8, 4, 2024),
+//                 },
+//                 {
+//                     img: gal2,
+//                     text: 'qweqweqweq',
+//                     published: new Date(9, 6, 2022),
+//                 },
+//             ]
+//         }
+//     }
+// };
+
 const initialState = {
     contentForApp: {
         mainPage: {
@@ -59,6 +287,16 @@ const initialState = {
                     dateOfLife: "(1910-1966)"
                 },
             ],
+        },
+        historiesPage: {
+            historiesSlides: [
+                {
+                    img: Img1,
+                    name: 'Федетов Семён Игоревич',
+                    dateOfLife: '1924 - 2001)',
+
+                }
+            ]
         },
         gallaryPage: {
             gallaryItems: [
