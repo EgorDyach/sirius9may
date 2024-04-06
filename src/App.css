@@ -1,0 +1,32 @@
+body, html {
+  margin: 0;
+}
+
+.container {
+  max-width: 1410px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('./fonts/Lora.woff2');
+}
+
+@font-face {
+  font-family: 'Lato700';
+  src: url('./fonts/Lato-Bold.woff2');
+}
+@font-face {
+  font-family: 'Lato400';
+  src: url('./fonts/Lato-Medium.woff2');
+}
+@font-face {
+  font-family: 'Lato300';
+  src: url('./fonts/Lato-Regular.woff2');
+}
+

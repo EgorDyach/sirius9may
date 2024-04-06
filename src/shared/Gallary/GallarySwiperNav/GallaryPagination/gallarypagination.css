@@ -1,0 +1,31 @@
+
+.gallary__pagination-btn {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 0 13px;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+    vertical-align: bottom;
+    display: flex;
+    
+}
+
+.gallary__pagination {
+    display: flex;
+}
+
+.gallary__pagination-btn span {
+    transition: .3s ease-in-out;
+    color: #8D8B82;
+    line-height: 80px;
+    
+}
+
+.gallary__pagination-btn-active span {
+    transition: .3s ease-in-out;
+}
+
+.gallary__pagination-btn-active span {
+    font-size: 64px;
+}

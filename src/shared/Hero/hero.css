@@ -1,0 +1,144 @@
+.hero {
+    position: relative;
+    background-color: #EFEADE;
+}
+
+.hero::after {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    content: '';
+    z-index: 0;
+    background: url('../../assets/hero__bg.jpg');
+    background-position: center;
+    background-size: cover;
+    opacity: .2;
+}
+
+.hero__content {
+    padding: 120px 0 116px;
+    z-index: 2;
+    position: relative;
+    display: flex;
+
+}
+
+.hero__title {
+    max-width: 700px;
+    margin: 0;
+    font-style: normal;
+    line-height: 102px;
+    color: #000000;
+    margin-bottom: 75px;
+}
+
+.hero__descr {
+    margin-bottom: 140px;
+}
+
+.hero__link {
+    padding: 33px 65px 27px;
+    background-color: #343434;
+}
+
+.hero__swiper {
+    max-width: 850px;
+    position: absolute !important;
+    right: -130px;
+    top: 20px;
+    bottom: 0;
+    /* max-height: 680px; */
+    margin-bottom: 80px;
+}
+
+.hero__slide {
+    max-width: 50px;
+}
+
+.hero__swiper .swiper-slide {
+    transition: .85s ease-in-out;
+    display: flex;
+}
+
+.hero__swiper .swiper-slide-next {
+    transform: scale(1.43) translateZ(0) translateX(5px) !important;
+}
+
+.hero__swiper::before {
+    content: '';
+    left: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+
+}
+
+.hero__slide-content {
+    background-size: cover;
+    margin: auto 0;
+    width: 231px;
+    height: 300px;
+    background-repeat: no-repeat;
+    text-align: center;
+    align-content: flex-end;
+    background-position: center;
+    transition: .85s ease-in-out;
+}
+
+.hero__swiper .swiper-slide-next {
+    cursor: pointer;
+}
+
+.hero__slide-text {
+    width: calc(100% - 10px);
+    margin: 0;
+    padding: 5px;
+    position: relative;
+    z-index: 5;
+    display: block;
+}
+
+.hero__slide-text::after {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    content: '';
+    z-index: -1;
+    background-color: rgba(0, 0, 0, .65);
+}
+
+.hero__swiper .swiper-slide:not(.swiper-slide-next) {
+    transform: scale(.85) translateZ(0) !important;
+    opacity: .55;
+}
+
+.hero__swiper .swiper-button-prev,.hero__swiper .swiper-button-next {
+    position: relative;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+}
+
+.hero__slide-navigation {
+    display: flex;
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 88px;
+    transform: translateX(-5px);
+    z-index: 9;
+}
+
+.swiper-button-prev:after, .swiper-button-next:after {
+    display: none;
+}
