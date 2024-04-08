@@ -9,7 +9,7 @@ export function AdminPage() {
   const [isLoading, setIsLoading] = useState(true)
   onAuthStateChanged(auth, (user) => {
     if (!user) {
-      window.location.href = '/'
+      window.location.href = '/auth'
     }
     setIsLoading(false)
   });

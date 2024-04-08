@@ -6,15 +6,15 @@ export function GallarySlide({ e }: { e: GallaryItemType[]; }) {
   while (e.length % 5 !== 0) {
     e.push({
       img: '',
-      published: new Date()
+      date: 0
     })
   }
   return (
     <div className='gallary__slide-content'>
-      <div className='gallary__photo-big'>
-      <img src={e[0].img} alt={`Фото из галереи${typeof e[0].text !== 'undefined' ? `с подписью: ${e[0].text}` : ''}`} />
-      {e[0].text && <Text size={32} color='#fff' className='gallary__photo-text'>
-                  {e[0].text}
+      <div className={`gallary__photo-big ${e[0].title ? 'gallary__photo-withText' : ''}`}>
+      <img src={e[0].img} alt={`Фото из галереи ${typeof e[0].title !== 'undefined' ? `с подписью: ${e[0].title}` : ''}`} />
+      {e[0].title && <Text size={32} color='#fff' className='gallary__photo-title'>
+                  {e[0].title}
               </Text>}
       </div>
       <div className='gallary__slide-photos'>
@@ -23,12 +23,12 @@ export function GallarySlide({ e }: { e: GallaryItemType[]; }) {
             return;
           }
           if (q.img === '') {
-            return <div className='gallary__photo'></div>
+            return;
           }
-          return <div className={`gallary__photo ${q.text ? 'gallary__photo-withText' : ''}`}>
-            <img src={q.img} alt={`Фото из галереи${typeof e[e.indexOf(q)].text !== 'undefined' ? `с подписью: ${e[e.indexOf(q)].text}` : ''}`} />
-            {q.text && <Text size={32} color='#fff' className='gallary__photo-text'>
-                  {q.text}
+          return <div key={e.indexOf(q)} className={`gallary__photo ${q.title ? 'gallary__photo-withText' : ''}`}>
+            <img src={q.img} alt={`Фото из галереи${typeof e[e.indexOf(q)].title !== 'undefined' ? `с подписью: ${e[e.indexOf(q)].title}` : ''}`} />
+            {q.title && <Text size={32} color='#fff' className='gallary__photo-title'>
+                  {q.title}
               </Text>}
           </div>
         })}

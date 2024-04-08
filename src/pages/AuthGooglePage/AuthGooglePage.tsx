@@ -19,7 +19,7 @@ export function AuthGooglePage() {
         localStorage.setItem('isAuth2', 'false');
         window.location.href = '/admin'
       } else if (localStorage.getItem('isAuth2') === 'false') {
-        window.location.href = '/'
+        window.location.href = '/auth'
       }
       setIsLoading(false)
     });
@@ -33,7 +33,7 @@ export function AuthGooglePage() {
     setPass(event.target.value)
   }
   const handleClick = () => {
-    signInWithEmailAndPassword(auth, login, sha512(pass)).then((res) => {
+    signInWithEmailAndPassword(auth, login, sha512(pass)).then(() => {
 
     }
     ).catch(err => {

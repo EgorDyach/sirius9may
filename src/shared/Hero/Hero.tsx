@@ -9,14 +9,13 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { useSelector } from 'react-redux';
-import { HeroSlideType, RootState } from '../../store/contentSlice';
 import { HeroSwiperPrev } from './HeroSwiperPrev';
 import { HeroSwiperNext } from './HeroSwiperNext';
 import { HeroSlide } from './HeroSlide';
+import { useAppSelector } from '../../hooks/reduxHooks';
 
 export function Hero() {
-  const content = useSelector<RootState, HeroSlideType[]>(state => state.counter.contentForApp.mainPage.heroSlides);
+  const content = useAppSelector(state => state.persons.persons)
 
   return (
     <section className='hero'>
@@ -44,7 +43,7 @@ export function Hero() {
             loop
             speed={850}
           >
-            {content.map(e => (
+            {typeof content !== 'undefined' && content.map(e => (
               <SwiperSlide key={content.indexOf(e)}>
                 <HeroSlide e={e} />
               </SwiperSlide>

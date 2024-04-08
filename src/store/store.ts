@@ -1,9 +1,18 @@
-import { configureStore } from '@reduxjs/toolkit';
-import ContentSlice from './contentSlice.ts';
+import { configureStore } from '@reduxjs/toolkit'
+import personsSlice from './personsSlice'
+import gallarySlice from './gallarySlice'
+// ...
 
-export default configureStore({
+const store = configureStore({
   reducer: {
-    // Свойство counter будет внутри объекта общего состояния: state.counter
-    counter: ContentSlice,
+    persons: personsSlice,
+    gallary: gallarySlice
   },
-});
+})
+
+// Выведение типов `RootState` и `AppDispatch` из хранилища
+export type RootState = ReturnType<typeof store.getState>
+// Выведенные типы: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch
+
+export default store;

@@ -2,31 +2,33 @@ import './gallary.css';
 import { Text } from '../../components/Text';
 import { Container } from '../../components/Container';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useSelector } from 'react-redux';
-import { GallaryItemType, RootState } from '../../store/contentSlice';
+import { GallaryItemType } from '../../store/contentSlice';
 import { useLayoutEffect, useState } from 'react';
 import { GallarySlide } from './GallarySlide';
 import { Navigation, A11y } from 'swiper/modules';
 import { GallarySwiperNav } from './GallarySwiperNav';
 import { Pagination } from 'swiper/modules';
+import { useAppSelector } from '../../hooks/reduxHooks';
 
 export function Gallary() {
-  const gallary = useSelector<RootState, GallaryItemType[]>(state => state.counter.contentForApp.gallaryPage.gallaryItems)
+  const gallary = useAppSelector(state => state.gallary.gallary);
   const [gallaryArrays, setGallaryArrays] = useState<GallaryItemType[][]>([[]]);
   const [activeIndex, setActiveIndex] = useState(0)
 
   useLayoutEffect(() => {
     setGallaryArrays([])
     const q: GallaryItemType[][] = [];
-    for (let i = 0; i<25; i++) {
-      if (typeof gallary[i] !== 'undefined') {
-        if (i % 5 === 0) {
-          q.push([])
+    if (typeof gallary !== 'undefined') {
+      for (let i = 0; i<25; i++) {
+        if (typeof gallary[i] !== 'undefined') {
+          if (i % 5 === 0) {
+            q.push([])
+          }
+          q[q.length-1].push(gallary[i])
         }
-        q[q.length-1].push(gallary[i])
-      }
-      setGallaryArrays(q)
-      }
+        setGallaryArrays(q)
+        }
+    }
   }, [gallary]);
   return (
     <section className='gallary'>
@@ -39,8 +41,7 @@ export function Gallary() {
           slidesPerView={1}
           navigation
           speed={850}>
-          {gallaryArrays.map(e => {
-            console.log(gallaryArrays)
+          {typeof gallaryArrays !== 'undefined' &&  gallaryArrays.map(e => {
             if (e.length === 0) {
               return;
             }
