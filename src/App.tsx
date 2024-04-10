@@ -15,9 +15,9 @@ function App() {
         <Header />
         <Routes>
           <Route path='*' element={<MainPage />} />
-          <Route path='/auth' element={<AuthPage />} />
-          <Route path='/auth2' element={<AuthGooglePage />} />
-          <Route path='/admin' element={<AdminPage />} />
+          <Route path='auth' element={<AuthPage />} />
+          <Route path='auth2' element={<AuthGooglePage />} />
+          <Route path='admin' element={<AdminPage />} />
         </Routes>
       </Layout>
       </BrowserRouter>

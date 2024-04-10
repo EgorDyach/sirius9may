@@ -1,0 +1,21 @@
+.adminNav__list {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    padding: 0;
+}
+
+.adminNav__item button {
+    display: flex;
+    border: 0;
+    gap: 5px;
+    background-color: transparent;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: .3s ease-in-out;
+}
+
+.adminNav__item-active button {
+    border-bottom-color: #333;
+}

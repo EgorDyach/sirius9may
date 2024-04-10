@@ -2,10 +2,20 @@ import './header.css';
 import { Container } from '../../components/Container';
 import { Text } from '../../components/Text';
 import { Link, useLocation } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../../firebase';
+import { useLayoutEffect, useState } from 'react';
 
 export function Header() {
   const { pathname } = useLocation();
-
+  const [isAdmin, setIsAdmin] = useState(false)
+  useLayoutEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsAdmin(true)
+      }
+    })
+  }, [])
   return (
     <header className='header'>
       <Container flex>
@@ -36,12 +46,12 @@ export function Header() {
         </Link>
         <ul className='header__list'>
           {/* <li className={`header__item ${pathname === '/' ? 'header__item-active' : ""}`}> */}
-            <Link className={`header__item ${pathname === '/' ? 'header__item-active' : ""}`} to={'/'}>
+            <Link className={`header__item ${pathname === '/' ? 'header__item-active' : ""}`} to={"/"}>
               <Text color='#fff' size={24} weight={400} font='Lora'>Главная</Text>
             </Link>
           {/* </li> */}
           {/* <li className={`header__item ${pathname === '/gallary' ? 'header__item-active' : ""}`}> */}
-            <Link className={`header__item ${pathname === '/gallary' ? 'header__item-active' : ""}`} to={'/gallary'}>
+            <Link className={`header__item ${pathname === '/gallary' ? 'header__item-active' : ""}`} to={"/gallary"}>
               <Text color='#fff' size={24} weight={400} font='Lora'>Галерея</Text>
             </Link>
           {/* </li> */}
@@ -50,6 +60,10 @@ export function Header() {
               <Text color='#fff' size={24} weight={400} font='Lora'>Истории</Text>
             </Link>
           {/* </li> */}
+          {/* <li className={`header__item ${pathname === '/admin' ? 'header__item-active' : ""}`}> */}
+            {isAdmin && <Link className={`header__item ${pathname === '/admin' ? 'header__item-active' : ""}`} to={'/admin'}>
+              <Text color='#fff' size={24} weight={400} font='Lora'>Панель</Text>
+            </Link>}
         </ul>
         <Link to={'/form'} className='header__item-reg'>
           <Text size={24} font='Lora' color='#fff'>

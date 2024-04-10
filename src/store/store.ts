@@ -1,3 +1,4 @@
+import  unreadedPersonsSlice from './unreadedPersonsSlice';
 import { configureStore } from '@reduxjs/toolkit'
 import personsSlice from './personsSlice'
 import gallarySlice from './gallarySlice'
@@ -6,7 +7,8 @@ import gallarySlice from './gallarySlice'
 const store = configureStore({
   reducer: {
     persons: personsSlice,
-    gallary: gallarySlice
+    gallary: gallarySlice,
+    unreadedPersons: unreadedPersonsSlice
   },
 })
 

@@ -1,0 +1,22 @@
+.adminUnreaded {
+    display: flex;
+    justify-content: space-between;
+}
+
+.adminUnreaded__list {
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(0 0% 50%);
+        list-style: none;
+    max-height: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 0;
+}
+
+
+
+.adminUnreaded__active {
+    width: 400px;
+}

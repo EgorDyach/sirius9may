@@ -1,0 +1,52 @@
+.adminUnreaded__item {
+    min-height: 200px;
+    border: none;
+    background-color: #efefef;
+    border-radius: 20px;
+    display: flex;
+    cursor: pointer;
+    max-width: 650px;
+    position: relative;
+}
+
+.adminUnreaded__card-img {
+    /* height: 100%; */
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.adminUnreaded__card-content {
+    padding: 20px;
+}
+
+.adminUnreaded__card-name, .adminUnreaded__card-descr, .adminUnreaded__card-date, .adminUnreaded__card-rank {
+    display: -webkit-box;
+    -webkit-line-clamp: 1; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 7px;
+}
+.adminUnreaded__card-descr {
+    -webkit-line-clamp: 3; 
+}
+
+.adminUnreaded__arrow {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    transform: rotate(45deg);
+    cursor: pointer;
+    transition: transform .2s ease-in-out;
+}
+
+.adminUnreaded__arrow path {
+    stroke: #333;
+}
+.adminUnreaded__item:hover .adminUnreaded__arrow {
+    transform: rotate(0deg);
+}

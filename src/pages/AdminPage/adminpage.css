@@ -1,0 +1,29 @@
+.adminPage {
+    padding: 70px 0;
+    color: #877c63;
+}
+
+.adminNav__countUnreaded {
+    position: relative;
+    padding: 4px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 0;
+}
+
+.adminNav__countUnreaded span {
+    z-index: 3;
+}
+
+.adminNav__countUnreaded:after {
+    content: "";
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    background-color: #c82a2a;
+    /* border: 1px solid #C4C4C4; */
+    border-radius: 50%;
+    z-index: 1;
+}

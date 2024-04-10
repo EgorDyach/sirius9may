@@ -8,7 +8,7 @@
 
 .gallary__slide-content {
     display: flex;
-    gap: 30px;
+    gap: 19px;
 }
 
 .gallary__slide-photos {
@@ -20,6 +20,8 @@
 .gallary__photo-big {
     width: 100%;
     max-width: 700px;
+    display: flex;
+    align-items: center;
 }
 
 .gallary__photo, .gallary__photo-big {

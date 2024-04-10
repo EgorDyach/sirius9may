@@ -30,7 +30,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
       const querySnapshot = await getDocs(q);
       dispatch(removePersons())
       querySnapshot.forEach((doc) => {
-        console.log("DISPATCHED")
         dispatch(addPerson(doc.data()))
       });
       setIsPersonsLoadingST(false)
@@ -45,7 +44,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       //   date: Math.floor(Math.random() *  190000000000),
       //   title: ""
       // })
-      const q = query(docRef, limit(20))
+      const q = query(docRef, limit(20));
       const querySnapshot = await getDocs(q);
       dispatch(removeGallary())
       querySnapshot.forEach((doc) => {
