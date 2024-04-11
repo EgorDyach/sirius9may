@@ -1,11 +1,11 @@
 import './admincard.css';
 import { UnreadedPersonType } from '../../../store/unreadedPersonsSlice';
 import { Text } from '../../../components/Text';
-
+import unknown from '../../../assets/UnknownSoldier.jpg'
 export function AdminCard({ e, handleClick, isActive }: { e: UnreadedPersonType; isActive: boolean; handleClick: () => void }) {
   return (
     <li onClick={handleClick} className={`adminUnreaded__item ${isActive ? "adminUnreaded__item-active" : ""}`}>
-      <img src={e.mainPhoto} alt="Основное фото" className='adminUnreaded__card-img' />
+      <img  src={e.mainPhoto !== "" ? e.mainPhoto : unknown} alt="Основное фото" className='adminUnreaded__card-img' />
       <div className="adminUnreaded__card-content">
         <Text size={24} className='adminUnreaded__card-name' color='#333' weight={700} font='Lora'>{e.name}</Text>
         <Text size={14} className='adminUnreaded__card-descr' color='#333' weight={400} font='Lora'>{e.history}</Text>

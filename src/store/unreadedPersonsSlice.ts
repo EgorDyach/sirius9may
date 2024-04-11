@@ -5,13 +5,13 @@ import { EMedals } from './personsSlice';
 export type UnreadedPersonType = {
     name: string;
     city: string;
-    dateOfBirth: number | "unknown" | "alive";
-    dateOfDeath: number | "unknown" | "alive";
+    dateOfBirth: number;
+    dateOfDeath: number;
     history: string;
     mainPhoto: string;
     medals: EMedals[];
     photos: string[];
-    published: string;
+    published: number;
     rank: string;
     id: string;
     contacts: UnreadedContactsType
@@ -45,6 +45,16 @@ export const unreadedPersonsSlice = createSlice({
         addUnreadedPerson: (state, action) => {
             state.unreadedPersons.push(action.payload)
         },
+        updateUnreadedPerson: (state, action) => {
+            const index = state.unreadedPersons.findIndex(e => e.id === action.payload.id);
+            if (index !== -1) {
+                state.unreadedPersons[index] = action.payload.data 
+            }
+        },
+        removeUnreadedPerson: (state, action) => {
+            const without = state.unreadedPersons.filter(e => e.id !== action.payload)
+            state.unreadedPersons = without
+        },
         setCountOfUnreadedPersons: (state, action) => {
             state.countOfUnreadedPersons = action.payload
         },
@@ -58,6 +68,6 @@ export const unreadedPersonsSlice = createSlice({
 })
 
 // Сгенерированные Создатели Действий/ action creators
-export const {setCountOfUnreadedPersons, addUnreadedPerson, removeUnreadedPersons, setIsUnreadedPersonsLoading } = unreadedPersonsSlice.actions
+export const {updateUnreadedPerson, setCountOfUnreadedPersons, removeUnreadedPerson, addUnreadedPerson, removeUnreadedPersons, setIsUnreadedPersonsLoading } = unreadedPersonsSlice.actions
 
 export default unreadedPersonsSlice.reducer

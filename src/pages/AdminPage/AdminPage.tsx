@@ -24,7 +24,7 @@ export function AdminPage() {
   const getMorePersons = async () => {
     setIsLoadingPersons(true)
     const first = query(coll, orderBy("published"), startAfter(lastUnreadedPerson), limit(ITEMS_FROM_SERVER));
-    const documentSnapshots = await getDocs(first);
+    const documentSnapshots = await getDocs(first).finally(() => setIsLoadingPersons(false));
     documentSnapshots.forEach(e => {
       const res = { ...e.data(), id: e.id }
       dispatch(addUnreadedPerson(res))
@@ -69,7 +69,7 @@ export function AdminPage() {
       <div className="adminPage">
         <AdminNav active={activePage} setActive={setActivePage} countUnreaded={countUnreaded} />
         {activePage === 'content' && <div>qwe</div>}
-        {activePage === 'unreaded' && <AdminUnreaded isLoadingPersons={isLoadingPersons}  countGetted={countGetted} getMorePersons={getMorePersons} count={countUnreaded} />}
+        {activePage === 'unreaded' && <AdminUnreaded setCountGetted={setCountGetted} setCountUnreaded={setCountUnreaded} isLoadingPersons={isLoadingPersons}  countGetted={countGetted} getMorePersons={getMorePersons} count={countUnreaded} />}
         {activePage === 'allRequests' && <div>
           все заявки
         </div>}
