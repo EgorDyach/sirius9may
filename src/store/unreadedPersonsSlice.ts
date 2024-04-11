@@ -14,6 +14,15 @@ export type UnreadedPersonType = {
     published: string;
     rank: string;
     id: string;
+    contacts: UnreadedContactsType
+}
+
+export type UnreadedContactsType = {
+    telegram: string;
+    email: string;
+    name: string;
+    surname: string;
+    lastName?: string;
 }
 
 export interface TUnreadedPersons {

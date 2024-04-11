@@ -1,11 +1,12 @@
 .adminUnreaded__item {
     min-height: 200px;
     border: none;
-    background-color: #efefef;
+    background-color: #fff;
     border-radius: 20px;
     display: flex;
     cursor: pointer;
     max-width: 650px;
+    transition: .3s ease-in-out;
     position: relative;
 }
 
@@ -49,4 +50,8 @@
 }
 .adminUnreaded__item:hover .adminUnreaded__arrow {
     transform: rotate(0deg);
+}
+
+.adminUnreaded__item-active {
+    background-color: #cecece;
 }

@@ -6,7 +6,7 @@ import { AdminCard } from './AdminCard';
 import { AdminActive } from './AdminActive';
 import { Text } from '../../components/Text';
 
-export function AdminUnreaded({ getMorePersons, count, countGetted }: { getMorePersons: () => Promise<void>; count: number; countGetted: number; }) {
+export function AdminUnreaded({ getMorePersons, count, countGetted, isLoadingPersons }: { isLoadingPersons: boolean; getMorePersons: () => Promise<void>; count: number; countGetted: number; }) {
   const unreadedPersons = useAppSelector(state => state.unreadedPersons.unreadedPersons);
   const [activeId, setActiveId] = useState('');
   const [activePerson, setActivePerson] = useState<UnreadedPersonType | null>(null);
@@ -20,21 +20,23 @@ export function AdminUnreaded({ getMorePersons, count, countGetted }: { getMoreP
   }, [activeId, unreadedPersons])
   return (
     <div className='adminUnreaded'>
-      <div className='adminUnreaded__active'>
-        {activeId !== '' && activePerson !== null && <AdminActive e={activePerson} />}
+      <AdminActive e={activePerson} />
+      <div className="adminUnreaded__right">
+
+        <ul className={`adminUnreaded__list ${isLoadingPersons ? "adminUnreaded__list-loading" : ""}`}>
+          {unreadedPersons.map(e => {
+            return <AdminCard isActive={activeId === e.id} e={e} handleClick={() => setActiveId(e.id)} />
+          })}
+          {countGetted < count &&
+            <li className='adminUnreaded__item-btn'>
+              <button className='adminUnreaded__more' onClick={getMorePersons}>
+                <Text size={30} color="#fff" font='Lato'>Посмотреть еще</Text>
+              </button>
+            </li>
+          }
+        </ul>
       </div>
-      <ul className='adminUnreaded__list'>
-        {unreadedPersons.map(e => {
-          return <AdminCard e={e} handleClick={() => setActiveId(e.id)} />
-        })}
-        {countGetted < count &&
-          <li>
-            <button onClick={getMorePersons}>
-              <Text size={20} font='Lato'>Посмотреть еще</Text>
-            </button>
-          </li>
-        }
-      </ul>
     </div>
+
   );
 }

@@ -2,9 +2,9 @@ import './admincard.css';
 import { UnreadedPersonType } from '../../../store/unreadedPersonsSlice';
 import { Text } from '../../../components/Text';
 
-export function AdminCard({ e, handleClick }: { e: UnreadedPersonType; handleClick: () => void }) {
+export function AdminCard({ e, handleClick, isActive }: { e: UnreadedPersonType; isActive: boolean; handleClick: () => void }) {
   return (
-    <li onClick={handleClick} className='adminUnreaded__item'>
+    <li onClick={handleClick} className={`adminUnreaded__item ${isActive ? "adminUnreaded__item-active" : ""}`}>
       <img src={e.mainPhoto} alt="Основное фото" className='adminUnreaded__card-img' />
       <div className="adminUnreaded__card-content">
         <Text size={24} className='adminUnreaded__card-name' color='#333' weight={700} font='Lora'>{e.name}</Text>

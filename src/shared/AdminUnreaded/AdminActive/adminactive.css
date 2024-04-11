@@ -1,0 +1,102 @@
+.adminUnreaded__active {
+    width: 100%;
+    max-width: -fit-content-available;
+    min-width: 400px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.adminUnreaded__active-img {
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+}
+
+.adminUnreaded__top {
+    display: flex;
+    gap: 30px;
+}
+
+.adminUnreaded__info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.adminUnreaded__medals {
+    display: flex;
+    padding: 0;
+    overflow-x: auto;
+    height: fit-content;
+}
+
+.adminUnreaded__medals-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 20%;
+    width: 100%;
+    gap: 10px;
+}
+
+.adminUnreaded__medals-item img {
+    width: 60px;
+}
+
+.adminUnreaded__descr {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px;
+
+    color: #000000;
+
+
+}
+
+.adminUnreaded__descr-title {
+    line-height: 48px;
+    margin-bottom: 15px;
+}
+
+.adminUnreaded__photos-con {
+    display: flex;
+    overflow-x: scroll;
+    gap: 30px;
+}
+
+.adminUnreaded__photos-con img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+
+}
+
+.adminUnreaded__contacts {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.adminUnreaded__controls {
+    display: flex;
+    gap: 50px;
+}
+
+.adminUnreaded__controls-btn {
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 20px 40px;
+}
+
+.adminUnreaded__controls-disapprove {
+    background-color: rgb(237, 57, 57);
+}
+.adminUnreaded__controls-approve {
+    background-color: rgb(38, 222, 38);
+}

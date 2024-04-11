@@ -17,6 +17,7 @@ import { useAppSelector } from '../../hooks/reduxHooks';
 export function Hero() {
   const content = useAppSelector(state => state.persons.persons)
 
+
   return (
     <section className='hero'>
       <Container>

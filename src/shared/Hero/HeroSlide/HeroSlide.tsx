@@ -1,5 +1,5 @@
 import { Text } from '../../../components/Text';
-import { PersonType } from '../../../store/contentSlice';
+import { PersonType } from '../../../store/personsSlice';
 
 export function HeroSlide({e}: {e: PersonType;}) {
   // const swiper = useSwiperSlide();
