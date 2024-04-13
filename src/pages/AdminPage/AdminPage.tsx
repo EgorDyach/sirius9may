@@ -7,6 +7,7 @@ import { AdminNav } from '../../shared/AdminNav';
 import { AdminUnreaded } from '../../shared/AdminUnreaded';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { addUnreadedPerson, removeUnreadedPersons } from '../../store/unreadedPersonsSlice';
+import { AdminAllRequsts } from '../../shared/AdminAllRequests/AdminAllRequests';
 
 export type TAdminBlocks = 'unreaded' | 'content' | "allRequests";
 
@@ -70,9 +71,7 @@ export function AdminPage() {
         <AdminNav active={activePage} setActive={setActivePage} countUnreaded={countUnreaded} />
         {activePage === 'content' && <div>qwe</div>}
         {activePage === 'unreaded' && <AdminUnreaded setCountGetted={setCountGetted} setCountUnreaded={setCountUnreaded} isLoadingPersons={isLoadingPersons}  countGetted={countGetted} getMorePersons={getMorePersons} count={countUnreaded} />}
-        {activePage === 'allRequests' && <div>
-          все заявки
-        </div>}
+        {activePage === 'allRequests' && <AdminAllRequsts />}
         {/* <Text size={40} font='Lora' weight={400}>Добро пожаловать, администратор!</Text> */}
       </div>
     </>

@@ -44,11 +44,13 @@ export function Hero() {
             loop
             speed={850}
           >
-            {typeof content !== 'undefined' && content.map(e => (
-              <SwiperSlide key={content.indexOf(e)}>
-                <HeroSlide e={e} />
-              </SwiperSlide>
-            ))}
+            {typeof content !== 'undefined' && content.map(e => {
+              if (content.indexOf(e) < 10) {
+                return <SwiperSlide key={content.indexOf(e)}>
+                  <HeroSlide e={e} />
+                </SwiperSlide>
+              }
+            })}
             <div className="hero__slide-navigation">
               <HeroSwiperPrev />
               <HeroSwiperNext />

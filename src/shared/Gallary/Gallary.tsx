@@ -10,11 +10,11 @@ import { GallarySwiperNav } from './GallarySwiperNav';
 import { Pagination } from 'swiper/modules';
 import { useAppSelector } from '../../hooks/reduxHooks';
 
+
 export function Gallary() {
   const gallary = useAppSelector(state => state.gallary.gallary);
   const [gallaryArrays, setGallaryArrays] = useState<GallaryItemType[][]>([[]]);
   const [activeIndex, setActiveIndex] = useState(0)
-
   useLayoutEffect(() => {
     setGallaryArrays([])
     const q: GallaryItemType[][] = [];
@@ -30,6 +30,9 @@ export function Gallary() {
         }
     }
   }, [gallary]);
+  useLayoutEffect(()=> {
+
+  }, [])
   return (
     <section className='gallary'>
       <Container>
@@ -40,6 +43,7 @@ export function Gallary() {
           spaceBetween={50}
           slidesPerView={1}
           navigation
+          onSlideChange={(q) => {setActiveIndex(q.activeIndex)}}
           speed={850}>
           {typeof gallaryArrays !== 'undefined' &&  gallaryArrays.map(e => {
             if (e.length === 0) {

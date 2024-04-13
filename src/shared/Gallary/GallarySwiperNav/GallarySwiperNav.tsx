@@ -4,7 +4,7 @@ import { GallaryPagination } from './GallaryPagination';
 import { Link } from 'react-router-dom';
 import { Text } from '../../../components/Text';
 
-export function GallarySwiperNav({activeIndex, setActiveIndex}: {activeIndex: number; setActiveIndex: React.Dispatch<React.SetStateAction<number>>}) {
+export function GallarySwiperNav({activeIndex , setActiveIndex}: {activeIndex: number; setActiveIndex: React.Dispatch<React.SetStateAction<number>>}) {
   const swiper = useSwiper();
   return (
     <div className="gallary__controls">

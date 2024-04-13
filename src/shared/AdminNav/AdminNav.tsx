@@ -31,7 +31,7 @@ export function AdminNav({ active, setActive, countUnreaded }: { active: TAdminB
       <li className={active === 'allRequests' ? 'adminNav__item adminNav__item-active' : 'adminNav__item'}>
         <button onClick={() => handleClick('allRequests')}>
           <Text size={20} color='#333' weight={700}>
-            Все заявки
+            Анкеты на сайте
           </Text>
         </button>
       </li>
