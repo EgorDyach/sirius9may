@@ -12,7 +12,7 @@ import { useAppSelector } from '../../hooks/reduxHooks';
 
 
 export function Gallary() {
-  const gallary = useAppSelector(state => state.gallary.gallary);
+  const gallary = useAppSelector(state => state.mainGallary.gallary);
   const [gallaryArrays, setGallaryArrays] = useState<GallaryItemType[][]>([[]]);
   const [activeIndex, setActiveIndex] = useState(0)
   useLayoutEffect(() => {

@@ -82,6 +82,7 @@ export type PersonType = {
     photos: string[];
     published: string;
     rank: string;
+    isHero: boolean;
 }
 
 export interface TPersons {

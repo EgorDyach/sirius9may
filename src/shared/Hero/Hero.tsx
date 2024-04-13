@@ -15,7 +15,7 @@ import { HeroSlide } from './HeroSlide';
 import { useAppSelector } from '../../hooks/reduxHooks';
 
 export function Hero() {
-  const content = useAppSelector(state => state.persons.persons)
+  const content = useAppSelector(state => state.heroPersons.persons)
 
 
   return (

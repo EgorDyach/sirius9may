@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 // Определяем тип части состояния(среза/slice)
-export type GallaryItemType = {
+export type mainGallaryItemType = {
     img: string;
     title?: string;
     countOfLikes?: number;
@@ -9,34 +9,34 @@ export type GallaryItemType = {
     isHero: boolean;
 }
 
-export interface TGallarys {
-    gallary: GallaryItemType[];
+export interface TMainGallarys {
+    gallary: mainGallaryItemType[];
     isGallaryLoading: boolean;
 }
 
 // Определение начального состояния, используя тип
-const initialState: TGallarys = {
+const initialState: TMainGallarys = {
     gallary: [],
     isGallaryLoading: false,
 }
 
-export const gallarySlice = createSlice({
-    name: 'gallary',
+export const mainGallarySlice = createSlice({
+    name: 'mainGallary',
     initialState,
     reducers: {
-        addGallary: (state, action) => {
+        addMainGallary: (state, action) => {
             state.gallary.push(action.payload)
         },
-        removeGallary: (state) => {
+        removeMainGallary: (state) => {
             state.gallary = []
         },
-        setIsGallaryLoading: (state, action) => {
+        setIsMainGallaryLoading: (state, action) => {
             state.isGallaryLoading = action.payload
         },
     },
 })
 
 // Сгенерированные Создатели Действий/ action creators
-export const { addGallary, removeGallary, setIsGallaryLoading } = gallarySlice.actions
+export const { addMainGallary, removeMainGallary, setIsMainGallaryLoading } = mainGallarySlice.actions
 
-export default gallarySlice.reducer
+export default mainGallarySlice.reducer
