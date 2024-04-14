@@ -8,6 +8,7 @@ import { db } from '../../firebase';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { removeHeroPersons, addHeroPerson } from '../../store/heroSlice';
 import { removeMainGallary, addMainGallary } from '../../store/mainGallarySlice';
+import { MainPreloader } from '../../shared/MainPreloader';
 
 export function MainPage() {
   const [isPersonsLoading, setIsPersonsLoading] = useState(true);
@@ -23,7 +24,7 @@ export function MainPage() {
       querySnapshot.forEach((doc) => {
         const qq = doc.data();
 
-        dispatch(addHeroPerson({...qq, id: doc.id}));
+        dispatch(addHeroPerson({ ...qq, id: doc.id }));
       });
       setIsPersonsLoading(false)
     }
@@ -49,6 +50,7 @@ export function MainPage() {
   }, [])
   return (
     <>
+      {(isPersonsLoading || isGallaryLoading) && <MainPreloader />}
       {!isGallaryLoading && !isPersonsLoading &&
         <>
           <Hero />
@@ -56,7 +58,6 @@ export function MainPage() {
           <Histories />
         </>
       }
-      {(isPersonsLoading || isGallaryLoading) && <div>loading</div>}
     </>
   );
 }

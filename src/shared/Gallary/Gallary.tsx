@@ -2,7 +2,7 @@ import './gallary.css';
 import { Text } from '../../components/Text';
 import { Container } from '../../components/Container';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { GallaryItemType } from '../../store/contentSlice';
+import { GallaryItemType } from '../../store/gallarySlice';
 import { useLayoutEffect, useState } from 'react';
 import { GallarySlide } from './GallarySlide';
 import { Navigation, A11y } from 'swiper/modules';

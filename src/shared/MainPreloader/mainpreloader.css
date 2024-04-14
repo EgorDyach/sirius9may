@@ -1,0 +1,39 @@
+.preloader__main {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.preloader__main svg {
+    overflow: hidden;
+    position: relative;
+}
+
+.preloader__main rect {
+    background: #fff;
+    background-size: cover;
+    animation: fillingUp 3s ease-in-out infinite;
+}
+
+@keyframes fillingUp {
+    0% {
+        fill: transparent;
+        background-size: 0;
+    }
+     50% {
+        fill: #fff;
+        background-size: cover;
+     }
+     100% {
+        fill: transparent;
+     }
+}
