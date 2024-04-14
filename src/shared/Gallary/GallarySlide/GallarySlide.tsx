@@ -1,12 +1,13 @@
 import './gallaryslide.css';
-import { GallaryItemType } from '../../../store/contentSlice';
+import { GallaryItemType } from '../../../store/gallarySlice';
 import { Text } from '../../../components/Text';
 
 export function GallarySlide({ e }: { e: GallaryItemType[]; }) {
   while (e.length % 5 !== 0) {
     e.push({
       img: '',
-      date: 0
+      date: 0,
+      isHero: true
     })
   }
   return (
