@@ -21,7 +21,9 @@ export function MainPage() {
       console.log(querySnapshot)
       dispatch(removeHeroPersons())
       querySnapshot.forEach((doc) => {
-        dispatch(addHeroPerson(doc.data()));
+        const qq = doc.data();
+
+        dispatch(addHeroPerson({...qq, id: doc.id}));
       });
       setIsPersonsLoading(false)
     }

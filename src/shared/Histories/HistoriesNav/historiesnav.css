@@ -1,0 +1,20 @@
+.histories__nav {
+    position: absolute;
+    bottom: 50px;
+    left: 6%;
+    display: flex;
+    gap: 150px;
+    transform: translateY(-50%);
+}
+
+.histories__nav button {
+    width: 90px;
+    height: 90px;
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+}
+
+.histories__nav .swiper-button-prev, .histories__nav .swiper-button-next {
+    position: relative;
+}

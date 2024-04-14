@@ -80,9 +80,10 @@ export type PersonType = {
     mainPhoto: string;
     medals: EMedals[];
     photos: string[];
-    published: string;
+    published: number;
     rank: string;
     isHero: boolean;
+    id: string;
 }
 
 export interface TPersons {

@@ -1,4 +1,33 @@
 .histories {
     background-color: #696D72;
-    padding: 120px;
+    padding: 120px 0; 
+}
+
+.histories__swiper {
+    width: calc(55% - 20px);
+    margin: 0 0 0 auto;
+    position: static;
+    padding: 20px;
+}
+
+.histories__nav-img {
+    width: -webkit-fill-available;
+    width: -moz-available;
+    height: 250px;
+    object-fit: cover;
+}
+
+
+.histories__title {
+    margin: 0;
+    margin-bottom: 60px;
+}
+
+.histories__swiper .swiper-slide {
+    transition: outline .3s ease-in-out;
+    outline: 3px solid transparent;
+}
+
+.histories__swiper .history__slide-active {
+    outline-color: #fff;
 }

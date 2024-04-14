@@ -1,5 +1,5 @@
 import {  storage } from '../../firebase';
-import { EMedals } from '../../store/contentSlice';
+import { EMedals } from '../../store/personsSlice';
 import { getDownloadURL, ref } from "firebase/storage";
 import img from './medalOther.png';
 import { useState } from 'react';
