@@ -9,6 +9,7 @@ import { useAppDispatch } from '../../hooks/reduxHooks';
 import { removeHeroPersons, addHeroPerson } from '../../store/heroSlice';
 import { removeMainGallary, addMainGallary } from '../../store/mainGallarySlice';
 import { MainPreloader } from '../../shared/MainPreloader';
+import { Steps } from '../../shared/Steps';
 
 export function MainPage() {
   const [isPersonsLoading, setIsPersonsLoading] = useState(true);
@@ -56,6 +57,7 @@ export function MainPage() {
           <Hero />
           <Gallary />
           <Histories />
+          <Steps /> 
         </>
       }
     </>

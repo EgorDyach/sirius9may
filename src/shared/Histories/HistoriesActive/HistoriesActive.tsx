@@ -7,7 +7,7 @@ export function HistoriesActive({active, fadingUp, fadingDown}: {fadingUp: boole
   return (
     <div className={`histories__active ${fadingDown ? "fadingDown":""} ${fadingUp ? "fadingUp" : ""}`}>
       <div className="histories__active-img">
-        <img src={active.mainPhoto} alt={`${active.name} - основное фото`} />
+        <img src={active?.mainPhoto} alt={`${active.name} - основное фото`} />
       </div>
       <div className="histories__active-info">
           <Text size={64} font='Lora' color='#fff'>{active.name}</Text>
