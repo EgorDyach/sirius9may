@@ -1,0 +1,39 @@
+.inputComp input {
+    border: none;
+    padding: 21px;
+    background-color: transparent;
+    width: 100%;
+    border: 2px solid #000;
+    font-family: 'Lato400';
+    font-style: normal;
+    font-size: 32px;
+    line-height: 38px;
+    color: #000;
+    transition: .3s ease-in-out;
+}
+
+.inputComp input::placeholder {
+    font-family: 'Lato400';
+    font-style: normal;
+    font-size: 32px;
+    line-height: 38px;
+    color: #B3B3B3;
+
+
+}
+
+.inputComp {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.inputComp input:focus {
+    outline: 0;
+}
+
+.inputComp input:disabled {
+    border-color: #B3B3B3;
+    color: #B3B3B3;
+}

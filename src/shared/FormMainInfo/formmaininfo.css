@@ -1,0 +1,77 @@
+.formMainInfo {
+    padding: 160px 0 0;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.formMainInfo__title {
+    margin: 0;
+    margin-bottom: 50px;
+    align-self: flex-start;
+}
+
+.formMainInfo__top {
+    display: flex;
+    margin-bottom: 50px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.formMainInfo__img {
+    display: flex;
+    flex-direction: column;    
+    margin: 0 10%;
+    cursor: pointer;
+    gap: 20px;
+    align-items: center;
+}
+
+.formMainInfo__img-picture {
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.formMainInfo__bottom>.formMainInfo__input, .formMainInfo__bottom>.formMainInfo__bottom-date {
+    width: calc(50% - 60px);
+}
+
+.formMainInfo__bottom-date {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+}
+
+.formMainInfo__bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 100px;
+    width: 100%;
+}
+
+.formMainInfo__checkbox-con input:disabled~span {
+    color: #b4b4b4 !important;
+
+}
+
+.formMainInfo__bottom-date .inputComp {
+    width: 100%;
+}
+
+.formMainInfo__top-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+.formMainInfo__submit {
+    padding: 24px 72px;
+    background-color: #343434;
+}

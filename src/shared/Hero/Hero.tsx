@@ -42,7 +42,7 @@ export function Hero() {
             slidesPerView={3}
             navigation
             loop
-            speed={850}
+            speed={550}
           >
             {typeof content !== 'undefined' && content.map(e => {
               if (content.indexOf(e) < 10) {

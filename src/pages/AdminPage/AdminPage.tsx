@@ -8,8 +8,9 @@ import { AdminUnreaded } from '../../shared/AdminUnreaded';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { addUnreadedPerson, removeUnreadedPersons } from '../../store/unreadedPersonsSlice';
 import { AdminAllRequsts } from '../../shared/AdminAllRequests/AdminAllRequests';
+import { AdminHandAdding } from '../../shared/AdminHandAdding';
 
-export type TAdminBlocks = 'unreaded' | 'content' | "allRequests";
+export type TAdminBlocks = 'unreaded' | 'content' | "allRequests" | "handAdding";
 
 const ITEMS_FROM_SERVER = 6;
 
@@ -72,6 +73,7 @@ export function AdminPage() {
         {activePage === 'content' && <div>qwe</div>}
         {activePage === 'unreaded' && <AdminUnreaded setCountGetted={setCountGetted} setCountUnreaded={setCountUnreaded} isLoadingPersons={isLoadingPersons}  countGetted={countGetted} getMorePersons={getMorePersons} count={countUnreaded} />}
         {activePage === 'allRequests' && <AdminAllRequsts />}
+        {activePage === 'handAdding' && <AdminHandAdding />}
         {/* <Text size={40} font='Lora' weight={400}>Добро пожаловать, администратор!</Text> */}
       </div>
     </>

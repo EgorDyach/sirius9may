@@ -1,0 +1,9 @@
+.form {
+    padding: 140px 0;
+    background-color: #EFEADE;
+}
+
+.form__title {
+    margin: 0;
+    margin-bottom: 100px;   
+}

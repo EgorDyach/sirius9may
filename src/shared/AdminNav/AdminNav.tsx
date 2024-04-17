@@ -35,6 +35,13 @@ export function AdminNav({ active, setActive, countUnreaded }: { active: TAdminB
           </Text>
         </button>
       </li>
+      <li className={active === 'handAdding' ? 'adminNav__item adminNav__item-active' : 'adminNav__item'}>
+        <button onClick={() => handleClick('handAdding')}>
+          <Text size={20} color='#333' weight={700}>
+            Ручное добавление
+          </Text>
+        </button>
+      </li>
     </ul>
   );
 }
