@@ -28,6 +28,7 @@
 
 .form__nav-item {
     position: relative;
+    cursor: pointer;
 }
 
 .form__dot {

@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container } from '../../components/Container';
 import { Text } from '../../components/Text';
 import './formpage.css';
 import { FormNav } from '../../shared/FormNav';
 import { FormMainInfo } from '../../shared/FormMainInfo';
 import { UnreadedContactsType } from '../../store/unreadedPersonsSlice';
-import { EMedals } from '../../store/personsSlice';
+import { FormMedals, IOption } from '../../shared/FormMedals';
 
 export type FormPersonType = {
   name: string;
@@ -19,7 +19,8 @@ export type FormPersonType = {
   isAlive: boolean;
   history: string;
   mainPhoto: File | null;
-  medals: EMedals[];
+  medals: IOption[];
+  messageMedals: string;
   photos: File[];
   published: number;
   rank: string;
@@ -28,7 +29,7 @@ export type FormPersonType = {
 }
 
 export function FormPage() {
-  const [activeFormBlock] = useState(0)
+  const [activeFormBlock, setActiveFormBlock] = useState(1)
   const [formData, setFormData] = useState<FormPersonType>(
     {
       name: '',
@@ -42,6 +43,7 @@ export function FormPage() {
       isDeathUnknown: false,
       history: '',
       mainPhoto: null,
+      messageMedals: '',
       medals: [],
       photos: [],
       published: 0,
@@ -56,12 +58,18 @@ export function FormPage() {
       id: ''
     }
   )
+
+  useEffect(() => {
+    console.log(formData)  
+  }, [activeFormBlock])
+  
   return (
     <div className="form">
       <Container>
         <Text As='h2' className='form__title' size={80} weight={500} font='Lora'>Расскажи историю своего предка</Text>
-        <FormNav active={activeFormBlock} />
-        {activeFormBlock === 0 && <FormMainInfo formData={formData} setFormData={setFormData} />}
+        <FormNav setActive={setActiveFormBlock} active={activeFormBlock} />
+        {activeFormBlock === 0 && <FormMainInfo formData={formData} setFormData={setFormData} setActiveFormBlock={() => setActiveFormBlock(activeFormBlock+1)} />}
+        {activeFormBlock === 1 && <FormMedals formData={formData} setFormData={setFormData}  setActiveFormBlock={() => setActiveFormBlock(activeFormBlock+1)}  setMinusFormBlock={() => setActiveFormBlock(activeFormBlock-1)} />}
       </Container>
     </div>
   );

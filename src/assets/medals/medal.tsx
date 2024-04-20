@@ -12,11 +12,11 @@ function getMedalKeyByName(name: string) {
     return 'medalOther'; // Если медаль не найдена, возвращаем пустую строку
   }
 
-export const MedalComponent =  ({type}: {type: string; }) => {
+export const MedalComponent =  ({type, size}: {type: string; size?: number; }) => {
     const medalRef = ref(storage, `medals/${getMedalKeyByName(type)}.png`);
     const [refImg, setRefImg] = useState(img)
     getDownloadURL(medalRef).then(res =>  {
         setRefImg(res)
     })
-    return <img src={refImg} />
+    return <img width={size}  src={refImg} />
 }

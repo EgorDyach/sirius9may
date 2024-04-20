@@ -1,0 +1,52 @@
+.select__placeholder {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.formMedals {
+    margin-top: 125px;
+}
+
+.formMedals__select {
+    margin-bottom: 85px;
+}
+
+.formMedals__input {
+    width: calc(100% - 46px);
+}
+
+.formMedals__label {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.formMedals__label textarea {
+    resize: none;
+    background-color: transparent;
+    font-size: 24px;
+    margin-bottom: 25px;
+    padding: 20px;
+    height: 200px;
+}
+
+.formMainInfo__cancel {
+    padding: 24px 72px;
+    border: none;
+    background-color: #D9D9D9;
+}
+
+.formMedals__buttons {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    gap: 100px;
+}
+
+.formMedals__option {
+    display: flex;
+
+    gap: 30px;
+    align-items: center;
+}

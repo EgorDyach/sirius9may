@@ -3,7 +3,7 @@ import { Input } from '../../components/Input';
 import { Text } from '../../components/Text';
 import { FormPersonType } from '../../pages/FormPage';
 
-export function FormMainInfo({ formData, setFormData }: { formData: FormPersonType, setFormData: React.Dispatch<React.SetStateAction<FormPersonType>> }) {
+export function FormMainInfo({ setActiveFormBlock, formData, setFormData }: {setActiveFormBlock: () => void; formData: FormPersonType, setFormData: React.Dispatch<React.SetStateAction<FormPersonType>> }) {
   return (
     <div className="formMainInfo">
       <Text As='h3' className='formMainInfo__title' size={64} font='Lora' weight={500} >Основная информация</Text>
@@ -22,7 +22,7 @@ export function FormMainInfo({ formData, setFormData }: { formData: FormPersonTy
         <div className="formMainInfo__top-info">
           <Input className='formMainInfo__input' value={formData.name} onChange={(q) => setFormData({ ...formData, name: q })} placeholder='Семен' label={'Имя'} />
           <Input className='formMainInfo__input' value={formData.surName} onChange={(q) => setFormData({ ...formData, surName: q })} placeholder='Семенов' label={'Фамилия'} />
-          <Input className='formMainInfo__input' value={formData.lastName} onChange={(q) => setFormData({ ...formData, lastName: q })} placeholder='Семенович' label={'Отчество'} />
+          <Input className='formMainInfo__input' value={formData.lastName} onChange={(q) => setFormData({ ...formData, lastName: q })} placeholder='Семенович' label={'Отчество (при наличии)'} />
         </div>
       </div>
       <div className="formMainInfo__bottom">
@@ -65,7 +65,7 @@ export function FormMainInfo({ formData, setFormData }: { formData: FormPersonTy
         <Input className='formMainInfo__input' value={formData.city} onChange={(q) => setFormData({ ...formData, city: q })} placeholder='г. Ульяновск' label={'Город рождения'} />
         <Input className='formMainInfo__input' value={formData.rank} onChange={(q) => setFormData({ ...formData, rank: q })} placeholder='Майор' label={'Звание'} />
       </div>
-      <button onClick={() => console.log(formData)} className="formMainInfo__submit"><Text color='#fff' font='Lora' size={24}>Сохранить</Text></button>
+      <button onClick={setActiveFormBlock} className="formMainInfo__submit"><Text color='#fff' font='Lora' size={24}>Сохранить</Text></button>
     </div>
   );
 }
