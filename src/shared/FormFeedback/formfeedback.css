@@ -1,0 +1,31 @@
+.FormFeedback {
+    margin-top: 170px;
+}
+
+.FormFeedback__top {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-bottom: 40px;
+}
+
+.FormFeedback__contacts {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.FormFeedback__contacts .FormFeedback__input {
+    width: 46%;
+}
+
+.formMainInfo__cancel {
+    align-items: center;
+}
+
+.FormFeedback__buttons {
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    display: flex;
+}

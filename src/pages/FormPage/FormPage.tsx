@@ -6,6 +6,9 @@ import { FormNav } from '../../shared/FormNav';
 import { FormMainInfo } from '../../shared/FormMainInfo';
 import { UnreadedContactsType } from '../../store/unreadedPersonsSlice';
 import { FormMedals, IOption } from '../../shared/FormMedals';
+import { FormHistory } from '../../shared/FormHistory';
+import { FormPhotos } from '../../shared/FormPhotos';
+import { FormFeedback } from '../../shared/FormFeedback';
 
 export type FormPersonType = {
   name: string;
@@ -29,7 +32,7 @@ export type FormPersonType = {
 }
 
 export function FormPage() {
-  const [activeFormBlock, setActiveFormBlock] = useState(1)
+  const [activeFormBlock, setActiveFormBlock] = useState(4)
   const [formData, setFormData] = useState<FormPersonType>(
     {
       name: '',
@@ -58,13 +61,21 @@ export function FormPage() {
       id: ''
     }
   )
+
+    const handleSend = () => {
+
+    }
+
   return (
     <div className="form">
       <Container>
         <Text As='h2' className='form__title' size={80} weight={500} font='Lora'>Расскажи историю своего предка</Text>
         <FormNav setActive={setActiveFormBlock} active={activeFormBlock} />
-        {activeFormBlock === 0 && <FormMainInfo formData={formData} setFormData={setFormData} setActiveFormBlock={() => setActiveFormBlock(activeFormBlock+1)} />}
+        {activeFormBlock === 0 && <FormMainInfo formData={formData} setFormData={setFormData} setActiveFormBlock={() => {setActiveFormBlock(activeFormBlock+1)}} />}
         {activeFormBlock === 1 && <FormMedals formData={formData} setFormData={setFormData}  setActiveFormBlock={() => setActiveFormBlock(activeFormBlock+1)}  setMinusFormBlock={() => setActiveFormBlock(activeFormBlock-1)} />}
+        {activeFormBlock === 2 && <FormHistory formData={formData} setFormData={setFormData}  setActiveFormBlock={() => setActiveFormBlock(activeFormBlock+1)}  setMinusFormBlock={() => setActiveFormBlock(activeFormBlock-1)} />}
+        {activeFormBlock === 3 && <FormPhotos formData={formData} setFormData={setFormData}  setActiveFormBlock={() => setActiveFormBlock(activeFormBlock+1)}  setMinusFormBlock={() => setActiveFormBlock(activeFormBlock-1)} />}
+        {activeFormBlock === 4 && <FormFeedback handleSend={handleSend} formData={formData} setFormData={setFormData}   setMinusFormBlock={() => setActiveFormBlock(activeFormBlock-1)} />}
       </Container>
     </div>
   );
