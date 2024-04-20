@@ -67,7 +67,6 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
             z.push(v as IOption);
           })
           setCheckedOptions(z);
-          console.log(z)
         }}
         closeMenuOnSelect={false}
         components={animatedComponents}

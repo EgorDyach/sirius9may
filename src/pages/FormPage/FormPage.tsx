@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Container } from '../../components/Container';
 import { Text } from '../../components/Text';
 import './formpage.css';
@@ -58,11 +58,6 @@ export function FormPage() {
       id: ''
     }
   )
-
-  useEffect(() => {
-    console.log(formData)  
-  }, [activeFormBlock])
-  
   return (
     <div className="form">
       <Container>

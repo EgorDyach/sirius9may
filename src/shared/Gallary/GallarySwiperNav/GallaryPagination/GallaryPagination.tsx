@@ -10,7 +10,6 @@ export function GallaryPagination({activeIndex, setActiveIndex}: {activeIndex: n
     const v: JSX.Element[] = [];
     if (typeof swiper.slides !== 'undefined') {
       for (let i = 0; i < swiper.slides.length; i++) {
-        console.log(slides)
         v.push(<button key={i} className={activeIndex === i ? 'gallary__pagination-btn gallary__pagination-btn-active' : 'gallary__pagination-btn'} onClick={() => { swiper.slideTo(i); setActiveIndex(i) }}>
         <Text color={activeIndex !== i ? "#8D8B82" : "#000"} font='Lora' size={40}>{i+1}</Text>
       </button>)

@@ -20,7 +20,6 @@ export function MainPage() {
       const docRef = collection(db, "persons");
       const q = query(docRef, limit(10), where("isHero", "==", true));
       const querySnapshot = await getDocs(q);
-      console.log(querySnapshot)
       dispatch(removeHeroPersons())
       querySnapshot.forEach((doc) => {
         const qq = doc.data();
