@@ -1,0 +1,19 @@
+.formHistory {
+    margin-top: 125px;
+}
+
+.formHistory__label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.formHistory__label textarea {
+    resize: none;
+    background-color: transparent;
+    font-size: 24px;
+    margin-bottom: 25px;
+    padding: 20px;
+    height: 400px;
+    border: 2px solid #000;
+}
