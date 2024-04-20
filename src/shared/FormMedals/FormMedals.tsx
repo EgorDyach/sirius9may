@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useLayoutEffect, useState } from 'react';
 import './formmedals.css';
 import { FormPersonType } from '../../pages/FormPage';
 import Select from 'react-select';
@@ -12,7 +12,6 @@ export interface IOption { value: string; text: string; label: ReactNode }
 export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinusFormBlock }: { setActiveFormBlock: () => void; formData: FormPersonType, setFormData: React.Dispatch<React.SetStateAction<FormPersonType>>; setMinusFormBlock: () => void; }) {
   const [options, setOptions] = useState<IOption[]>([]);
   const animatedComponents = makeAnimated();
-  const [textareaData, setTextareaData] = useState(formData.messageMedals);
   const [checkedOptions, setCheckedOptions] = useState<IOption[]>(formData.medals);
   useEffect(() => {
     const v = [];
@@ -24,6 +23,10 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
     }
     setOptions(v);
   }, [])
+
+  useLayoutEffect(() => {
+      setFormData({...formData, medals: checkedOptions})
+  }, [checkedOptions])
 
   return (
     <div className="formMedals">
@@ -85,16 +88,14 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
       />
       <label className='formMedals__label'>
         <Text size={20} weight={400} >Если вы не нашли подходящей награды, напишите нам об этом, и мы её обязательно добавим.</Text>
-        <textarea placeholder='Написать...' value={textareaData} onChange={(q) => {setTextareaData(q.target.value)}}></textarea>
+        <textarea placeholder='Написать...' value={formData.messageMedals} onChange={(q) => {setFormData({...formData, messageMedals: q.target.value})}}></textarea>
       </label>
         <div className="formMedals__buttons">
           <button onClick={() => {
             setMinusFormBlock();
-            setFormData({ ...formData, medals: checkedOptions, messageMedals: textareaData })
           }} className="formMainInfo__cancel"><Text color='#343434' font='Lora' size={24}>Назад</Text></button>
           <button onClick={() => {
             setActiveFormBlock();
-            setFormData({...formData, medals: checkedOptions, messageMedals: textareaData })
           }} className="formMainInfo__submit"><Text color='#fff' font='Lora' size={24}>Сохранить</Text></button>
         </div>
     </div>

@@ -73,7 +73,7 @@
     content: 'История';
 }
 .form__nav-item:nth-child(5) .form__dot::after {
-    content: 'Дополнтельные фотографии';
+    content: 'Дополнительные фото';
 }
 .form__nav-item:nth-child(6) .form__dot::after {
     content: 'Обратная связь';
