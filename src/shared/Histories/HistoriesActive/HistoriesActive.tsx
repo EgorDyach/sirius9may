@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom';
 import { Text } from '../../../components/Text';
 import { PersonType } from '../../../store/personsSlice';
 import  './historiesactive.css';
-
+import unkown from '../../../assets/UnknownSoldier.jpg';
 export function HistoriesActive({active, fadingUp, fadingDown}: {fadingUp: boolean; fadingDown: boolean; active: PersonType}) {
   return (
     <div className={`histories__active ${fadingDown ? "fadingDown":""} ${fadingUp ? "fadingUp" : ""}`}>
       <div className="histories__active-img">
-        <img src={active?.mainPhoto} alt={`${active.name} - основное фото`} />
+        <img src={active?.mainPhoto ? active?.mainPhoto : unkown} alt={`${active.name} - основное фото`} />
       </div>
       <div className="histories__active-info">
           <Text size={64} font='Lora' color='#fff'>{active.name}</Text>

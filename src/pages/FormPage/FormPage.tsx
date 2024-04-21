@@ -12,6 +12,7 @@ import { FormFeedback } from '../../shared/FormFeedback';
 import { collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { useNavigate } from 'react-router-dom';
 
 export type FormPersonType = {
   name: string;
@@ -34,12 +35,20 @@ export type FormPersonType = {
   contacts: UnreadedContactsType
 }
 
+function guidGenerator() {
+  const S4 = () => {
+    return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+  };
+  return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+}
 
 export function FormPage() {
+  const [isSendDisabled, setIsSendDisabled] = useState(false);
   const [activeFormBlock, setActiveFormBlock] = useState(0);
   const [mainInfoError, setMainInfoError] = useState(false);
   const [historyError, setHistoryError] = useState(false);
   const [contactsError, setContactsError] = useState(false);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormPersonType>(
     {
       name: '',
@@ -68,15 +77,10 @@ export function FormPage() {
       }
     }
   )
-
-  function guidGenerator() {
-    const S4 = () => {
-      return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-    };
-    return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
-  }
+  
 
   const handleSend = async () => {
+    setIsSendDisabled(true);
     if (formData.name === '' || formData.surName === '' || (!formData.mainPhoto && !formData.isNoMainPhoto) || (formData.dateOfBirth === '' && !formData.isBirthUnknown) || (formData.dateOfDeath === '' && !formData.isDeathUnknown && !formData.isAlive) || formData.city === '' || formData.rank === '') {
       setMainInfoError(true)
     }
@@ -135,9 +139,13 @@ export function FormPage() {
         rank: formData.rank,
         medals: formData.medals.map(e => e.text),
         contacts: formData.contacts,
-        message: formData.messageMedals,
+        messageMedals: formData.messageMedals,
+        isHero: false
+      }).then(() => {
+        navigate('/thankYou');
       });
     }
+    setIsSendDisabled(false);
   }
 
   return (
@@ -149,7 +157,7 @@ export function FormPage() {
         {activeFormBlock === 1 && <FormMedals formData={formData} setFormData={setFormData} setActiveFormBlock={() => setActiveFormBlock(activeFormBlock + 1)} setMinusFormBlock={() => setActiveFormBlock(activeFormBlock - 1)} />}
         {activeFormBlock === 2 && <FormHistory error={historyError} setError={setHistoryError} formData={formData} setFormData={setFormData} setActiveFormBlock={() => setActiveFormBlock(activeFormBlock + 1)} setMinusFormBlock={() => setActiveFormBlock(activeFormBlock - 1)} />}
         {activeFormBlock === 3 && <FormPhotos formData={formData} setFormData={setFormData} setActiveFormBlock={() => setActiveFormBlock(activeFormBlock + 1)} setMinusFormBlock={() => setActiveFormBlock(activeFormBlock - 1)} />}
-        {activeFormBlock === 4 && <FormFeedback error={contactsError} setError={setContactsError} handleSend={handleSend} formData={formData} setFormData={setFormData} setMinusFormBlock={() => setActiveFormBlock(activeFormBlock - 1)} />}
+        {activeFormBlock === 4 && <FormFeedback isSendDisabled={isSendDisabled} error={contactsError} setError={setContactsError} handleSend={handleSend} formData={formData} setFormData={setFormData} setMinusFormBlock={() => setActiveFormBlock(activeFormBlock - 1)} />}
       </Container>
     </div>
   );

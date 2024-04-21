@@ -4,7 +4,7 @@ import { Input } from '../../components/Input';
 import { FormPersonType } from '../../pages/FormPage';
 import { Text } from '../../components/Text';
 
-export function FormFeedback({ error, setError, setMinusFormBlock, formData, setFormData, handleSend }: { setMinusFormBlock: () => void; setError: React.Dispatch<React.SetStateAction<boolean>>,  error: boolean; formData: FormPersonType, setFormData: React.Dispatch<React.SetStateAction<FormPersonType>>;handleSend: () => void; }) {
+export function FormFeedback({ error, isSendDisabled, setError, setMinusFormBlock, formData, setFormData, handleSend }: { setMinusFormBlock: () => void; setError: React.Dispatch<React.SetStateAction<boolean>>,  error: boolean; formData: FormPersonType, isSendDisabled: boolean, setFormData: React.Dispatch<React.SetStateAction<FormPersonType>>;handleSend: () => void; }) {
   useLayoutEffect(() => {
     if (formData.contacts.email && formData.contacts.telegram && formData.contacts.surname && formData.contacts.name) {
       setError(false)
@@ -25,7 +25,7 @@ export function FormFeedback({ error, setError, setMinusFormBlock, formData, set
       </div>
       <div className="FormFeedback__buttons">
         <button onClick={setMinusFormBlock} className="formMainInfo__cancel"><Text color='#343434' font='Lora' size={24}>Назад</Text></button>
-        <button onClick={handleSend} className="formMainInfo__submit"><Text color='#fff' font='Lora' size={24}>Отправить</Text></button>
+        <button disabled={isSendDisabled} onClick={handleSend} className="formMainInfo__submit"><Text color='#fff' font='Lora' size={24}>Отправить</Text></button>
       </div>
     </div>
 

@@ -16,6 +16,7 @@ const NO_UNREADED_PERSON = {
   history: '',
   mainPhoto: '',
   medals: [],
+  messageMedals: '',
   photos: [],
   published: 0,
   rank: '',
@@ -26,7 +27,8 @@ const NO_UNREADED_PERSON = {
     surname: "",
     lastName: ""
   },
-  id: ''
+  id: '',
+  isHero: false
 }
 
 export function AdminUnreaded({ getMorePersons, count, countGetted, isLoadingPersons, setCountUnreaded, setCountGetted }: { isLoadingPersons: boolean; getMorePersons: () => Promise<void>; count: number; countGetted: number; setCountUnreaded: React.Dispatch<React.SetStateAction<number>>; setCountGetted: React.Dispatch<React.SetStateAction<number>>; }) {
@@ -42,6 +44,7 @@ export function AdminUnreaded({ getMorePersons, count, countGetted, isLoadingPer
   const [medals, setMedals] = useState(activePerson.medals)
   const [history, setHistory] = useState(activePerson.history)
   const [photos, setPhotos] = useState(activePerson.photos)
+  const [isHero, setIsHero] = useState(false)
   const [mainPhoto, setMainPhoto] = useState(activePerson.mainPhoto)
   const dispatch = useAppDispatch()
   const coll = collection(db, "unreadedPersons");
@@ -64,10 +67,11 @@ export function AdminUnreaded({ getMorePersons, count, countGetted, isLoadingPer
         photos,
         published: activePerson.published,
         rank,
+        isHero,
         contacts: activePerson.contacts,
         id: activeId
       }
-      await addDoc(docRef, isChanged ? req : activePerson)
+      await addDoc(docRef, isChanged ? req : {...activePerson, isHero})
       handleDisapprove();
   }
 
@@ -144,6 +148,7 @@ export function AdminUnreaded({ getMorePersons, count, countGetted, isLoadingPer
   return (
     <div className='adminUnreaded'>
       <AdminActive
+        isHero={isHero}
         handleChange={handleChange}
         isChanged={isChanged}
         e={activePerson}
@@ -166,6 +171,7 @@ export function AdminUnreaded({ getMorePersons, count, countGetted, isLoadingPer
         setMedals={setMedals}
         setHistory={setHistory}
         setPhotos={setPhotos}
+        setIsHero={setIsHero}
         setMainPhoto={setMainPhoto}
         handleCancel={handleCancel}
         handleSave={handleSave}

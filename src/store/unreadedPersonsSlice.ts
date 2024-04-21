@@ -11,9 +11,11 @@ export type UnreadedPersonType = {
     mainPhoto: string;
     medals: EMedals[];
     photos: string[];
+    messageMedals: string;
     published: number;
     rank: string;
     id: string;
+    isHero: boolean,
     contacts: UnreadedContactsType
 }
 

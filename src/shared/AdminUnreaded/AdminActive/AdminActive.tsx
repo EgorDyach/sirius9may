@@ -29,8 +29,10 @@ interface IAdminActive {
   setHistory: React.Dispatch<React.SetStateAction<string>>;
   setPhotos: React.Dispatch<React.SetStateAction<string[]>>;
   setMainPhoto: React.Dispatch<React.SetStateAction<string>>;
+  setIsHero: React.Dispatch<React.SetStateAction<boolean>>;
   handleSave: () => void;
   handleCancel: () => void;
+  isHero: boolean;
 }
 
 export function AdminActive({ e,
@@ -42,6 +44,7 @@ export function AdminActive({ e,
   dateOfBirth,
   dateOfDeath,
   city,
+  isHero,
   rank,
   medals,
   history,
@@ -55,6 +58,7 @@ export function AdminActive({ e,
   setMedals,
   setHistory,
   setPhotos,
+  setIsHero,
   setMainPhoto,
   handleSave,
   handleCancel
@@ -238,7 +242,17 @@ export function AdminActive({ e,
           <br />
           <Text size={20} weight={400}>email: <a href={`mailto:${e.contacts.email}`}>{e.contacts.email}</a></Text>
           <br />
-          <Text size={20} weight={400}>Отправлено: {new Date(e.published).toLocaleDateString()} {new Date(e.published).toLocaleTimeString()}</Text>
+          <Text size={20} weight={400}>Сообщение о медалях:{e.messageMedals}</Text>
+          <br />
+          <Text size={20} weight={400}>Отправлено: {new Date(e.published*1000).toLocaleDateString()} {new Date(e.published).toLocaleTimeString()}</Text>
+          <br />
+          <br />
+          <label>
+            <input type='checkbox' checked={isHero} onChange={() => setIsHero(!isHero)} />
+            <Text size={26} color='#000'>
+              Добавить на главную страницу
+            </Text>
+          </label>
         </div>
         <div className="adminUnreaded__controls">
           <button onClick={handleApprove} className='adminUnreaded__controls-btn adminUnreaded__controls-approve'>

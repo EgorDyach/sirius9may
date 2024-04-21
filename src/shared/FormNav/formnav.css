@@ -95,26 +95,3 @@
 .form__dot.form__dot-error::after {
     color: #f84a4a;
 }
-
-/* export type UnreadedPersonType = {
-    name: string;
-    city: string;
-    dateOfBirth: number;
-    dateOfDeath: number;
-    history: string;
-    mainPhoto: string;
-    medals: EMedals[];
-    photos: string[];
-    published: number;
-    rank: string;
-    id: string;
-    contacts: UnreadedContactsType
-}
-
-export type UnreadedContactsType = {
-    telegram: string;
-    email: string;
-    name: string;
-    surname: string;
-    lastName?: string;
-} */

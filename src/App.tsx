@@ -7,6 +7,7 @@ import { AuthGooglePage } from './pages/AuthGooglePage'
 import { AdminPage } from './pages/AdminPage'
 import { Layout } from './shared/Layout'
 import { FormPage } from './pages/FormPage'
+import { ThankYou } from './pages/ThankYou'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path='auth' element={<AuthPage />} />
           <Route path='auth2' element={<AuthGooglePage />} />
           <Route path='admin' element={<AdminPage />} />
+          <Route path='thankYou' element={<ThankYou />} />
         </Routes>
       </Layout>
       </BrowserRouter>

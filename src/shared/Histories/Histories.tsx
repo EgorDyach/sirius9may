@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // import { A11y, Navigation, Pagination } from 'swiper/modules';
 import { useAppSelector } from '../../hooks/reduxHooks';
 import { HistoriesNav } from './HistoriesNav';
-
+import unkown from '../../assets/UnknownSoldier.jpg'
 export function Histories() {
   const persons = useAppSelector(state => state.heroPersons.persons);
   const [activePerson, setActivePerson] = useState(persons[0]);
@@ -31,7 +31,7 @@ export function Histories() {
         >
           {persons.map(e => {
             return <SwiperSlide key={e.id} className={e.id === activePerson.id ? "history__slide-active" : ""} onClick={() => setActivePerson(persons[persons.indexOf(e)])}>
-              <img src={e.mainPhoto} className='histories__nav-img' />
+              <img src={e.mainPhoto ? e.mainPhoto : unkown} className='histories__nav-img' />
             </SwiperSlide>
           })}
           <HistoriesNav
