@@ -66,15 +66,55 @@
 .form__nav-item:nth-child(2) .form__dot::after {
     content: 'Основная информация';
 }
+
 .form__nav-item:nth-child(3) .form__dot::after {
     content: 'Награды';
 }
+
 .form__nav-item:nth-child(4) .form__dot::after {
     content: 'История';
 }
+
 .form__nav-item:nth-child(5) .form__dot::after {
     content: 'Дополнительные фото';
 }
+
 .form__nav-item:nth-child(6) .form__dot::after {
     content: 'Обратная связь';
 }
+
+.form__dot.form__dot-error {
+    background-color: #f84a4a;
+}
+
+.form__nav-active .form__dot.form__dot-error {
+    background-color: #b50000;
+    transition: .3s ease-in-out;
+}
+
+.form__dot.form__dot-error::after {
+    color: #f84a4a;
+}
+
+/* export type UnreadedPersonType = {
+    name: string;
+    city: string;
+    dateOfBirth: number;
+    dateOfDeath: number;
+    history: string;
+    mainPhoto: string;
+    medals: EMedals[];
+    photos: string[];
+    published: number;
+    rank: string;
+    id: string;
+    contacts: UnreadedContactsType
+}
+
+export type UnreadedContactsType = {
+    telegram: string;
+    email: string;
+    name: string;
+    surname: string;
+    lastName?: string;
+} */

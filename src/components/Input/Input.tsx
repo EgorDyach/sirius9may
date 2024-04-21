@@ -24,6 +24,7 @@ export function Input({
   label,
   className,
   onChange,
+  error,
   ...restProps
 }: InputProps) {
   const showLabelRow = !!label || !!labelAction;
@@ -36,7 +37,7 @@ export function Input({
   );
 
   return (
-    <div className={className + ' inputComp'}>
+    <div className={className + ' inputComp' + (error ? " inputComp-error" :"")}>
       {showLabelRow && (
         <Text size={20}>
           {label}
