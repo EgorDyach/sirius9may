@@ -8,6 +8,7 @@ import { AdminPage } from './pages/AdminPage'
 import { Layout } from './shared/Layout'
 import { FormPage } from './pages/FormPage'
 import { ThankYou } from './pages/ThankYou'
+import { UnderConstruction } from './pages/UnderConstruction'
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
           <Route path='auth2' element={<AuthGooglePage />} />
           <Route path='admin' element={<AdminPage />} />
           <Route path='thankYou' element={<ThankYou />} />
+          <Route path='histories' element={<UnderConstruction />} />
+          <Route path='gallary' element={<UnderConstruction />} />
         </Routes>
       </Layout>
       </BrowserRouter>

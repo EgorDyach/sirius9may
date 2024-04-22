@@ -50,3 +50,20 @@
     gap: 30px;
     align-items: center;
 }
+
+@media (max-width: 1400px) {
+    .select__placeholder {
+        gap: 15px;
+    }
+
+    .select__placeholder svg {
+        width: 60px;
+    }
+
+    .select__placeholder span {
+        font-size: 24px;
+    }
+    .formMedals__select>div {
+        padding: 10px;
+    }
+}

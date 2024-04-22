@@ -2,7 +2,7 @@
     border: none;
     padding: 21px;
     background-color: transparent;
-    width: 100%;
+    width: -webkit-fill-available;
     border: 2px solid #000;
     font-family: 'Lato400';
     font-style: normal;
@@ -40,4 +40,23 @@
 
 .inputComp-error input {
     border-color: #f84a4a;
+}
+
+@media (max-width: 1400px) {
+    .inputComp span {
+        font-size: 16px;
+    }
+
+    .inputComp {
+        gap: 6px;
+    }
+
+    .inputComp input {
+        font-size: 18px;
+        padding: 12px;
+    }
+
+    .inputComp input::placeholder {
+        font-size: 18px;
+    }
 }

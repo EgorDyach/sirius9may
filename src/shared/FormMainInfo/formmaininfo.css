@@ -60,8 +60,8 @@
 
 }
 
-.formMainInfo__bottom-date .inputComp {
-    width: 100%;
+.formMainInfo__bottom .inputComp {
+    width: calc(100%);
 }
 
 .formMainInfo__top-info {

@@ -2,6 +2,11 @@
     background-color: #52575D;
     margin: 0;
     padding: 17px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
 .header .container {

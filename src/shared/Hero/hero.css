@@ -1,5 +1,6 @@
 .hero {
     position: relative;
+    padding: 90px 0 0;
     background-color: #EFEADE;
 }
 
@@ -141,4 +142,32 @@
 
 .swiper-button-prev:after, .swiper-button-next:after {
     display: none;
+}
+
+
+@media (max-width: 1700px) {
+    .hero .hero__title {
+        font-size: 60px;
+        max-width: 550px;
+        margin-bottom: 20px;
+        line-height: 75px;    
+    }
+    .hero .hero__descr {
+        font-size: 32px;
+        max-width: 550px;
+        margin: 0;
+        margin-bottom: 80px;
+        line-height: 48px;    
+    }
+
+    .hero .hero__swiper {
+        max-width: 650px;
+        right: 0;
+        padding-bottom: 30px;
+    }
+
+    .hero__slide-content {
+        height: 250px;
+        width: 200px;
+    }
 }

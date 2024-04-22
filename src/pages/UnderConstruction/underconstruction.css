@@ -1,0 +1,26 @@
+.underConstruction {
+    background-image: url('../../assets/preloaderBackgrounds/bg6.jpg');
+    display: flex;
+    text-align: center;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    padding: 40vh 0 0;
+    height: calc(70vh);
+}
+
+.underConstruction::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.underConstruction span {
+    max-width: 1400px;
+    z-index: 10;
+    margin: 0 auto;
+}
