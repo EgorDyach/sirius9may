@@ -54,6 +54,12 @@ export function AdminUnreaded({ getMorePersons, count, countGetted, isLoadingPer
     setCountUnreaded(snapshot.data().count);
 
   }
+
+  useLayoutEffect(() => {
+      console.log(activePerson)
+  }, [photos])
+  
+
   const handleApprove = async () => {
     const docRef = collection(db, "persons");
       const req = {

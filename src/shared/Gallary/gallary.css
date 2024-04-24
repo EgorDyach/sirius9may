@@ -123,4 +123,25 @@
   cursor: pointer;
   width: 65px;
   height: 65px;
+
+}
+
+.gallary__nav .swiper-button-prev rect,
+.gallary__nav .swiper-button-next rect {
+  transition: fill .3s ease-in-out;
+}
+
+
+.gallary__nav .swiper-button-prev:hover rect,
+.gallary__nav .swiper-button-next:hover rect {
+  fill: #858585;
+}
+
+.gallary__nav .swiper-button-prev:disabled rect,
+.gallary__nav .swiper-button-next:disabled rect {
+  fill: #a4a2a2;
+}
+
+.gallary__nav .swiper-button-next:disabled, .gallary__nav .swiper-button-prev:disabled {
+  cursor: default;
 }

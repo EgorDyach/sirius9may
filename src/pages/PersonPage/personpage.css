@@ -1,5 +1,7 @@
 .personPage {
-    padding: 80px 0;
+    padding: 80px 0 30px;
+    background-color: #EFEADE;
+
 }
 
 .personPage__main {
@@ -11,11 +13,18 @@
     width: 100%;
     max-width: 540px;
     object-fit: cover;
-
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .personPage__mainInfo {
     padding: 80px 0 80px 150px;
+}
+
+.personPage__photos-title {
+    margin: 0;
+    margin-bottom: 20px;
 }
 
 .personPage__mainInfo h2 {
@@ -30,6 +39,9 @@
 .personPage__medals {
     padding: 80px 0;
     background-color: #EFEADE;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     background-image: url('../../assets/bgForMedals.png');
 }
 
@@ -55,5 +67,34 @@
 
 .personPage__photos-item {
     aspect-ratio: 1 / 1;
+    max-width: 570px;
     object-fit: cover;
+}
+
+.personPage__medals-slide {
+    height: 250px;
+}
+
+.personPage__medals-slide img {
+    height: 100%;
+}
+
+.personPage .gallary__controls {
+    justify-content: center;
+}
+
+.personPage .gallary__nav {
+    margin-top: 50px;
+    gap: 100px;
+}
+
+.personPage__date {
+
+    font-family: 'Lora';
+    font-style: italic;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 41px;
+    color: #C4B695;
+    font-style: italic;
 }

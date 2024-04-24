@@ -16,7 +16,6 @@ export const MedalComponent =  ({type, size}: {type: string; size?: number; }) =
     const medalRef = ref(storage, `medals/${getMedalKeyByName(type)}.png`);
     const [refImg, setRefImg] = useState(img)
     if (getMedalKeyByName(type) !== 'other') {
-      console.log(medalRef)
       getDownloadURL(medalRef).then(res =>  {
           setRefImg(res)
       })
