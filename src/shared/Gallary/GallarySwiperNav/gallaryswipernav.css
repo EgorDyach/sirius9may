@@ -1,10 +1,10 @@
 .gallary__controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
 }
 
 .gallary__nav-link {
-    text-decoration: underline;
+  text-decoration: underline;
 }
