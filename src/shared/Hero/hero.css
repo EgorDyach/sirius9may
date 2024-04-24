@@ -174,14 +174,21 @@
 }
 
 @media (max-width: 1200px) {
+  .hero__content .swiper {
+    position: relative !important;
+  }
+  .hero__title {
+    max-width: none !important;
+  }
   .hero .hero__content {
     display: flex;
     flex-direction: column;
   }
   .hero .hero__info {
+    text-align: center;
   }
   .hero .hero__descr {
-    display: none;
+    display: none !important;
   }
   .hero .hero__swiper {
     order: -1;
