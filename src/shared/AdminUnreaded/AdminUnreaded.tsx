@@ -68,7 +68,6 @@ export function AdminUnreaded({ getMorePersons, count, countGetted, isLoadingPer
         published: activePerson.published,
         rank,
         isHero,
-        contacts: activePerson.contacts,
         id: activeId
       }
       await addDoc(docRef, isChanged ? req : {...activePerson, isHero})
@@ -180,7 +179,7 @@ export function AdminUnreaded({ getMorePersons, count, countGetted, isLoadingPer
 
         <ul className={`adminUnreaded__list ${isLoadingPersons ? "adminUnreaded__list-loading" : ""}`}>
           {unreadedPersons.map(e => {
-            return <AdminCard isActive={activeId === e.id} e={e} handleClick={() => setActiveId(e.id)} />
+            return <AdminCard isActive={activeId === e.id} e={e} handleClick={() => {setActiveId(e.id); setIsChanged(false)}} />
           })}
           {countGetted < count &&
             <li className='adminUnreaded__item-btn'>

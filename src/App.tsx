@@ -9,6 +9,7 @@ import { Layout } from './shared/Layout'
 import { FormPage } from './pages/FormPage'
 import { ThankYou } from './pages/ThankYou'
 import { UnderConstruction } from './pages/UnderConstruction'
+import { HistoriesPage } from './pages/HistoriesPage'
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
           <Route path='auth2' element={<AuthGooglePage />} />
           <Route path='admin' element={<AdminPage />} />
           <Route path='thankYou' element={<ThankYou />} />
-          <Route path='histories' element={<UnderConstruction />} />
+          <Route path='histories' element={<HistoriesPage />} />
           <Route path='gallary' element={<UnderConstruction />} />
         </Routes>
       </Layout>

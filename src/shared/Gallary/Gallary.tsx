@@ -30,9 +30,6 @@ export function Gallary() {
         }
     }
   }, [gallary]);
-  useLayoutEffect(()=> {
-
-  }, [])
   return (
     <section className='gallary'>
       <Container>

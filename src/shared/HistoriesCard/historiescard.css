@@ -1,0 +1,36 @@
+.historiesCard {
+    display: flex;
+    background-color: #fff;
+    flex-direction: column;
+    max-width: 450px;
+    width: 100%;
+    height: inherit;
+}
+
+.historiesCard__img {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 1 / 1.2;
+}
+
+.historiesCard__info {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    height: -webkit-fill-available;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.historiesCard__info-text {
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.historiesCard__info-more {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}

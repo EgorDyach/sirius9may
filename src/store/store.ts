@@ -4,15 +4,16 @@ import personsSlice from './personsSlice'
 import gallarySlice from './gallarySlice'
 import heroSlice from './heroSlice';
 import mainGallarySlice from './mainGallarySlice';
-// ...
+import  newPersonsSlice  from './newPersons';
 
 const store = configureStore({
   reducer: {
     persons: personsSlice,
+    newPersons: newPersonsSlice,
     gallary: gallarySlice,
     unreadedPersons: unreadedPersonsSlice,
     heroPersons: heroSlice,
-    mainGallary: mainGallarySlice
+    mainGallary: mainGallarySlice,
   },
 })
 

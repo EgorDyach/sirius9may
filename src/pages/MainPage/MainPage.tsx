@@ -2,7 +2,7 @@ import { Hero } from '../../shared/Hero';
 import { Gallary } from '../../shared/Gallary';
 import './mainpage.css';
 import { Histories } from '../../shared/Histories';
-import { collection, query, limit, getDocs, where } from 'firebase/firestore';
+import { collection, query, limit, getDocs, where, doc, setDoc } from 'firebase/firestore';
 import { useState, useLayoutEffect } from 'react';
 import { db } from '../../firebase';
 import { useAppDispatch } from '../../hooks/reduxHooks';
@@ -19,6 +19,19 @@ export function MainPage() {
     const getPersons = async () => {
       const docRef = collection(db, "persons");
       const q = query(docRef, limit(10), where("isHero", "==", true));
+      // setDoc(doc(docRef), {
+      //   name: "Баранов Илья Александрович",
+      //   city: "Москва",
+      //   dateOfBirth: 1920,
+      //   dateOfDeath: 2017,
+      //   history: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim consequuntur alias, nulla sint laborum animi! Repellendus, mollitia consectetur possimus dicta explicabo ipsa eum cupiditate nam, cumque impedit ducimus hic nihil.",
+      //   mainPhoto: "https://cdn.iportal.ru/preview/news/articles/89fb605de62db0c0fccc778a9bc2d69606751914_700_1132.jpg",
+      //   medals: ["Орден Красного Знамени", "Медаль «За отвагу»", "Медаль Ушакова", "Медаль «За боевые заслуги»", "Медаль Нахимова", "Медаль «За трудовую доблесть»"],
+      //   photos: [],
+      //   published: (Math.random() > 0.5 ? 1710776078.102 : 1713893740.289),
+      //   rank: 'Майор',
+      //   isHero: true
+      // })
       const querySnapshot = await getDocs(q);
       dispatch(removeHeroPersons())
       querySnapshot.forEach((doc) => {
@@ -56,7 +69,7 @@ export function MainPage() {
           <Hero />
           <Gallary />
           <Histories />
-          <Steps /> 
+          <Steps />
         </>
       }
     </>

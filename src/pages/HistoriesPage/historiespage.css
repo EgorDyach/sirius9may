@@ -1,0 +1,54 @@
+.historiesPage {
+    background-color: #EFEADE;
+    padding: 175px 0;
+}
+
+
+.historiesPage__new {
+
+}
+
+.historiesPage__new-title {
+    display: flex;
+    gap: 50px;
+}
+
+.historiesPage__new-count {
+    position: relative;
+    padding: 4px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 0;
+}
+
+.historiesPage__new-count span {
+    z-index: 3;
+}
+
+.historiesPage__new-count:after {
+    content: "";
+    width: 65px;
+    height: 65px;
+    position: absolute;
+    background-color: #52575D;
+    /* border: 1px solid #C4C4C4; */
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.historiesPage__new-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.historiesPage__new-swiper {
+    width: 100%;
+    padding-bottom: 160px;
+}
+
+.historiesPage .swiper-slide {
+    display: flex;
+    justify-content: space-between;
+}
