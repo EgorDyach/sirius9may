@@ -18,14 +18,16 @@ export function HistoriesPage() {
   const [isPersonsLoading, setIsPersonsLoading] = useState(true);
   const dispatch = useAppDispatch();
   const newPersons = useAppSelector(state => state.newPersons.persons);
+  const persons = useAppSelector(state => state.persons.persons);
   const [sizeOfNew, setSizeOfNew] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
   const [historiesArrays, setHistoriesArrays] = useState<PersonType[][]>([[]]);
+  const [offset, setOffset] = useState(6);
 
   useEffect(() => {
     const getPersons = async () => {
       const docRef = collection(db, "persons");
-      const q = query(docRef, where("published", ">=", new Date().getTime() / 1000 - THREE_DAYS));
+      const q = query(docRef, limit(15), where("published", ">=", new Date().getTime() / 1000 - THREE_DAYS));
       const querySnapshot = await getDocs(q);
       setSizeOfNew(querySnapshot.size);
       dispatch(removeNewPersons())
@@ -58,15 +60,15 @@ export function HistoriesPage() {
     setHistoriesArrays([])
     const q: PersonType[][] = [];
     if (typeof newPersons !== 'undefined') {
-      for (let i = 0; i<newPersons.length; i++) {
+      for (let i = 0; i < newPersons.length; i++) {
         if (typeof newPersons[i] !== 'undefined') {
           if (i % 3 === 0) {
             q.push([])
           }
-          q[q.length-1].push(newPersons[i])
+          q[q.length - 1].push(newPersons[i])
         }
         setHistoriesArrays(q)
-        }
+      }
     }
   }, [newPersons]);
 
@@ -89,7 +91,7 @@ export function HistoriesPage() {
                 slidesPerView={1}
                 spaceBetween={50}
                 speed={850}
-                onSlideChange={(q) => {setActiveIndex(q.activeIndex)}}
+                onSlideChange={(q) => { setActiveIndex(q.activeIndex) }}
               >
                 {historiesArrays.map(e => {
                   return <SwiperSlide>
@@ -101,6 +103,16 @@ export function HistoriesPage() {
                 <HistoriesSwiperNav activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
               </Swiper>
             </div>
+          </div>
+          <div className="historiesPage__all">
+            <Text As='h3' size={70} color='#000' font='Lora' weight={400} >Все истории</Text>
+            <div className="historiesPage__all-container">
+                {[...persons, ...newPersons].sort((a, b) => a.id.localeCompare(b.id)).slice(0, offset).map(e => {
+                  return <HistoriesCard e={e} />
+                })}
+            </div>
+            <button disabled={offset >= [...persons, ...newPersons].length} onClick={() => setOffset(offset+6)} className='historiesPage__all-more'>
+              <Text size={24} font='Lora' color='#fff'>Показать ещё</Text></button>
           </div>
         </Container>
       </div>}

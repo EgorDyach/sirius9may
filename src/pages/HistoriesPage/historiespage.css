@@ -52,3 +52,26 @@
     display: flex;
     justify-content: space-between;
 }
+
+.historiesPage__all {
+    text-align: center;
+}
+
+.historiesPage__all-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.historiesPage__all-more {
+    border: none;
+    padding: 20px 50px;
+    margin: 0 auto;
+    background-color: #52575D;
+    cursor: pointer;
+}
+
+.historiesPage__all-more:disabled {
+    background-color: #b6b6b6;
+    cursor: default;
+}
