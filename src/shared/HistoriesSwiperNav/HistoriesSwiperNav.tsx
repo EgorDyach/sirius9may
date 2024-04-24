@@ -1,7 +1,5 @@
 import { useSwiper } from 'swiper/react';
 import './historiesswipernav.css';
-import { Link } from 'react-router-dom';
-import { Text } from '../../components/Text';
 import { HistoriesPagination } from '../HistoriesPagination';
 export function HistoriesSwiperNav({ activeIndex, setActiveIndex }: { activeIndex: number; setActiveIndex: React.Dispatch<React.SetStateAction<number>> }) {
   const swiper = useSwiper();

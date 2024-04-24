@@ -2,7 +2,7 @@ import { Hero } from '../../shared/Hero';
 import { Gallary } from '../../shared/Gallary';
 import './mainpage.css';
 import { Histories } from '../../shared/Histories';
-import { collection, query, limit, getDocs, where, doc, setDoc } from 'firebase/firestore';
+import { collection, query, limit, getDocs, where } from 'firebase/firestore';
 import { useState, useLayoutEffect } from 'react';
 import { db } from '../../firebase';
 import { useAppDispatch } from '../../hooks/reduxHooks';
