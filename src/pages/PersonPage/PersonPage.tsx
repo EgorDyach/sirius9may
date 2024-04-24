@@ -56,6 +56,25 @@ export function PersonPage() {
     }
     as();
   }, [params.id])
+
+  const handleClick = async () => {
+    fetch('https://for-9-may.onrender.com/api/v1/login', {
+      method: "POST",
+
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: 'AdminPolk_siriusAdmin@gmail.com',
+        password: 'Bz%7LrZSrGu3zkTA8~n8'
+      })
+    }).then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
+  }
   return (
     <div className='personPage'>
       {isLoading && <Text size={80}>Загрузка...</Text>}
@@ -119,7 +138,8 @@ export function PersonPage() {
             </Container>
           </div> : <></>}
           <Container>
-            <span className='personPage__date'>опубликовано {formatDateFromMilliseconds(activePerson.published*1000)}</span>
+            <button style={{ margin: 50 }} onClick={handleClick}>click me</button>
+            <span className='personPage__date'>опубликовано {formatDateFromMilliseconds(activePerson.published * 1000)}</span>
           </Container>
         </>
         : <>
