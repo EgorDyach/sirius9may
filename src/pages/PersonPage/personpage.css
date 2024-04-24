@@ -1,0 +1,59 @@
+.personPage {
+    padding: 80px 0;
+}
+
+.personPage__main {
+    background-color: #1E1E1E;
+    padding: auto 0;
+}
+
+.personPage__mainPhoto {
+    width: 100%;
+    max-width: 540px;
+    object-fit: cover;
+
+}
+
+.personPage__mainInfo {
+    padding: 80px 0 80px 150px;
+}
+
+.personPage__mainInfo h2 {
+    margin: 0;
+}
+
+.personPage__mainInfo-more {
+    display: flex;
+    gap: 60px;
+}
+
+.personPage__medals {
+    padding: 80px 0;
+    background-color: #EFEADE;
+    background-image: url('../../assets/bgForMedals.png');
+}
+
+.personPage__medals-title {
+    margin: 0;
+    margin-bottom: 40px;
+}
+
+.personPage__history {
+    background-color: #EFEADE;
+    padding: 80px 0;
+}
+
+.personPage__history-title {
+    margin: 0;
+    margin-bottom: 40px;
+}
+
+.personPage__photos {
+    padding: 80px 0;
+    background-color: #EFEADE;
+}
+
+.personPage__photos-item {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}

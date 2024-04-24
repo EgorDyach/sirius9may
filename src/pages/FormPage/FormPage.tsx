@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { Container } from '../../components/Container';
 import { Text } from '../../components/Text';
 import './formpage.css';
@@ -77,7 +77,9 @@ export function FormPage() {
       }
     }
   )
-  
+  useLayoutEffect(() => {
+    console.log(formData)
+  }, [activeFormBlock])
 
   const handleSend = async () => {
     setIsSendDisabled(true);
@@ -104,29 +106,29 @@ export function FormPage() {
           });
         });
       }
-      formData.photos.forEach(async (e) => {
+      formData.photos.forEach((e) => {
         const id = guidGenerator();
         const storageRef = ref(storage, `photos/${id}.jpg`);
-        await uploadBytes(storageRef, e).then(q => {
+        uploadBytes(storageRef, e).then(q => {
           getDownloadURL(q.ref).then((downloadURL) => {
             refs.push(downloadURL)
           })
         });
-      });
-      console.log(formData,{
-        name: `${formData.surName} ${formData.name} ${formData.lastName}`.trim(),
-        city: formData.city,
-        dateOfBirth: (formData.isBirthUnknown ? '???' : formData.dateOfBirth),
-        dateOfDeath: (formData.isDeathUnknown ? '???' : (formData.isAlive ? 'н. в.' : Number(formData.dateOfDeath))),
-        history: formData.history,
-        mainPhoto: mainLink,
-        photos: refs,
-        published: new Date().getTime() / 1000,
-        rank: formData.rank,
-        medals: formData.medals.map(e => e.text),
-        contacts: formData.contacts,
-        message: formData.messageMedals,
       })
+      // console.log({
+      //   name: `${formData.surName} ${formData.name} ${formData.lastName}`.trim(),
+      //   city: formData.city,
+      //   dateOfBirth: (formData.isBirthUnknown ? '???' : formData.dateOfBirth),
+      //   dateOfDeath: (formData.isDeathUnknown ? '???' : (formData.isAlive ? 'н. в.' : Number(formData.dateOfDeath))),
+      //   history: formData.history,
+      //   mainPhoto: mainLink,
+      //   photos: refs,
+      //   published: new Date().getTime() / 1000,
+      //   rank: formData.rank,
+      //   medals: formData.medals.map(e => e.text),
+      //   contacts: formData.contacts,
+      //   message: formData.messageMedals,
+      // })
       await setDoc(doc(docRef), {
         name: `${formData.surName} ${formData.name} ${formData.lastName}`.trim(),
         city: formData.city,
