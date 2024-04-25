@@ -9,10 +9,7 @@ import { FormMedals, IOption } from '../../shared/FormMedals';
 import { FormHistory } from '../../shared/FormHistory';
 import { FormPhotos } from '../../shared/FormPhotos';
 import { FormFeedback } from '../../shared/FormFeedback';
-import { collection, doc, setDoc } from 'firebase/firestore';
-import { db } from '../../firebase';
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export type FormPersonType = {
   name: string;
@@ -35,12 +32,12 @@ export type FormPersonType = {
   contacts: UnreadedContactsType
 }
 
-function guidGenerator() {
-  const S4 = () => {
-    return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-  };
-  return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
-}
+// function guidGenerator() {
+//   const S4 = () => {
+//     return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+//   };
+//   return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+// }
 
 export function FormPage() {
   const [isSendDisabled, setIsSendDisabled] = useState(false);
@@ -48,7 +45,6 @@ export function FormPage() {
   const [mainInfoError, setMainInfoError] = useState(false);
   const [historyError, setHistoryError] = useState(false);
   const [contactsError, setContactsError] = useState(false);
-  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormPersonType>(
     {
       name: '',
@@ -78,11 +74,11 @@ export function FormPage() {
     }
   )
   useLayoutEffect(() => {
-    console.log(formData)
+    console.log(formData, setIsSendDisabled)
   }, [activeFormBlock])
 
   const handleSend = async () => {
-    setIsSendDisabled(true);
+    // setIsSendDisabled(true);
     if (formData.name === '' || formData.surName === '' || (!formData.mainPhoto && !formData.isNoMainPhoto) || (formData.dateOfBirth === '' && !formData.isBirthUnknown) || (formData.dateOfDeath === '' && !formData.isDeathUnknown && !formData.isAlive) || formData.city === '' || formData.rank === '') {
       setMainInfoError(true)
     }
@@ -93,61 +89,79 @@ export function FormPage() {
       setContactsError(true)
     }
     if ((formData.name !== '' && formData.surName !== '' && (formData.mainPhoto || formData.isNoMainPhoto) && (formData.dateOfBirth !== '' || formData.isBirthUnknown) && (formData.dateOfDeath !== '' || formData.isDeathUnknown || formData.isAlive) && formData.city !== '' && formData.rank !== '' && formData.history !== '' && formData.contacts.telegram !== '' && formData.contacts.email !== '' && formData.contacts.name !== '' && formData.contacts.surname !== '')) {
-      const storage = getStorage();
-      const idMain = guidGenerator();
-      const storageRef = ref(storage, `mainPhotos/${idMain}.jpg`);
-      let mainLink = '';
-      const refs: string[] = [];
-      const docRef = collection(db, "unreadedPersons");
+      // const storage = getStorage();
+      // const idMain = guidGenerator();
+      // const storageRef = ref(storage, `mainPhotos/${idMain}.jpg`);
+      // let mainLink = '';
+      // const refs: string[] = [];
+      // const docRef = collection(db, "unreadedPersons");
+      // if (formData.mainPhoto) {
+      //   await uploadBytes(storageRef, formData.mainPhoto).then(async (snapshot) => {
+      //     await getDownloadURL(snapshot.ref).then((downloadURL) => {
+      //       mainLink = downloadURL;
+      //     });
+      //   });
+      // }
+      //  for (const e of formData.photos) {
+      //   const id = guidGenerator();
+      //   const storageRef = ref(storage, `photos/${id}.jpg`);
+      //   await uploadBytes(storageRef, e).then(async q => {
+      //     await getDownloadURL(q.ref).then((downloadURL) => {
+      //       refs.push(downloadURL)
+      //     })
+      //   });
+      // }
+      const formDataMain = new FormData()
       if (formData.mainPhoto) {
-        await uploadBytes(storageRef, formData.mainPhoto).then(async (snapshot) => {
-          await getDownloadURL(snapshot.ref).then((downloadURL) => {
-            mainLink = downloadURL;
-          });
-        });
+        formDataMain.append('main_photo', formData.mainPhoto);
+        formDataMain.append('photo', formData.photos[0]);
+        formDataMain.append('medals', 'qwe');
+
       }
-       for (const e of formData.photos) {
-        const id = guidGenerator();
-        const storageRef = ref(storage, `photos/${id}.jpg`);
-        await uploadBytes(storageRef, e).then(async q => {
-          await getDownloadURL(q.ref).then((downloadURL) => {
-            refs.push(downloadURL)
-          })
-        });
-      }
-      await setDoc(doc(docRef), {
-        name: `${formData.surName} ${formData.name} ${formData.lastName}`.trim(),
-        city: formData.city,
-        dateOfBirth: (formData.isBirthUnknown ? '???' : formData.dateOfBirth),
-        dateOfDeath: (formData.isDeathUnknown ? '???' : (formData.isAlive ? 'н. в.' : Number(formData.dateOfDeath))),
-        history: formData.history,
-        mainPhoto: mainLink,
-        photos: refs,
-        published: new Date().getTime() / 1000,
-        rank: formData.rank,
-        medals: formData.medals.map(e => e.text),
-        contacts: formData.contacts,
-        messageMedals: formData.messageMedals,
-        isHero: false
-      }).then(() => {
-        navigate('/thankYou');
-      });
-      // console.log({
-      //   name: `${formData.surName} ${formData.name} ${formData.lastName}`.trim(),
-      //   city: formData.city,
-      //   dateOfBirth: (formData.isBirthUnknown ? '???' : formData.dateOfBirth),
-      //   dateOfDeath: (formData.isDeathUnknown ? '???' : (formData.isAlive ? 'н. в.' : Number(formData.dateOfDeath))),
-      //   history: formData.history,
-      //   mainPhoto: mainLink,
-      //   photos: refs,
-      //   published: new Date().getTime() / 1000,
-      //   rank: formData.rank,
-      //   medals: formData.medals.map(e => e.text),
-      //   contacts: formData.contacts,
-      //   message: formData.messageMedals,
-      // })
-      setIsSendDisabled(false);
+      // {
+      //   medals: ['Медаль «За оборону Киева»', 'Медаль «За оборону Москвы»', "Медаль «За оборону Одессы»"],
+      //   main_photo: formDataMain,
+      //   photo: formData.photos
+      // }
+      console.log (formDataMain)
+      axios.post(`https://for-9-may.onrender.com/api/v1/unreadedPersons?snl=${formData?.name}&date_birth=${formData.dateOfBirth === 'unknown' ? 1 : (typeof formData?.dateOfBirth === 'number' ? formData?.dateOfBirth : 1)}&date_death=${formData?.dateOfBirth === 'unknown' ? 1 : (typeof formData?.dateOfBirth === 'number' ? formData?.dateOfBirth : 1)}&city=${formData?.city}&history=${formData?.history}&date_pulished=${formData?.published}&rank=${formData?.rank}&role=${true}&contact_email=${'test@test.test'}&contact_SNL=${'test test test'}&contact_telegram=${"@contact"}`, formDataMain).then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
     }
+    // await setDoc(doc(docRef), {
+    //   name: `${formData.surName} ${formData.name} ${formData.lastName}`.trim(),
+    //   city: formData.city,
+    //   dateOfBirth: (formData.isBirthUnknown ? '???' : formData.dateOfBirth),
+    //   dateOfDeath: (formData.isDeathUnknown ? '???' : (formData.isAlive ? 'н. в.' : Number(formData.dateOfDeath))),
+    //   history: formData.history,
+    //   mainPhoto: mainLink,
+    //   photos: refs,
+    //   published: new Date().getTime() / 1000,
+    //   rank: formData.rank,
+    //   medals: formData.medals.map(e => e.text),
+    //   contacts: formData.contacts,
+    //   messageMedals: formData.messageMedals,
+    //   isHero: false
+    // }).then(() => {
+    //   navigate('/thankYou');
+    // });
+    // console.log({
+    //   name: `${formData.surName} ${formData.name} ${formData.lastName}`.trim(),
+    //   city: formData.city,
+    //   dateOfBirth: (formData.isBirthUnknown ? '???' : formData.dateOfBirth),
+    //   dateOfDeath: (formData.isDeathUnknown ? '???' : (formData.isAlive ? 'н. в.' : Number(formData.dateOfDeath))),
+    //   history: formData.history,
+    //   mainPhoto: mainLink,
+    //   photos: refs,
+    //   published: new Date().getTime() / 1000,
+    //   rank: formData.rank,
+    //   medals: formData.medals.map(e => e.text),
+    //   contacts: formData.contacts,
+    //   message: formData.messageMedals,
+    // })
+    // setIsSendDisabled(false);
   }
 
   return (

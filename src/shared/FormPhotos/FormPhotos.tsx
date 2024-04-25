@@ -80,6 +80,7 @@ export function FormPhotos({ setActiveFormBlock, formData, setFormData, setMinus
       for (let i = 0; i < event?.length; i++) {
         newPhotos.push(event[i]);
       }
+      console.log(newPhotos[0].text())
       setFormData({ ...formData, photos: newPhotos })
     }
   }

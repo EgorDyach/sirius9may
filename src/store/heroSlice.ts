@@ -7,7 +7,50 @@ export interface THeroPersons {
 
 // Определение начального состояния, используя тип
 const initialState: THeroPersons = {
-    persons: [],
+    persons: [
+        // {
+        //     name: 'Федотов Николай Александрович',
+        //     city: '',
+        //     dateOfBirth: 0,
+        //     dateOfDeath: 0,
+        //     history: '',
+        //     mainPhoto: '',
+        //     medals: EMedals[];
+        //     photos: string[];
+        //     published: number;
+        //     rank: string;
+        //     isHero: boolean;
+        //     id: string;
+        // },
+        // {
+        //     name: string;
+        //     city: string;
+        //     dateOfBirth: number | "unknown" | "alive";
+        //     dateOfDeath: number | "unknown" | "alive";
+        //     history: string;
+        //     mainPhoto: string;
+        //     medals: EMedals[];
+        //     photos: string[];
+        //     published: number;
+        //     rank: string;
+        //     isHero: boolean;
+        //     id: string;
+        // },
+        // {
+        //     name: string;
+        //     city: string;
+        //     dateOfBirth: number | "unknown" | "alive";
+        //     dateOfDeath: number | "unknown" | "alive";
+        //     history: string;
+        //     mainPhoto: string;
+        //     medals: EMedals[];
+        //     photos: string[];
+        //     published: number;
+        //     rank: string;
+        //     isHero: boolean;
+        //     id: string;
+        // }
+    ],
 }
 
 export const heroPersonsSlice = createSlice({
