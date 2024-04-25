@@ -41,7 +41,7 @@ export function HistoriesPage() {
 
     const getNewPersons = async () => {
       const docRef = collection(db, "persons");
-      const qNotNew = query(docRef, limit(6 - sizeOfNew % 6), where("published", "<", new Date().getTime() / 1000 - THREE_DAYS));
+      const qNotNew = query(docRef, where("published", "<", new Date().getTime() / 1000 - THREE_DAYS));
       await getDocs(qNotNew).then(querySnapshotNotNew => {
         dispatch(removePersons())
         querySnapshotNotNew.forEach((doc) => {
@@ -62,7 +62,7 @@ export function HistoriesPage() {
     if (typeof newPersons !== 'undefined') {
       for (let i = 0; i < newPersons.length; i++) {
         if (typeof newPersons[i] !== 'undefined') {
-          if (i % 3 === 0) {
+          if (i % (window.innerWidth > 850 ? 3 : (window.innerHeight > 600 ? 2 : 1)) === 0) {
             q.push([])
           }
           q[q.length - 1].push(newPersons[i])
@@ -71,6 +71,8 @@ export function HistoriesPage() {
       }
     }
   }, [newPersons]);
+
+
 
   return (
     <>
@@ -89,7 +91,7 @@ export function HistoriesPage() {
               <Swiper
                 className='historiesPage__new-swiper'
                 slidesPerView={1}
-                spaceBetween={50}
+                spaceBetween={window.innerWidth > 1400 ? 50 : 60}
                 speed={850}
                 onSlideChange={(q) => { setActiveIndex(q.activeIndex) }}
               >

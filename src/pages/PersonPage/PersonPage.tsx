@@ -76,6 +76,7 @@ export function PersonPage() {
         <>
           <div className="personPage__main">
             <Container flex>
+              {window.innerWidth <= 700 && <img src={activePerson.mainPhoto ? activePerson.mainPhoto : unknown} className='personPage__img' />}
               <div className="personPage__mainPhoto" style={{ backgroundImage: `linear-gradient(270deg, #1e1e1e 0%, rgba(30, 30, 30, 0) 20%), url("${activePerson.mainPhoto ? activePerson.mainPhoto : unknown}")` }}></div>
               <div className="personPage__mainInfo">
                 <Text As='h2' size={80} color='#fff' weight={400} font='Lora'>{activePerson.name}</Text>
@@ -96,7 +97,7 @@ export function PersonPage() {
           {activePerson.medals.length ? <div className='personPage__medals'>
             <Container>
               <Text size={80} As='h3' className='personPage__medals-title' font='Lora'>Награды</Text>
-              {activePerson.medals.length > 4 && <Swiper slidesPerGroup={4} slidesPerView={4}>
+              {activePerson.medals.length > 4 && <Swiper slidesPerGroup={window.innerWidth> 700 ? 4 : 2} slidesPerView={window.innerWidth> 700 ? 4 : 2}>
                 {activePerson.medals.map((e) => {
                   return <SwiperSlide onClick={() => {
                     const medalRef = ref(storage, `medals/${getMedalKeyByName(e)}.png`);
@@ -111,19 +112,20 @@ export function PersonPage() {
                 })}
                 <PersonNav activeIndex={medalsActiveIndex} setActiveIndex={setMedalActiveIndex} />
               </Swiper>}
-              {activePerson.medals.length <= 4 && activePerson.medals.map((e) => {
-                return <div onClick={() => {
-                  console.log(123)
-                  const medalRef = ref(storage, `medals/${getMedalKeyByName(e)}.png`);
-                  if (getMedalKeyByName(e) !== 'other') {
-                    getDownloadURL(medalRef).then(res => {
-                      dispatch(openModal(res))
-                    })
-                  }
-                }}>
-                  <MedalComponent type={e} />
-                </div>
-              })}
+              {activePerson.medals.length <= 4 && <div className='personPage__medalsCon'>
+                {activePerson.medals.map((e) => {
+                  return <div onClick={() => {
+                    const medalRef = ref(storage, `medals/${getMedalKeyByName(e)}.png`);
+                    if (getMedalKeyByName(e) !== 'other') {
+                      getDownloadURL(medalRef).then(res => {
+                        dispatch(openModal(res))
+                      })
+                    }
+                  }}>
+                    <MedalComponent type={e} />
+                  </div>
+                })}
+                </div>}
             </Container>
           </div> : <></>}
           {activePerson.history ? <div className='personPage__history'>
@@ -147,11 +149,9 @@ export function PersonPage() {
               {activePerson.photos.length <= 2 && activePerson.photos.map((e) => {
                 return <img onClick={() => dispatch(openModal(e))} src={e} className='personPage__photos-item' />
               })}
-              <button style={{ margin: 50 }} onClick={handleClick}>click me</button>
             </Container>
           </div> : <></>}
           <Container>
-            <button style={{ margin: 50 }} onClick={handleClick}>click me</button>
             <span className='personPage__date'>опубликовано {formatDateFromMilliseconds(activePerson.published * 1000)}</span>
           </Container>
         </>

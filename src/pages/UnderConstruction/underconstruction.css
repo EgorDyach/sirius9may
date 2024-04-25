@@ -24,3 +24,9 @@
     z-index: 10;
     margin: 0 auto;
 }
+
+@media (max-width: 700px) {
+    .underConstruction span {
+        font-size: 30px;
+    }
+}

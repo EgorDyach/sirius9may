@@ -82,7 +82,7 @@ export function FormMainInfo({ error, setError, setActiveFormBlock, formData, se
         </div>
         {/* <div style={{ display: "flex", justifyContent: 'space-between' }}> */}
         <div className="formMainInfo__bottom-date">
-          <Input error={error && !formData.city} className='formMainInfo__input' value={formData.city} onChange={(q) => setFormData({ ...formData, city: q })} placeholder='г. Ульяновск' label={'Город рождения'} />
+          <Input error={error && !formData.city} className='formMainInfo__input' value={formData.city} onChange={(q) => setFormData({ ...formData, city: q })} placeholder='г. Ульяновск' label={'Место рождения'} />
         </div>
         <div className="formMainInfo__bottom-date">
           <Input error={error && !formData.rank} className='formMainInfo__input' value={formData.rank} onChange={(q) => setFormData({ ...formData, rank: q })} placeholder='Майор' label={'Звание'} />

@@ -75,3 +75,73 @@
     background-color: #b6b6b6;
     cursor: default;
 }
+
+@media (max-width: 1400px) {
+     .historiesCard {
+            max-width: 300px;
+    }   
+
+    .historiesPage__new-swiper .swiper-slide {
+        justify-content: space-around;
+    }
+
+    .historiesPage__all-container .historiesCard {
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .historiesPage__new-swiper .historiesCard {
+        max-width: 250px;
+    }
+    .historiesPage h2 {
+        font-size: 60px;
+    }
+
+    .historiesPage__new-title {
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .historiesPage__new-title span {
+        font-size: 35px;
+    }
+
+    .historiesPage__new-count span {
+        font-size: 24px;
+    }
+    .historiesPage__new-count:after {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 850px) {
+    .historiesPage__new-swiper .historiesCard {
+        max-width: 250px;
+        height: fit-content;
+    }    
+
+    .historiesPage__new-swiper {
+        padding: 0;
+    }
+
+    .historiesPage__new-swiper .gallary__pagination {
+        display: none;
+    }
+
+    .historiesCard__info-more {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    
+}
+
+@media (max-width: 600px) {
+    .historiesPage__all-container .historiesCard {
+        margin-right: 0;
+    }
+    
+}
