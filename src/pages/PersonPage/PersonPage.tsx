@@ -1,15 +1,18 @@
 import { doc, getDoc } from 'firebase/firestore';
 import { useLayoutEffect, useState } from 'react';
-import { db } from '../../firebase';
+import { db, storage } from '../../firebase';
 import './personpage.css';
 import { useParams } from "react-router-dom";
 import { PersonType } from '../../store/personsSlice';
 import { Text } from '../../components/Text';
 import { Container } from '../../components/Container';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { MedalComponent } from '../../assets/medals/medal';
+import { MedalComponent, getMedalKeyByName } from '../../assets/medals/medal';
 import { PersonNav } from '../../shared/PersonNav';
 import unknown from "../../assets/UnknownSoldier.jpg";
+import { getDownloadURL, ref } from 'firebase/storage';
+import { useAppDispatch } from '../../hooks/reduxHooks';
+import { openModal } from '../../store/modalSlice';
 
 function formatDateFromMilliseconds(milliseconds: number): string {
   const monthes = ['января', "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"]
@@ -40,6 +43,7 @@ function formatDateFromMilliseconds(milliseconds: number): string {
 
 export function PersonPage() {
   const params = useParams();
+  const dispatch = useAppDispatch();
   const [medalsActiveIndex, setMedalActiveIndex] = useState(0);
   const [photoActiveIndex, setPhotoActiveIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -57,13 +61,13 @@ export function PersonPage() {
     as();
   }, [params.id])
 
-  const handleClick = async () => {
-    // axios.get('https://for-9-may.onrender.com/api/v1/persons').then(res => {
-    //   console.log(res)
-    // }).catch(err => {
-    //   console.log(err)
-    // })
-  }
+  // const handleClick = async () => {
+  //   // axios.get('https://for-9-may.onrender.com/api/v1/persons').then(res => {
+  //   //   console.log(res)
+  //   // }).catch(err => {
+  //   //   console.log(err)
+  //   // })
+  // }
   return (
     <div className='personPage'>
       {isLoading && <Text size={80}>Загрузка...</Text>}
@@ -93,14 +97,31 @@ export function PersonPage() {
               <Text size={80} As='h3' className='personPage__medals-title' font='Lora'>Награды</Text>
               {activePerson.medals.length > 4 && <Swiper slidesPerGroup={4} slidesPerView={4}>
                 {activePerson.medals.map((e) => {
-                  return <SwiperSlide className='personPage__medals-slide' style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  return <SwiperSlide onClick={() => {
+                    const medalRef = ref(storage, `medals/${getMedalKeyByName(e)}.png`);
+                    if (getMedalKeyByName(e) !== 'other') {
+                      getDownloadURL(medalRef).then(res =>  {
+                        dispatch(openModal(res))
+                      })
+                    }
+                  }} className='personPage__medals-slide' style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <MedalComponent type={e} />
                   </SwiperSlide>
                 })}
                 <PersonNav activeIndex={medalsActiveIndex} setActiveIndex={setMedalActiveIndex} />
               </Swiper>}
               {activePerson.medals.length <= 4 && activePerson.medals.map((e) => {
-                return <MedalComponent type={e} />
+                return <div onClick={() => {
+                  console.log(123)
+                  const medalRef = ref(storage, `medals/${getMedalKeyByName(e)}.png`);
+                  if (getMedalKeyByName(e) !== 'other') {
+                    getDownloadURL(medalRef).then(res =>  {
+                      dispatch(openModal(res))
+                    })
+                  }
+                }}>
+                  <MedalComponent type={e} />
+                </div>
               })}
             </Container>
           </div> : <></>}
@@ -116,18 +137,18 @@ export function PersonPage() {
               {activePerson.photos.length > 2 && <Swiper spaceBetween={30} slidesPerGroup={2} slidesPerView={2}>
                 {activePerson.photos.map((e) => {
                   return <SwiperSlide style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <img src={e} className='personPage__photos-item' />
+                    <img src={e} onClick={() => dispatch(openModal(e))} className='personPage__photos-item' />
                   </SwiperSlide>
                 })}
                 <PersonNav activeIndex={photoActiveIndex} setActiveIndex={setPhotoActiveIndex} />
               </Swiper>}
               {activePerson.photos.length <= 2 && activePerson.photos.map((e) => {
-                return <img src={e} className='personPage__photos-item' />
+                return <img onClick={() => dispatch(openModal(e))} src={e} className='personPage__photos-item' />
               })}
             </Container>
           </div> : <></>}
           <Container>
-            <button style={{ margin: 50 }} onClick={handleClick}>click me</button>
+            {/* <button style={{ margin: 50 }} onClick={() => dispatch(openModal('qwe'))}>click me</button> */}
             <span className='personPage__date'>опубликовано {formatDateFromMilliseconds(activePerson.published * 1000)}</span>
           </Container>
         </>

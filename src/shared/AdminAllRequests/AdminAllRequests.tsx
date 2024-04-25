@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { db } from '../../firebase';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { removeNewPersons, addNewPerson } from '../../store/newPersons';
-import { PersonType, removePersons, addPerson } from '../../store/personsSlice';
+import {  removePersons, addPerson } from '../../store/personsSlice';
 import './adminallrequests.css';
 import { Text } from '../../components/Text';
 import { AdminAllCard } from './AdminAllCard';
@@ -36,8 +36,6 @@ export function AdminAllRequsts() {
     const newPersons = useAppSelector(state => state.newPersons.persons);
     const persons = useAppSelector(state => state.persons.persons);
     const [sizeOfNew, setSizeOfNew] = useState(0);
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [historiesArrays, setHistoriesArrays] = useState<PersonType[][]>([[]]);
     const [offset, setOffset] = useState(6);
 
     useEffect(() => {

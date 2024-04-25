@@ -12,6 +12,7 @@ import { UnderConstruction } from './pages/UnderConstruction'
 import { HistoriesPage } from './pages/HistoriesPage'
 import { PersonPage } from './pages/PersonPage'
 import { Footer } from './shared/Footer'
+import { Modal } from './shared/Modal'
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path='gallary' element={<UnderConstruction />} />
         </Routes>
         <Footer />
+        <Modal />
       </Layout>
       </BrowserRouter>
     </>

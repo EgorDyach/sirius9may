@@ -3,7 +3,6 @@ import { Text } from '../../../components/Text';
 import { PersonType } from '../../../store/personsSlice';
 import '../../HistoriesCard/historiescard.css';
 import unknown from "../../../assets/UnknownSoldier.jpg"
-import { Link } from 'react-router-dom';
 
 function formatDateFromMilliseconds(milliseconds: number): string {
   const monthes = ['января', "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"]

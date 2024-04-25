@@ -1,0 +1,43 @@
+.modal {
+z-index: 10000000000000;   
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal::after {
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+.modal__cancel {
+    padding: 0px;
+    border: 0;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+}
+
+.modal__content {
+    background-color: #696D72;
+    padding: 100px 180px;
+    position: relative;
+    z-index: 1000;
+}
+
+.modal__content img {
+    height: 800px;
+}
