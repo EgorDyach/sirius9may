@@ -5,7 +5,7 @@
 
 .form__title {
     margin: 0;
-    margin-bottom: 100px;   
+    margin-bottom: 100px;
 }
 
 @media (max-width: 1400px) {
@@ -13,6 +13,7 @@
         font-size: 48px;
         margin-bottom: 55px;
     }
+
     .form .form__dot::after {
         font-size: 16px;
         line-height: 24px;
@@ -36,7 +37,120 @@
         margin: 0;
     }
 
-    .form__descr {
+    .form__descr {}
+}
 
+@media (max-width: 1000px) {
+    .formPhotos p {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 700px) {
+    .form {
+        padding: 120px 0;
+    }
+
+    .form .form__title {
+        font-size: 32px;
+        margin-bottom: 55px;
+    }
+
+    .form .form__nav {
+        display: none;
+    }
+
+    .form .formMainInfo__title {
+        font-size: 24px;
+    }
+
+    .form .formPhotos,
+    .form .formHistory,
+    .form .formMainInfo {
+        margin-top: 60px;
+    }
+
+    .form .formMainInfo {
+        padding: 0;
+    }
+
+    .formMainInfo__top {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .formMainInfo__bottom {
+        flex-direction: column;
+    }
+
+    .form .formMainInfo__bottom>.formMainInfo__input,
+    .form .formMainInfo__bottom>.formMainInfo__bottom-date {
+        width: 100%;
+    }
+
+    .form .formMedals__buttons {
+        gap: 20px;
+        flex-direction: column;
+    }
+
+    .form .formMainInfo__cancel,
+    .form .formMainInfo__submit {
+        padding: 20px 40px;
+    }
+
+    .form .formMedals__option {
+        font-size: 14px;
+    }
+
+    .form .formHistory__label textarea {
+        font-size: 14px;
+    }
+
+    .form .formPhotos__placeHolder {
+        gap: 20px;
+    }
+
+    .form .formPhotos__placeHolder span {
+        font-size: 16px;
+    }
+
+    .formPhotos p {
+        font-size: 16px;
+    }
+
+    .form .formPhotos__gallary {
+        gap: 20px;
+    }
+
+    .form .formPhotos__gallary img {
+        height: 100px;
+    }
+
+    .form .FormFeedback h3 {
+        font-size: 32px;
+    }
+
+    .FormFeedback__contacts {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .form .FormFeedback__contacts .FormFeedback__input, .form .FormFeedback__contacts .FormFeedback__input input {
+        width: 90%;
+    }
+
+
+    .form .FormFeedback p {
+        font-size: 16px;
+    }
+
+    .form .FormFeedback__top {
+        flex-direction: column;
+    }
+
+    .form .FormFeedback__buttons {
+        flex-direction: column;
+        gap: 20px;
     }
 }

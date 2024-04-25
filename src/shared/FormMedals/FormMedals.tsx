@@ -17,7 +17,7 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
     const v = [];
     for (const [key, value] of Object.entries(EMedals)) {
       v.push({ value: key, text: value, label: <div className='formMedals__option'>
-        <MedalComponent size={50} type={value} />
+        <MedalComponent size={window.innerWidth > 700 ? 50 : 25} type={value} />
         {value}
       </div> })
     }
@@ -41,7 +41,7 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
             borderWidth: 5,
             background: 'transparent',
             padding: "34px 50px",
-            marginBotttom: 50,
+            marginBotttom: (window.innerWidth > 700 ? 50 : 25),
             cursor: 'pointer',
           }),
           option: (baseStyles) => ({
@@ -55,7 +55,7 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
             ...baseStyles,
             border: "1px solid #333",
             backgroundColor: "transparent",
-            fontSize: 28,
+            fontSize: (window.innerWidth > 700 ? 28 : 12),
           }),
           multiValueLabel: (baseStyles) => ({
             ...baseStyles,

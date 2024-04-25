@@ -23,7 +23,7 @@ export function HistoriesPage() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [historiesArrays, setHistoriesArrays] = useState<PersonType[][]>([[]]);
   const [offset, setOffset] = useState(6);
-
+  console.log(sizeOfNew);
   useEffect(() => {
     const getPersons = async () => {
       const docRef = collection(db, "persons");

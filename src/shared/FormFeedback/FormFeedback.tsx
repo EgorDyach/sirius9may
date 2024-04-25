@@ -24,6 +24,7 @@ export function FormFeedback({ error, isSendDisabled, setError, setMinusFormBloc
         <Input className='FormFeedback__input' value={formData.contacts.lastName || ''} onChange={(q) => setFormData({ ...formData, contacts: {...formData.contacts, lastName: q}  })} placeholder='Дмитриевич' label={'Ваше отчество (при наличии)'} />
       </div>
       <div className="FormFeedback__buttons">
+        {window.innerWidth < 700 && error && <Text size={16} color='red'>Не все обязательные поля заполнены!</Text>}
         <button onClick={setMinusFormBlock} className="formMainInfo__cancel"><Text color='#343434' font='Lora' size={24}>Назад</Text></button>
         <button disabled={isSendDisabled} onClick={handleSend} className="formMainInfo__submit"><Text color='#fff' font='Lora' size={24}>Отправить</Text></button>
       </div>
