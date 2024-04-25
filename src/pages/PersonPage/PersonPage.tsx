@@ -10,7 +10,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { MedalComponent } from '../../assets/medals/medal';
 import { PersonNav } from '../../shared/PersonNav';
 import unknown from "../../assets/UnknownSoldier.jpg";
-import axios from 'axios';
 
 function formatDateFromMilliseconds(milliseconds: number): string {
   const monthes = ['января', "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"]
