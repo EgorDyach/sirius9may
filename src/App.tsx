@@ -11,6 +11,7 @@ import { ThankYou } from './pages/ThankYou'
 import { UnderConstruction } from './pages/UnderConstruction'
 import { HistoriesPage } from './pages/HistoriesPage'
 import { PersonPage } from './pages/PersonPage'
+import { Footer } from './shared/Footer'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path='histories/:id' element={<PersonPage  />} />
           <Route path='gallary' element={<UnderConstruction />} />
         </Routes>
+        <Footer />
       </Layout>
       </BrowserRouter>
     </>

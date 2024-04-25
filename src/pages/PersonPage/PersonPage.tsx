@@ -10,6 +10,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { MedalComponent } from '../../assets/medals/medal';
 import { PersonNav } from '../../shared/PersonNav';
 import unknown from "../../assets/UnknownSoldier.jpg";
+import axios from 'axios';
 
 function formatDateFromMilliseconds(milliseconds: number): string {
   const monthes = ['января', "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"]
@@ -58,22 +59,11 @@ export function PersonPage() {
   }, [params.id])
 
   const handleClick = async () => {
-    fetch('https://for-9-may.onrender.com/api/v1/login', {
-      method: "POST",
-
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: 'AdminPolk_siriusAdmin@gmail.com',
-        password: 'Bz%7LrZSrGu3zkTA8~n8'
-      })
-    }).then(res => {
-      console.log(res)
-    }).catch(err => {
-      console.log(err)
-    })
+    // axios.get('https://for-9-may.onrender.com/api/v1/persons').then(res => {
+    //   console.log(res)
+    // }).catch(err => {
+    //   console.log(err)
+    // })
   }
   return (
     <div className='personPage'>

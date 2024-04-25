@@ -1,8 +1,6 @@
 .steps {
   background-color: #efeade;
   padding: 120px 0;
-  position: sticky;
-  top: 0;
 }
 
 .steps__list {
