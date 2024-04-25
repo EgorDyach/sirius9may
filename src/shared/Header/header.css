@@ -31,12 +31,12 @@
 }
 
 .header__item span {
-    outline-offset: 5px ;
+    outline-offset: 5px;
     outline: 2px solid transparent;
     transition: .3s ease-in-out;
 }
 
-.header__item:hover span  {
+.header__item:hover span {
     color: #989898 !important;
 }
 
@@ -53,7 +53,8 @@
     outline-offset: 10px;
 }
 
-.header__item-active, .header__item:active {
+.header__item-active,
+.header__item:active {
     background-color: #494E53;
 }
 
@@ -83,4 +84,108 @@
 
 .header__item-reg:focus {
     outline-color: #fff;
+}
+
+.header__burger {
+    display: none;
+}
+
+@media (max-width: 1400px) {
+    .header__burger {
+        display: flex;
+        flex-direction: column;
+        width: 50px;
+        height: 35px;
+        justify-content: space-between;
+    }
+
+    .header__nav {
+        position: fixed;
+        z-index: 999999999999;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, .8);
+        transform: translateY(-250%);
+        display: flex;
+        padding: 70px 30px 50px;
+        flex-direction: column;
+        gap: 20px;
+        align-items: baseline;
+        transition: transform .5s ease-in-out;
+        overflow: scroll;
+    }
+
+    .header__burger {
+        border: 0;
+
+        position: relative;
+        background-color: transparent;
+        padding: 0;
+    }
+
+    .headerMenu__close {
+        z-index: 999999;
+    }
+
+    .header__nav-active {
+        transform: none;
+    }
+
+    .headerMenu__close span:first-child {
+        rotate: 45deg;
+        position: absolute;
+        left: 0;
+        top: 57%;
+    }
+
+
+    .headerMenu__close span:last-child {
+        rotate: -45deg;
+        position: absolute;
+        right: 0;
+        top: 57%;
+    }
+
+
+    .headerMenu__close {
+        border: 0;
+
+        position: absolute;
+        background-color: transparent;
+        padding: 0;
+        top: 10px;
+        width: 50px;
+        height: 50px;
+        right: 10px;
+    }
+
+    .headerMenu__close span {
+        width: 100%;
+        height: 6px;
+        background-color: #fff;
+    }
+
+    .header__item {
+        padding: 20px 30px;
+    }
+
+    .header__item-reg {
+        position: relative;
+    }
+
+    .header__burger span {
+        width: 100%;
+        height: 6px;
+        background-color: #fff;
+    }
+
+    .header svg {
+        height: 40px;
+    }
+
+    .header__item span {
+        font-size: 20px;
+    }
 }

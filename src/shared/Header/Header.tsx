@@ -8,6 +8,7 @@ import { useLayoutEffect, useState } from 'react';
 
 export function Header() {
   const { pathname } = useLocation();
+  const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false)
   useLayoutEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -16,6 +17,10 @@ export function Header() {
       }
     })
   }, [])
+  useLayoutEffect(() => {
+    document.body.style.overflow= (isMenuOpened ? "hidden" : "auto");
+  }, [isMenuOpened])
+
   return (
     <header className='header'>
       <Container flex>
@@ -44,32 +49,63 @@ export function Header() {
             <path d="M184.791 46.2158C184.906 46.0321 185.061 45.8838 185.255 45.7708C185.457 45.6578 185.666 45.6013 185.882 45.6013H187.697L184.985 49.6592C184.812 49.9347 184.632 50.1572 184.445 50.3267C184.258 50.4962 184.027 50.6269 183.753 50.7187C184.106 50.8176 184.398 50.9695 184.629 51.1743C184.866 51.3721 185.079 51.6299 185.266 51.9477L188 56.4083H186.401C185.99 56.4083 185.67 56.3412 185.439 56.207C185.216 56.0728 185.025 55.875 184.866 55.6136L182.997 52.4563C182.846 52.1879 182.647 51.9901 182.402 51.863C182.158 51.7358 181.88 51.6723 181.57 51.6723H180.479V56.4189H178.156V45.6013H180.479V50.1466H181.419C181.722 50.1466 181.974 50.0901 182.176 49.977C182.377 49.864 182.55 49.691 182.694 49.4579L184.791 46.2158Z" fill="white" />
           </svg>
         </Link>
-        <ul className='header__list'>
-          {/* <li className={`header__item ${pathname === '/' ? 'header__item-active' : ""}`}> */}
-            <Link className={`header__item ${pathname === '/' ? 'header__item-active' : ""}`} to={"/"}>
+        <button onClick={() => setIsMenuOpened(!isMenuOpened)} className={`header__burger`}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        {window.innerWidth > 1400 ?
+          <>
+            <ul className='header__list'>
+              {/* <li className={`header__item ${pathname === '/' ? 'header__item-active' : ""}`}> */}
+              <Link className={`header__item ${pathname === '/' ? 'header__item-active' : ""}`} to={"/"}>
+                <Text color='#fff' size={24} weight={400} font='Lora'>Главная</Text>
+              </Link>
+              {/* </li> */}
+              {/* <li className={`header__item ${pathname === '/gallary' ? 'header__item-active' : ""}`}> */}
+              <Link className={`header__item ${pathname === '/gallary' ? 'header__item-active' : ""}`} to={"/gallary"}>
+                <Text color='#fff' size={24} weight={400} font='Lora'>Галерея</Text>
+              </Link>
+              {/* </li> */}
+              {/* <li className={`header__item ${pathname === '/histories' ? 'header__item-active' : ""}`}> */}
+              <Link className={`header__item ${pathname === '/histories' ? 'header__item-active' : ""}`} to={'/histories'}>
+                <Text color='#fff' size={24} weight={400} font='Lora'>Истории</Text>
+              </Link>
+              {/* </li> */}
+              {/* <li className={`header__item ${pathname === '/admin' ? 'header__item-active' : ""}`}> */}
+              {isAdmin && <Link className={`header__item ${pathname === '/admin' ? 'header__item-active' : ""}`} to={'/admin'}>
+                <Text color='#fff' size={24} weight={400} font='Lora'>Панель</Text>
+              </Link>}
+            </ul>
+            <Link to={'/form'} className='header__item-reg'>
+              <Text size={24} font='Lora' color='#fff'>
+                Принять участие
+              </Text>
+            </Link>
+          </> : <nav className={`${isMenuOpened ? "header__nav header__nav-active" : "header__nav"}`}>
+            <Link onClick={() => setIsMenuOpened(false)} className={`header__item ${pathname === '/' ? 'header__item-active' : ""}`} to={"/"}>
               <Text color='#fff' size={24} weight={400} font='Lora'>Главная</Text>
             </Link>
-          {/* </li> */}
-          {/* <li className={`header__item ${pathname === '/gallary' ? 'header__item-active' : ""}`}> */}
-            <Link className={`header__item ${pathname === '/gallary' ? 'header__item-active' : ""}`} to={"/gallary"}>
+            <Link onClick={() => setIsMenuOpened(false)} className={`header__item ${pathname === '/gallary' ? 'header__item-active' : ""}`} to={"/gallary"}>
               <Text color='#fff' size={24} weight={400} font='Lora'>Галерея</Text>
             </Link>
-          {/* </li> */}
-          {/* <li className={`header__item ${pathname === '/histories' ? 'header__item-active' : ""}`}> */}
-            <Link className={`header__item ${pathname === '/histories' ? 'header__item-active' : ""}`} to={'/histories'}>
+            <Link onClick={() => setIsMenuOpened(false)} className={`header__item ${pathname === '/histories' ? 'header__item-active' : ""}`} to={'/histories'}>
               <Text color='#fff' size={24} weight={400} font='Lora'>Истории</Text>
             </Link>
-          {/* </li> */}
-          {/* <li className={`header__item ${pathname === '/admin' ? 'header__item-active' : ""}`}> */}
-            {isAdmin && <Link className={`header__item ${pathname === '/admin' ? 'header__item-active' : ""}`} to={'/admin'}>
+            {isAdmin && <Link onClick={() => setIsMenuOpened(false)} className={`header__item ${pathname === '/admin' ? 'header__item-active' : ""}`} to={'/admin'}>
               <Text color='#fff' size={24} weight={400} font='Lora'>Панель</Text>
             </Link>}
-        </ul>
-        <Link to={'/form'} className='header__item-reg'>
-          <Text size={24} font='Lora' color='#fff'>
-            Принять участие
-          </Text>
-        </Link>
+            <Link onClick={() => setIsMenuOpened(false)} to={'/form'} className='header__item-reg'>
+              <Text size={24} font='Lora' color='#fff'>
+                Принять участие
+              </Text>
+            </Link>
+            <button onClick={() => setIsMenuOpened(!isMenuOpened)} className={'headerMenu__close'}>
+              <span></span>
+              <span></span>
+            </button>
+          </nav>
+        }
       </Container>
     </header>
   );

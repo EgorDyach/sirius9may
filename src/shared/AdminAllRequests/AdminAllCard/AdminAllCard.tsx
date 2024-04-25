@@ -4,11 +4,10 @@ import { PersonType, removeOnePerson } from '../../../store/personsSlice';
 import '../../HistoriesCard/historiescard.css';
 import unknown from "../../../assets/UnknownSoldier.jpg"
 import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
+import { useAppDispatch } from '../../../hooks/reduxHooks';
 import { deleteDoc, doc } from 'firebase/firestore';
-import { getCount } from 'firebase/firestore/lite';
 import { db } from '../../../firebase';
-import { removeNewPersons, removeOneNewPerson } from '../../../store/newPersons';
+import {  removeOneNewPerson } from '../../../store/newPersons';
 
 
 function formatDateFromMilliseconds(milliseconds: number): string {
@@ -40,8 +39,8 @@ function formatDateFromMilliseconds(milliseconds: number): string {
 export function AdminAllCard({ e }: { e: PersonType }) {
   const THREE_DAYS = 259_200;
   const dispatch = useAppDispatch();
-  const newPersons = useAppSelector(state => state.newPersons.persons)
-  const persons = useAppSelector(state => state.persons.persons)
+  // const newPersons = useAppSelector(state => state.newPersons.persons)
+  // const persons = useAppSelector(state => state.persons.persons)
   const handleDelete = async () => {
     await deleteDoc(doc(db, 'persons', e.id)).then(() => {
       if (e.published >= new Date().getTime() / 1000 - THREE_DAYS) {

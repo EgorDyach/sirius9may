@@ -13,6 +13,7 @@ import unknown from "../../assets/UnknownSoldier.jpg";
 import { getDownloadURL, ref } from 'firebase/storage';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { openModal } from '../../store/modalSlice';
+import axios from 'axios';
 
 function formatDateFromMilliseconds(milliseconds: number): string {
   const monthes = ['января', "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"]
@@ -61,13 +62,13 @@ export function PersonPage() {
     as();
   }, [params.id])
 
-  // const handleClick = async () => {
-  //   // axios.get('https://for-9-may.onrender.com/api/v1/persons').then(res => {
-  //   //   console.log(res)
-  //   // }).catch(err => {
-  //   //   console.log(err)
-  //   // })
-  // }
+  const handleClick = async () => {
+    axios.post(`https://for-9-may.onrender.com/api/v1/login?email=${"huy"}&password=${"Bz%7LrZSrGu3zkTA8~n8"}`, {}).then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
+  }
   return (
     <div className='personPage'>
       {isLoading && <Text size={80}>Загрузка...</Text>}
@@ -100,7 +101,7 @@ export function PersonPage() {
                   return <SwiperSlide onClick={() => {
                     const medalRef = ref(storage, `medals/${getMedalKeyByName(e)}.png`);
                     if (getMedalKeyByName(e) !== 'other') {
-                      getDownloadURL(medalRef).then(res =>  {
+                      getDownloadURL(medalRef).then(res => {
                         dispatch(openModal(res))
                       })
                     }
@@ -115,7 +116,7 @@ export function PersonPage() {
                   console.log(123)
                   const medalRef = ref(storage, `medals/${getMedalKeyByName(e)}.png`);
                   if (getMedalKeyByName(e) !== 'other') {
-                    getDownloadURL(medalRef).then(res =>  {
+                    getDownloadURL(medalRef).then(res => {
                       dispatch(openModal(res))
                     })
                   }
@@ -140,15 +141,17 @@ export function PersonPage() {
                     <img src={e} onClick={() => dispatch(openModal(e))} className='personPage__photos-item' />
                   </SwiperSlide>
                 })}
+                <button style={{ margin: 50 }} onClick={handleClick}>click me</button>
                 <PersonNav activeIndex={photoActiveIndex} setActiveIndex={setPhotoActiveIndex} />
               </Swiper>}
               {activePerson.photos.length <= 2 && activePerson.photos.map((e) => {
                 return <img onClick={() => dispatch(openModal(e))} src={e} className='personPage__photos-item' />
               })}
+              <button style={{ margin: 50 }} onClick={handleClick}>click me</button>
             </Container>
           </div> : <></>}
           <Container>
-            {/* <button style={{ margin: 50 }} onClick={() => dispatch(openModal('qwe'))}>click me</button> */}
+            <button style={{ margin: 50 }} onClick={handleClick}>click me</button>
             <span className='personPage__date'>опубликовано {formatDateFromMilliseconds(activePerson.published * 1000)}</span>
           </Container>
         </>

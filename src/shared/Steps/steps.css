@@ -6,6 +6,7 @@
 .steps__list {
   list-style: none;
   position: relative;
+  padding: 0;
 }
 
 .steps__line {
@@ -36,6 +37,26 @@
     width: auto !important;
     display: inline-flex !important;
   }
+}
+
+@media (max-width: 1000px) {
+    .steps .steps__item-text {
+      font-size: 16px;
+    }
+
+    .steps__item-icon svg {
+      width: 80px;
+    }
+
+    .steps .steps__item {
+      padding: 0;
+    }
+
+    .steps .steps__item-num {
+        font-size: 28px;
+        line-height: 50px;
+        padding: 0 20px ;
+    }
 }
 
 @keyframes colorLine {
@@ -174,4 +195,12 @@
 
 .steps__item-text {
   max-width: 550px;
+}
+
+
+@media (max-width: 700px) {
+  .steps__title {
+    font-size: 40px;
+    text-align: center;
+  }
 }

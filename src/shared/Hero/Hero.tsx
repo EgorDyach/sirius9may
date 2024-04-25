@@ -28,7 +28,7 @@ export function Hero() {
             font="Lora"
             weight={500}
           >
-            “Никто не забыт, ничто не забыто”
+            “Никто не забыт, <br /> ничто не забыто”
           </Text>
           <Text size={36} className="hero__descr" As="p" weight={400}>
             Расскажи историю своего предка
@@ -43,7 +43,7 @@ export function Hero() {
           className="hero__swiper"
           modules={[Navigation, A11y]}
           spaceBetween={50}
-          slidesPerView={3}
+          slidesPerView={window.innerWidth > 700 ? 3 : 1}
           navigation
           loop
           speed={550}

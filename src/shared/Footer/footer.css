@@ -44,3 +44,14 @@
 .footer__contacts h3 {
     margin-bottom: 20px;
 }
+
+@media (max-width: 1000px) {
+    .footer .container {
+        flex-wrap: wrap;
+    }
+
+    .footer__icons>svg {
+        height: 80px;
+        width: initial;
+    }
+}

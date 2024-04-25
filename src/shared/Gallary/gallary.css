@@ -41,8 +41,9 @@
 }
 
 @media (max-width: 1000px) {
-  .gallary__photo-big {
+  .gallary .gallary__photo-big {
     max-width: 60% !important;
+    filter: grayscale(0) ;
   }
   .gallary__nav {
     width: 100%;
@@ -52,6 +53,32 @@
     position: absolute !important;
     top: 200px !important;
   }
+}
+
+@media (max-width: 700px) {
+    .gallary .gallary__title {
+      font-size: 42px;
+    }
+
+    .gallary__nav {
+      gap: 40px;
+    }
+
+    .gallary .gallary__nav button {
+      width: 30px;
+      height: 30px;
+    }
+
+    .gallary .gallary__pagination {
+      display: none;
+    }
+
+    span.gallary__nav-link {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+    
+    
 }
 
 .gallary__photo-big {
