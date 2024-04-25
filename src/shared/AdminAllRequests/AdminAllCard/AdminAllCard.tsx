@@ -1,8 +1,15 @@
 import './adminallcard.css';
 import { Text } from '../../../components/Text';
-import { PersonType } from '../../../store/personsSlice';
+import { PersonType, removeOnePerson } from '../../../store/personsSlice';
 import '../../HistoriesCard/historiescard.css';
 import unknown from "../../../assets/UnknownSoldier.jpg"
+import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
+import { deleteDoc, doc } from 'firebase/firestore';
+import { getCount } from 'firebase/firestore/lite';
+import { db } from '../../../firebase';
+import { removeNewPersons, removeOneNewPerson } from '../../../store/newPersons';
+
 
 function formatDateFromMilliseconds(milliseconds: number): string {
   const monthes = ['января', "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"]
@@ -29,7 +36,21 @@ function formatDateFromMilliseconds(milliseconds: number): string {
   return `${dayString} ${monthString} ${year}, ${hoursString}:${minutesString}`;
 }
 
+
 export function AdminAllCard({ e }: { e: PersonType }) {
+  const THREE_DAYS = 259_200;
+  const dispatch = useAppDispatch();
+  const newPersons = useAppSelector(state => state.newPersons.persons)
+  const persons = useAppSelector(state => state.persons.persons)
+  const handleDelete = async () => {
+    await deleteDoc(doc(db, 'persons', e.id)).then(() => {
+      if (e.published >= new Date().getTime() / 1000 - THREE_DAYS) {
+        dispatch(removeOneNewPerson(e.id));
+      } else {
+        dispatch(removeOnePerson(e.id));
+      }
+    })
+  }
   return (
     <div className='historiesCard'>
       <img src={e.mainPhoto ? e.mainPhoto : unknown} alt="" className="historiesCard__img" />
@@ -37,7 +58,10 @@ export function AdminAllCard({ e }: { e: PersonType }) {
         <Text As='h3' className='historiesCard__info-text' size={24} font='Lora' weight={400}>{e.name} <br />({e.dateOfBirth} – {e.dateOfDeath})</Text>
         <div className="historiesCard__info-more">
           <Text size={16} font='Lora' weight={400}>{formatDateFromMilliseconds(e.published * 1000)}</Text>
-          <button><Text size={20} font='Lora' weight={400}>Подробнее</Text></button>
+          <button onClick={handleDelete} className="adminAllCard__controls">
+            Удалить
+          </button>
+          <Link to={`./${e.id}`}><Text size={16} font='Lora' weight={400}>Подробнее</Text></Link>
         </div>
       </div>
     </div>

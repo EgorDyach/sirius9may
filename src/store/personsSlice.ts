@@ -107,6 +107,9 @@ export const personsSlice = createSlice({
         removePersons: (state) => {
             state.persons = []
         },
+        removeOnePerson: (state, action) => {
+            state.persons = state.persons.filter(q => q.id !== action.payload);
+        },
         setIsPersonsLoading: (state, action) => {
             state.isPersonLoading = action.payload
         },
@@ -114,6 +117,6 @@ export const personsSlice = createSlice({
 })
 
 // Сгенерированные Создатели Действий/ action creators
-export const { addPerson, removePersons, setIsPersonsLoading } = personsSlice.actions
+export const { addPerson, removeOnePerson, removePersons, setIsPersonsLoading } = personsSlice.actions
 
 export default personsSlice.reducer
