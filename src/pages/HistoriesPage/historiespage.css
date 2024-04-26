@@ -4,8 +4,18 @@
 }
 
 
-.historiesPage__new {
+.historiesPage__new .swiper-slide {
 
+    height: fit-content;
+
+}
+
+.historiesPage__new-swiper {
+    padding-bottom: 65px;
+}
+
+.historiesPage__new .gallary__controls {
+    margin: 0;
 }
 
 .historiesPage__new-title {
@@ -76,14 +86,26 @@
     cursor: default;
 }
 
-@media (max-width: 1400px) {
-     .historiesCard {
-            max-width: 300px;
-    }   
+.historiesPage__new-swiper .swiper-slide {
+    justify-content: space-around;
+}
 
-    .historiesPage__new-swiper .swiper-slide {
-        justify-content: space-around;
+@media (max-width: 1700px) {
+    .historiesPage__new-swiper .historiesCard {
+        max-width: 355px;
+        height: auto;
     }
+
+    .historiesCard__info {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 1400px) {
+    .historiesCard {
+        max-width: 300px;
+    }
+
 
     .historiesPage__all-container .historiesCard {
         margin-right: 20px;
@@ -94,6 +116,7 @@
     .historiesPage__new-swiper .historiesCard {
         max-width: 250px;
     }
+
     .historiesPage h2 {
         font-size: 60px;
     }
@@ -110,6 +133,7 @@
     .historiesPage__new-count span {
         font-size: 24px;
     }
+
     .historiesPage__new-count:after {
         width: 40px;
         height: 40px;
@@ -119,11 +143,10 @@
 @media (max-width: 850px) {
     .historiesPage__new-swiper .historiesCard {
         max-width: 250px;
-        height: fit-content;
-    }    
+    }
 
     .historiesPage__new-swiper {
-        padding: 0;
+        padding: 0 0 50px;
     }
 
     .historiesPage__new-swiper .gallary__pagination {
@@ -136,12 +159,12 @@
         gap: 20px;
     }
 
-    
+
 }
 
 @media (max-width: 600px) {
     .historiesPage__all-container .historiesCard {
         margin-right: 0;
     }
-    
+
 }

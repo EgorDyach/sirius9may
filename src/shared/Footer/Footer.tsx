@@ -77,7 +77,6 @@ export function Footer() {
         </ul>
         <div className="footer__contacts">
           <Text As='h3' size={32} font='Lora' color='#fff'>Тех. поддержка:</Text>
-          <Text size={24} font='Lora' color='#fff'><a href='tel:+79180008844'>+7 (918) 000-88-44</a></Text>
           <Text size={24} font='Lora' color='#fff'><a href='mailto:polk_sirius@gmail.com'>polk_sirius@gmail.com</a></Text>
         </div>
       </Container>

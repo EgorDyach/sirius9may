@@ -48,8 +48,9 @@ export function AdminActive(
   useEffect(() => {
     const v = [];
     for (const [key, value] of Object.entries(EMedals)) {
+      key;
       v.push({
-        value: key, text: value, label: <div className='formMedals__option'>
+        value: value, text: value, label: <div className='formMedals__option'>
           <MedalComponent size={50} type={value} />
           {value}
         </div>
@@ -74,7 +75,6 @@ export function AdminActive(
 
   useLayoutEffect(() => {
     setMedals(checkedOptions.map(e => e.text) as EMedals[]);
-    console.log(checkedOptions)
   }, [checkedOptions, setMedals])
   if (e.id === '') {
     return <div className='adminUnreaded__active'>
@@ -124,9 +124,9 @@ export function AdminActive(
           </svg>
           Добавить Медали
         </button>}
-        {!addMedal && (medals.length === 0 ? <Text size={24}>Нет медалей</Text> :
+        {!addMedal && (medals && medals.length === 0 ? <Text size={24}>Нет медалей</Text> :
           <ul className="adminUnreaded__medals">
-            {medals.map(q => {
+            {medals && medals.map(q => {
               return <li className='adminUnreaded__medals-item'>
                 <MedalComponent type={q} />
                 <Text size={14} color='#666' weight={400}>{q}</Text>
@@ -211,7 +211,7 @@ export function AdminActive(
           <br />
           <br />
           <div className="adminUnreaded__photos-con">
-            {photos.map(j => {
+            {photos && photos.map(j => {
               return <div>
                 <img src={j} />
                 <button onClick={() => handleRemovePhoto(photos.indexOf(j))}>
@@ -227,6 +227,7 @@ export function AdminActive(
           <div className="adminUnreaded__contacts-info">
             <Text size={28} weight={500}>Контакты</Text>
             <br />
+            <Text size={20} weight={400}>Сообщение о медалях: {e.messageMedals}</Text>
             <br />
             <Text size={20} weight={400}>ФИО: {e.contacts.surname} {e.contacts.name} {e.contacts.lastName}</Text>
             <br />
@@ -278,14 +279,14 @@ export function AdminActive(
         <img src={mainPhoto !== "" ? mainPhoto : unknown} alt="Основное фото" className='adminUnreaded__active-img' />
         <div className="adminUnreaded__info">
           <Text size={30} font='Lora' weight={700}>ФИО: {e.name}</Text>
-          <Text size={20} color='#666' weight={400} font='Lora'>Годы жизни: {e.dateOfBirth} - {e.dateOfDeath} гг.</Text>
+          <Text size={20} color='#666' weight={400} font='Lora'>Годы жизни: {e.dateOfBirth === 1 ? '???' : e.dateOfBirth} - {e.dateOfDeath === 1 ? "???" : (e.dateOfDeath === 0 ? "н. в." : e.dateOfDeath + " гг." )}</Text>
           <Text size={20} color='#666' weight={400} font='Lora'>Родной город: {e.city}</Text>
           <Text size={20} color='#666' weight={400} font='Lora'>Звание: {e.rank}</Text>
         </div>
       </div>
-      {e.medals.length === 0 ? <Text size={24}>Нет медалей</Text> :
+      {e.medals && e.medals.length === 0 ? <Text size={24}>Нет медалей</Text> :
         <ul className="adminUnreaded__medals">
-          {e.medals.map(q => {
+          {e.medals && e.medals.map(q => {
             return <li className='adminUnreaded__medals-item'>
               <MedalComponent type={q} />
               <Text size={14} color='#666' weight={400}>{q}</Text>
@@ -296,16 +297,19 @@ export function AdminActive(
       <div className="adminUnreaded__history">
         <Text className='adminUnreaded__descr-title' size={28} weight={500} font='Lora'>История: </Text>
         <br />
-        <Text className='adminUnreaded__descr' size={16} weight={400} font='Lora'>{e.history}</Text>
+        <Text className='adminUnreaded__descr' size={16} weight={400} font='Lora'>{e.history.split('|').map(e => <p>{e}</p>)}</Text>
       </div>
       <br />
       <br />
       <div className="adminUnreaded__photos">
-        <Text className='adminUnreaded__photos-title' size={28} weight={500} font='Lora'>Фото: </Text>
+        <Text className='adminUnreaded__photos-title' size={28} weight={500} font='Lora'>Фото </Text>
         <br />
         <br />
         <div className="adminUnreaded__photos-con">
-          {e.photos.map(j => {
+          {e.photos && e.photos.map(j => {
+          if (!j) {
+            return;
+          }
             return <img src={j} />
           })}
         </div>
@@ -315,15 +319,15 @@ export function AdminActive(
           <Text size={28} weight={500}>Контакты</Text>
           <br />
           <br />
-          <Text size={20} weight={400}>ФИО: {e.contacts.surname} {e.contacts.name} {e.contacts.lastName}</Text>
+          <Text size={20} weight={400}>ФИО: {e.name}</Text>
           <br />
-          <Text size={20} weight={400}>telegram: <a href={`https://t.me/${e.contacts.telegram}`}>{e.contacts.telegram}</a></Text>
+          <Text size={20} weight={400}>telegram: <a href={`https://t.me/${e.contacts && e.contacts.telegram}`}>{e.contacts && e.contacts.telegram}</a></Text>
           <br />
-          <Text size={20} weight={400}>email: <a href={`mailto:${e.contacts.email}`}>{e.contacts.email}</a></Text>
+          <Text size={20} weight={400}>email: <a href={`mailto:${e.contacts && e.contacts.email}`}>{e.contacts && e.contacts.email}</a></Text>
+          {/* <br /> */}
+          {/* <Text size={20} weight={400}>Сообщение о медалях:{e.messageMedals}</Text> */}
           <br />
-          <Text size={20} weight={400}>Сообщение о медалях:{e.messageMedals}</Text>
-          <br />
-          <Text size={20} weight={400}>Отправлено: {new Date(e.published * 1000).toLocaleDateString()} {new Date(e.published).toLocaleTimeString()}</Text>
+          <Text size={20} weight={400}>Отправлено: {e.published && <>{new Date(e.published * 1000).toLocaleDateString()} {new Date(e.published).toLocaleTimeString()}</>}</Text>
           <br />
           <br />
           <label>

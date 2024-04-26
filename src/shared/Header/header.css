@@ -24,6 +24,19 @@
     transform: translateX(-50%);
 }
 
+pre {
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    /* Opera 4 - 6 */
+    white-space: -o-pre-wrap;
+    /* Opera 7 */
+    white-space: pre-wrap;
+    /* CSS3 - Text module (Candidate Recommendation) [url]http://www.w3.org/TR/css3-text/#white-space[/url] */
+    word-wrap: break-word;
+    /* IE 5.5+ */
+
+}
+
 .header__item {
     padding: 35px 38px;
     position: relative;
@@ -90,6 +103,28 @@
     display: none;
 }
 
+@media (max-width: 1700px) {
+    .header__item span {
+        font-size: 17px;
+    }
+
+    .header svg {
+        height: 31px;
+    }
+
+    .header__item {
+        padding: 25px 28px;
+    }
+
+    .header__item-reg {
+        padding: 23px 35px;
+    }
+
+    .header__item-reg span {
+        font-size: 21px;
+    }
+}
+
 @media (max-width: 1400px) {
     .header__burger {
         display: flex;
@@ -106,7 +141,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: rgba(0, 0, 0, .8);
+        background-color: #52575D;
         transform: translateY(-250%);
         display: flex;
         padding: 70px 30px 50px;
@@ -115,6 +150,12 @@
         align-items: baseline;
         transition: transform .5s ease-in-out;
         overflow: scroll;
+    }
+
+    .header__nav svg {
+        position: absolute;
+        top: 10px;
+        left: 10px;
     }
 
     .header__burger {
@@ -138,6 +179,16 @@
         position: absolute;
         left: 0;
         top: 57%;
+    }
+
+    .header__nav {
+        align-items: center;
+    }
+
+    .header__nav .header__item-reg {
+        border: 2px solid #fff;
+        background-color: transparent;
+        padding: 20px 40px;
     }
 
 

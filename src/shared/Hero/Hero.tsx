@@ -20,7 +20,7 @@ export function Hero() {
   return (
     <section className="hero">
       <div className="hero__content">
-        <div className="hero__info">
+        {window.innerWidth > 1200 && <div className="hero__info">
           <Text
             className="hero__title"
             As="h2"
@@ -38,12 +38,21 @@ export function Hero() {
               Принять участие
             </Text>
           </Link>
-        </div>
+        </div>}
+        {window.innerWidth <= 1200 && <Text
+          className="hero__title"
+          As="h2"
+          size={80}
+          font="Lora"
+          weight={500}
+        >
+          “Никто не забыт, <br /> ничто не забыто”
+        </Text>}
         <Swiper
           className="hero__swiper"
           modules={[Navigation, A11y]}
           spaceBetween={50}
-          slidesPerView={window.innerWidth > 700 ? 3 : 1}
+          slidesPerView={window.innerWidth > 1000 ? 3 : 1}
           navigation
           loop
           speed={550}
@@ -63,6 +72,16 @@ export function Hero() {
             <HeroSwiperNext />
           </div>
         </Swiper>
+        {window.innerWidth <= 1200 && <div className="hero__info-mob">
+          <Text size={36} className="hero__descr" As="p" weight={400}>
+            Расскажи историю своего предка
+          </Text>
+          <Link to={"/form"} className="hero__link">
+            <Text color="#fff" size={24} font="Lora">
+              Принять участие
+            </Text>
+          </Link>
+        </div>}
       </div>
     </section>
   );

@@ -16,6 +16,7 @@ const store = configureStore({
     heroPersons: heroSlice,
     mainGallary: mainGallarySlice,
     modalSlice: modalSlice,
+    // settingsSlice: settingsSlice
   },
 })
 

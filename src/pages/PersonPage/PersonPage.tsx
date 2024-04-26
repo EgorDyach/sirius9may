@@ -1,9 +1,7 @@
-import { doc, getDoc } from 'firebase/firestore';
-import { useLayoutEffect, useState } from 'react';
-import { db, storage } from '../../firebase';
+import { JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useLayoutEffect, useState } from 'react';
+import { storage } from '../../firebase';
 import './personpage.css';
 import { useParams } from "react-router-dom";
-import { PersonType } from '../../store/personsSlice';
 import { Text } from '../../components/Text';
 import { Container } from '../../components/Container';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -13,7 +11,9 @@ import unknown from "../../assets/UnknownSoldier.jpg";
 import { getDownloadURL, ref } from 'firebase/storage';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { openModal } from '../../store/modalSlice';
+import axios from 'axios';
 // import axios from 'axios';
+import other from '../../assets/medals/medalOther.png'
 
 function formatDateFromMilliseconds(milliseconds: number): string {
   const monthes = ['января', "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"]
@@ -48,21 +48,32 @@ export function PersonPage() {
   const [medalsActiveIndex, setMedalActiveIndex] = useState(0);
   const [photoActiveIndex, setPhotoActiveIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [activePerson, setActivePerson] = useState<PersonType | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [activePerson, setActivePerson] = useState<any | undefined>(undefined);
   useLayoutEffect(() => {
-    setIsLoading(true)
-    const as = async () => {
-      const docRef = doc(db, "persons", (params.id as string));
-      await getDoc(docRef).then(res => {
-        console.log(res.data())
-        setActivePerson(res.data() as PersonType)
-        setIsLoading(false)
-      });
+    const asyc = async () => {
+      axios.get(`https://for-9-may.onrender.com/api/v1/persons/${params.id}`).then(e => {
+        const item = e.data.details[0]
+        setActivePerson({
+          name: item.SNL,
+          id: item.id,
+          mainPhoto: item.main_photo,
+          dateOfBirth: (item.date_birth === 1 ? '???' : item.date_birth),
+          dateOfDeath: (item.date_death === 1 ? '???' : (item.date_death === 0 ? 'н. в.' : item.date_death)),
+          history: item.history,
+          city: item.city,
+          rank: item.rank,
+          published: item.date_pulished,
+          medals: item.medals.split(','),
+          photos: item.photo.split(',')
+        }); console.log(item)
+      })
     }
-    as();
-  }, [params.id])
-// athz1th9i
-  
+    setIsLoading(true)
+    asyc();
+    setIsLoading(false)
+  }, [])
+
   return (
     <div className='personPage'>
       {isLoading && <Text size={80}>Загрузка...</Text>}
@@ -88,17 +99,21 @@ export function PersonPage() {
               </div>
             </Container>
           </div>
-          {activePerson.medals.length ? <div className='personPage__medals'>
+          {activePerson.medals && activePerson.medals.length ? <div className='personPage__medals'>
             <Container>
               <Text size={80} As='h3' className='personPage__medals-title' font='Lora'>Награды</Text>
-              {activePerson.medals.length > 4 && <Swiper slidesPerGroup={window.innerWidth> 700 ? 4 : 2} slidesPerView={4}>
-                {activePerson.medals.map((e) => {
+              {activePerson.medals.length > 4 && <Swiper slidesPerGroup={window.innerWidth > 700 ? 4 : 2} slidesPerView={window.innerWidth > 700 ? 4 : 2}>
+                {activePerson.medals.map((e: string) => {
                   return <SwiperSlide onClick={() => {
                     const medalRef = ref(storage, `medals/${getMedalKeyByName(e)}.png`);
                     if (getMedalKeyByName(e) !== 'other') {
                       getDownloadURL(medalRef).then(res => {
-                        dispatch(openModal(res))
+                        dispatch(openModal({ img: res, title: e }))
+                      }).catch(() => {
+                        dispatch(openModal({ img: other, title: 'Неизвестная медаль' }))
                       })
+                    } else {
+                      dispatch(openModal({ img: other, title: 'Неизвестная медаль' }))
                     }
                   }} className='personPage__medals-slide' style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <MedalComponent type={e} />
@@ -107,32 +122,34 @@ export function PersonPage() {
                 <PersonNav activeIndex={medalsActiveIndex} setActiveIndex={setMedalActiveIndex} />
               </Swiper>}
               {activePerson.medals.length <= 4 && <div className='personPage__medalsCon'>
-                {activePerson.medals.map((e) => {
+                {activePerson.medals.map((e: string) => {
                   return <div onClick={() => {
                     const medalRef = ref(storage, `medals/${getMedalKeyByName(e)}.png`);
                     if (getMedalKeyByName(e) !== 'other') {
                       getDownloadURL(medalRef).then(res => {
-                        dispatch(openModal(res))
+                        dispatch(openModal({ img: res, title: e }))
                       })
                     }
                   }}>
-                    <MedalComponent type={e} />
+                    <MedalComponent size={140} type={e} />
                   </div>
                 })}
-                </div>}
+              </div>}
             </Container>
           </div> : <></>}
           {activePerson.history ? <div className='personPage__history'>
             <Container>
               <Text size={80} As='h3' className='personPage__history-title' font='Lora'>История</Text>
-              <Text size={36} As='p' className='personPage__history-text' weight={400}>{activePerson.history}</Text>
+              <Text size={36} As='div' className='personPage__history-text' weight={400}>
+                {activePerson.history.split('|').map((e: string | number | boolean | ReactElement<unknown, string | JSXElementConstructor<unknown>> | Iterable<ReactNode> | ReactPortal | null | undefined) => <p>{e}</p>)}
+              </Text>
             </Container>
           </div> : <></>}
-          {activePerson.photos.length ? <div className='personPage__photos'>
+          {activePerson.photos && window.innerWidth > 1200 && activePerson.photos.length ? <div className='personPage__photos'>
             <Container>
               <Text size={80} As='h3' className='personPage__photos-title' font='Lora'>Фото</Text>
               {activePerson.photos.length > 2 && <Swiper spaceBetween={30} slidesPerGroup={2} slidesPerView={2}>
-                {activePerson.photos.map((e) => {
+                {activePerson.photos.map((e: string | undefined) => {
                   return <SwiperSlide style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <img src={e} onClick={() => dispatch(openModal(e))} className='personPage__photos-item' />
                   </SwiperSlide>
@@ -140,9 +157,19 @@ export function PersonPage() {
                 {/* <button style={{ margin: 50 }} onClick={handleClick}>click me</button> */}
                 <PersonNav activeIndex={photoActiveIndex} setActiveIndex={setPhotoActiveIndex} />
               </Swiper>}
-              {activePerson.photos.length <= 2 && activePerson.photos.map((e) => {
+              {activePerson.photos.length <= 2 && activePerson.photos.map((e: string | undefined) => {
                 return <img onClick={() => dispatch(openModal(e))} src={e} className='personPage__photos-item' />
               })}
+            </Container>
+          </div> : <></>}
+          {activePerson.photos && window.innerWidth <= 1200 && activePerson.photos.length ? <div className='personPage__photos'>
+            <Container>
+              <Text size={80} As='h3' className='personPage__photos-title' font='Lora'>Фото</Text>
+              <div className="personPage__photos-mob">
+                {activePerson.photos.map((e: string | undefined) => {
+                  return <img onClick={() => dispatch(openModal(e))} src={e} className='personPage__photos-item' />
+                })}
+              </div>
             </Container>
           </div> : <></>}
           <Container>

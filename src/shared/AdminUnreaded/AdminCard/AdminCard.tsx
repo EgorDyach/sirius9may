@@ -9,7 +9,7 @@ export function AdminCard({ e, handleClick, isActive }: { e: UnreadedPersonType;
       <div className="adminUnreaded__card-content">
         <Text size={24} className='adminUnreaded__card-name' color='#333' weight={700} font='Lora'>{e.name}</Text>
         <Text size={14} className='adminUnreaded__card-descr' color='#333' weight={400} font='Lora'>{e.history}</Text>
-        <Text size={14} color='#787878' weight={400} className='adminUnreaded__card-date'>Годы жизни: ({e.dateOfBirth} - {e.dateOfDeath})  </Text>
+        <Text size={14} color='#787878' weight={400} className='adminUnreaded__card-date'>Годы жизни: ({e.dateOfBirth === 1 ? '???' : e.dateOfBirth} - {e.dateOfDeath === 1 ? "???" : (e.dateOfDeath === 0 ? "н. в." : e.dateOfDeath + " гг." )})  </Text>
 
         <Text size={14} color='#787878' weight={400} className='adminUnreaded__card-rank'> Звание: {e.rank} </Text>
 

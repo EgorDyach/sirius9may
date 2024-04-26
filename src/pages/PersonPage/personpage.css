@@ -1,7 +1,21 @@
 .personPage {
-    padding: 80px 0 30px;
+    padding: 60px 0 30px;
     background-color: #EFEADE;
 
+}
+
+.personPage__photos-mob {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.personPage__photos-mob img {
+    max-width: 400px;
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
 }
 
 .personPage__main {
@@ -104,10 +118,12 @@
     justify-content: space-around;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1700px) {
     .personPage__history-text{
-        font-size: 24px;
+        font-size: 19px;
+        line-height: 30px;
     }
+
 }
 
 @media (max-width: 1000px) {

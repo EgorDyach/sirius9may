@@ -94,7 +94,7 @@ export interface TPersons {
 // Определение начального состояния, используя тип
 const initialState: TPersons = {
     persons: [],
-    isPersonLoading: false,
+    isPersonLoading: true,
 }
 
 export const personsSlice = createSlice({

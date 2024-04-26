@@ -1,12 +1,11 @@
 import './adminunreaded.css';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { useLayoutEffect, useState } from 'react';
-import { UnreadedPersonType, removeUnreadedPerson, updateUnreadedPerson } from '../../store/unreadedPersonsSlice';
+import { UnreadedPersonType, addUnreadedPerson, removeUnreadedPersons, updateUnreadedPerson } from '../../store/unreadedPersonsSlice';
 import { AdminCard } from './AdminCard';
 import { AdminActive } from './AdminActive';
-import { Text } from '../../components/Text';
-import { addDoc, collection, deleteDoc, doc, getCountFromServer } from 'firebase/firestore';
-import { db } from '../../firebase';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const NO_UNREADED_PERSON = {
   name: '',
@@ -31,11 +30,13 @@ const NO_UNREADED_PERSON = {
   isHero: false
 }
 
-export function AdminUnreaded({ getMorePersons, count, countGetted, isLoadingPersons, setCountUnreaded, setCountGetted }: { isLoadingPersons: boolean; getMorePersons: () => Promise<void>; count: number; countGetted: number; setCountUnreaded: React.Dispatch<React.SetStateAction<number>>; setCountGetted: React.Dispatch<React.SetStateAction<number>>; }) {
+export function AdminUnreaded({ countGetted, isLoadingPersons, setCountUnreaded, setIsLoadingPersons }: { setIsLoadingPersons: React.Dispatch<React.SetStateAction<boolean>>; isLoadingPersons: boolean; getMorePersons: () => Promise<void>; count: number; countGetted: number; setCountUnreaded: React.Dispatch<React.SetStateAction<number>>; setCountGetted: React.Dispatch<React.SetStateAction<number>>; }) {
+  const token = localStorage.getItem('token');
   const unreadedPersons = useAppSelector(state => state.unreadedPersons.unreadedPersons);
   const [activeId, setActiveId] = useState('');
   const [activePerson, setActivePerson] = useState<UnreadedPersonType>(NO_UNREADED_PERSON);
   const [isChanged, setIsChanged] = useState(false);
+  const navigate = useNavigate();
   const [name, setName] = useState(activePerson.name)
   const [dateOfBirth, setDateOFBirth] = useState(activePerson.dateOfBirth)
   const [dateOfDeath, setDateOfDeath] = useState(activePerson.dateOfDeath)
@@ -47,56 +48,78 @@ export function AdminUnreaded({ getMorePersons, count, countGetted, isLoadingPer
   const [isHero, setIsHero] = useState(false)
   const [mainPhoto, setMainPhoto] = useState(activePerson.mainPhoto)
   const dispatch = useAppDispatch()
-  const coll = collection(db, "unreadedPersons");
 
-  const getCount = async () => {
-    const snapshot = await getCountFromServer(coll);
-    setCountUnreaded(snapshot.data().count);
-
-  }
-
-  useLayoutEffect(() => {
-      console.log(activePerson)
-  }, [photos])
-  
 
   const handleApprove = async () => {
-    const docRef = collection(db, "persons");
-      const req = {
-        name,
-        city,
-        dateOfBirth,
-        dateOfDeath,
-        history,
-        mainPhoto,
-        medals,
-        photos,
-        published: activePerson.published,
-        rank,
-        isHero,
-        id: activeId
+    console.log(activePerson.published)
+    await axios.post(`https://for-9-may.onrender.com/api/v1/persons?id=${activeId}&token_query=${token}&city=${city}&date_birth=${dateOfBirth}&date_death=${dateOfDeath}&history='${history}'&role=${isHero}&main_photo=${mainPhoto}&SNL=${name}&date_pulished=${activePerson.published ? Math.floor(Number(activePerson.published)) : 0}&rank=${rank}`, {
+      medals: [medals.join(',')],
+      photo: [photos.join(',')]
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': "application/json"
       }
-      await addDoc(docRef, isChanged ? req : {...activePerson, isHero})
-      handleDisapprove();
+    }).then(res => console.log(res)).then(() => {
+      loadPersons().then(() => {
+        if (unreadedPersons.length > 1) {
+          setActivePerson(unreadedPersons[1])
+          setActiveId(unreadedPersons[1].id);
+        }
+      })
+    })
   }
 
   const handleDisapprove = async () => {
-    await deleteDoc(doc(db, 'unreadedPersons', activeId)).then(() => {
-      dispatch(removeUnreadedPerson(activeId))
-      
-      setActiveId(unreadedPersons[1].id || '')
-      setActivePerson(unreadedPersons[1] || NO_UNREADED_PERSON)
-      getCount();
-      setCountGetted(countGetted - 1);
-      setIsChanged(false);
-      if (countGetted < 6) {
-        getMorePersons();
-      }
+    await axios.delete(`https://for-9-may.onrender.com/api/v1/unreadedPersons/${activeId}?token_query=${token}`).then(res => console.log(res)).then(() => {
+      loadPersons().then(() => {
+        if (unreadedPersons.length > 0) {
+          setActivePerson(unreadedPersons[0])
+          setActiveId(unreadedPersons[0].id);
+        }
+      })
     })
   }
 
   const handleChange = () => {
     setIsChanged(true)
+  }
+
+  const loadPersons = async () => {
+    setIsLoadingPersons(true)
+    if (token) {
+      await axios.get(`https://for-9-may.onrender.com/api/v1/unreadedPersons?token_query=${token}`).then((res) => {
+        setCountUnreaded(countGetted + res.data.detail.length);
+        dispatch(removeUnreadedPersons());
+        res.data.detail.forEach((e: { SNL: any; date_published:any; photo: string; main_photo: any; date_birth: any; date_death: any; role: any; contact_SNL: any; contact_email: any; contact_telegram: any; medals: string; }) => { // eslint-disable-line
+          dispatch(addUnreadedPerson({
+            ...e,
+            name: e.SNL,
+            photos: e.photo.split(','),
+            mainPhoto: e.main_photo,
+            dateOfBirth: e.date_birth,
+            dateOfDeath: e.date_death,
+            published: e.date_published,
+            isHero: e.role,
+            contacts: {
+              name: e.contact_SNL,
+              email: e.contact_email,
+              telegram: e.contact_telegram
+            },
+            medals: (e.medals ? e.medals.split(',') : [])
+          }));
+        });
+        console.log(res)
+      }).catch(err => {
+        localStorage.removeItem('token')
+        navigate('/auth')
+        console.log(err)
+      })
+    } else {
+      navigate('/auth')
+      localStorage.removeItem('token')
+    }
+    setIsLoadingPersons(false)
   }
 
   const handleCancel = () => {
@@ -113,20 +136,22 @@ export function AdminUnreaded({ getMorePersons, count, countGetted, isLoadingPer
   }
 
   const handleSave = () => {
-    dispatch(updateUnreadedPerson({id: activeId, data: {
-      name,
-      city,
-      dateOfBirth,
-      dateOfDeath,
-      history,
-      mainPhoto,
-      medals,
-      photos,
-      published: activePerson.published,
-      rank,
-      contacts: activePerson.contacts,
-      id: activeId
-    }}))
+    dispatch(updateUnreadedPerson({
+      id: activeId, data: {
+        name,
+        city,
+        dateOfBirth,
+        dateOfDeath,
+        history,
+        mainPhoto,
+        medals,
+        photos,
+        published: activePerson.published,
+        rank,
+        contacts: activePerson.contacts,
+        id: activeId
+      }
+    }))
     setIsChanged(false)
   }
 
@@ -185,15 +210,8 @@ export function AdminUnreaded({ getMorePersons, count, countGetted, isLoadingPer
 
         <ul className={`adminUnreaded__list ${isLoadingPersons ? "adminUnreaded__list-loading" : ""}`}>
           {unreadedPersons.map(e => {
-            return <AdminCard isActive={activeId === e.id} e={e} handleClick={() => {setActiveId(e.id); setIsChanged(false)}} />
+            return <AdminCard isActive={activeId === e.id} e={e} handleClick={() => { setActiveId(e.id); setIsChanged(false) }} />
           })}
-          {countGetted < count &&
-            <li className='adminUnreaded__item-btn'>
-              <button className='adminUnreaded__more' onClick={getMorePersons}>
-                <Text size={30} color="#fff" font='Lato'>Посмотреть еще</Text>
-              </button>
-            </li>
-          }
         </ul>
       </div>
     </div>

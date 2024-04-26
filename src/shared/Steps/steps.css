@@ -26,6 +26,22 @@
   animation: colorLine 12s infinite linear;
 }
 
+@media (max-width: 1700px) {
+  .steps .steps__item-text {
+    font-size: 19px;
+  }
+
+  .steps__item-icon svg {
+    width: 120px;
+  }
+
+  .steps .steps__item-num {
+    font-size: 24px;
+    line-height: 30px;
+    padding: 4px 12px;
+  }
+}
+
 @media (max-width: 1200px) {
   .steps__line {
     display: none !important;

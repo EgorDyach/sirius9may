@@ -1,13 +1,12 @@
 import './adminallcard.css';
 import { Text } from '../../../components/Text';
-import { PersonType, removeOnePerson } from '../../../store/personsSlice';
+import { PersonType } from '../../../store/personsSlice';
 import '../../HistoriesCard/historiescard.css';
 import unknown from "../../../assets/UnknownSoldier.jpg"
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../../hooks/reduxHooks';
-import { deleteDoc, doc } from 'firebase/firestore';
-import { db } from '../../../firebase';
-import {  removeOneNewPerson } from '../../../store/newPersons';
+import { asy } from '../../Layout';
+import axios from 'axios';
 
 
 function formatDateFromMilliseconds(milliseconds: number): string {
@@ -36,18 +35,12 @@ function formatDateFromMilliseconds(milliseconds: number): string {
 }
 
 
-export function AdminAllCard({ e }: { e: PersonType }) {
-  const THREE_DAYS = 259_200;
+export function AdminAllCard({ e }: { e: PersonType; }) {
+  const token = localStorage.getItem('token')
   const dispatch = useAppDispatch();
-  // const newPersons = useAppSelector(state => state.newPersons.persons)
-  // const persons = useAppSelector(state => state.persons.persons)
   const handleDelete = async () => {
-    await deleteDoc(doc(db, 'persons', e.id)).then(() => {
-      if (e.published >= new Date().getTime() / 1000 - THREE_DAYS) {
-        dispatch(removeOneNewPerson(e.id));
-      } else {
-        dispatch(removeOnePerson(e.id));
-      }
+    await axios.delete(`https://for-9-may.onrender.com/api/v1/unreadedPersons/${e.id}?token_query=${token}`).then(res => console.log(res)).then(() => {
+      asy(dispatch);
     })
   }
   return (
@@ -60,7 +53,7 @@ export function AdminAllCard({ e }: { e: PersonType }) {
           <button onClick={handleDelete} className="adminAllCard__controls">
             Удалить
           </button>
-          <Link to={`./${e.id}`}><Text size={16} font='Lora' weight={400}>Подробнее</Text></Link>
+          <Link to={`/histories/${e.id}`}><Text size={16} font='Lora' weight={400}>Подробнее</Text></Link>
         </div>
       </div>
     </div>

@@ -1,77 +1,71 @@
 import './adminpage.css';
-import { auth, db } from '../../firebase';
-import { onAuthStateChanged } from 'firebase/auth';
-import { useLayoutEffect, useState } from 'react';
-import { DocumentData, collection, getCountFromServer, getDocs, limit, orderBy, query, startAfter } from 'firebase/firestore';
+import {  useLayoutEffect, useState } from 'react';
 import { AdminNav } from '../../shared/AdminNav';
 import { AdminUnreaded } from '../../shared/AdminUnreaded';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { addUnreadedPerson, removeUnreadedPersons } from '../../store/unreadedPersonsSlice';
 import { AdminAllRequsts } from '../../shared/AdminAllRequests/AdminAllRequests';
 import { AdminHandAdding } from '../../shared/AdminHandAdding';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export type TAdminBlocks = 'unreaded' | 'content' | "allRequests" | "handAdding";
 
-const ITEMS_FROM_SERVER = 6;
 
 export function AdminPage() {
+  const token = localStorage.getItem('token')
   const [countUnreaded, setCountUnreaded] = useState(0);
   const [countGetted, setCountGetted] = useState(0);
-  const [lastUnreadedPerson, setLastUnreadedPerson] = useState<DocumentData | null>(null);
   const [activePage, setActivePage] = useState<TAdminBlocks>('unreaded');
   const [isLoadingPersons, setIsLoadingPersons] = useState(false);
   const dispatch = useAppDispatch();
-  const coll = collection(db, "unreadedPersons");
-
   const getMorePersons = async () => {
-    setIsLoadingPersons(true)
-    const first = query(coll, orderBy("published"), startAfter(lastUnreadedPerson), limit(ITEMS_FROM_SERVER));
-    const documentSnapshots = await getDocs(first).finally(() => setIsLoadingPersons(false));
-    documentSnapshots.forEach(e => {
-      const res = { ...e.data(), id: e.id }
-      dispatch(addUnreadedPerson(res))
-    });
-    setIsLoadingPersons(false)
-    setCountGetted(countGetted + documentSnapshots.size);
-    setLastUnreadedPerson(documentSnapshots.docs[documentSnapshots.docs.length - 1]);
+    // setLastUnreadedPerson(documentSnapshots.docs[documentSnapshots.docs.length - 1]);
   }
+  const navigate = useNavigate();
 
   useLayoutEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      const getFirstPersons = async () => {
-        setIsLoadingPersons(true)
-        const first = query(coll, orderBy("published"), limit(ITEMS_FROM_SERVER));
-        const documentSnapshots = await getDocs(first);
-        dispatch(removeUnreadedPersons())
-        setCountGetted(ITEMS_FROM_SERVER);
-        setLastUnreadedPerson(documentSnapshots.docs[documentSnapshots.docs.length - 1]);
-        documentSnapshots.forEach(e => {
-          const res = { ...e.data(), id: e.id }
-          dispatch(addUnreadedPerson(res))
-        })
-        setIsLoadingPersons(false)
-      }
-
-      if (!user) {
-        window.location.href = '/auth'
-      } else {
-        const getCount = async () => {
-          const snapshot = await getCountFromServer(coll);
-          setCountUnreaded(snapshot.data().count);
-
-        }
-        getCount();
-      }
-      getFirstPersons();
-    });
-  }, [])
+    setIsLoadingPersons(true)
+    if (token) {
+      axios.get(`https://for-9-may.onrender.com/api/v1/unreadedPersons?token_query=${token}`).then((res) => {
+        setCountUnreaded(countGetted + res.data.detail.length);
+        dispatch(removeUnreadedPersons());
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        res.data.detail.forEach((e: any) => {
+          dispatch(addUnreadedPerson({ ...e,
+            name: e.SNL, 
+            photos: e.photo.split(','), 
+            mainPhoto: e.main_photo, 
+            dateOfBirth: e.date_birth, 
+            dateOfDeath: e.date_death, 
+            isHero: e.role,
+            published: e.date_pulished,
+            contacts: {
+              name: e.contact_SNL,
+              email: e.contact_email,
+              telegram: e.contact_telegram
+            },
+            medals: (e.medals ? e.medals.split(',') : []) }));
+        });
+        console.log(res)
+      }).catch(err => {
+        localStorage.removeItem('token')
+        navigate('/auth')
+        console.log(err)
+      })
+    } else {
+      navigate('/auth')
+      localStorage.removeItem('token')
+    }
+    setIsLoadingPersons(false)
+  }, [token])
 
   return (
     <>
       <div className="adminPage">
         <AdminNav active={activePage} setActive={setActivePage} countUnreaded={countUnreaded} />
         {activePage === 'content' && <div>qwe</div>}
-        {activePage === 'unreaded' && <AdminUnreaded setCountGetted={setCountGetted} setCountUnreaded={setCountUnreaded} isLoadingPersons={isLoadingPersons}  countGetted={countGetted} getMorePersons={getMorePersons} count={countUnreaded} />}
+        {activePage === 'unreaded' && <AdminUnreaded setIsLoadingPersons={setIsLoadingPersons} setCountGetted={setCountGetted} setCountUnreaded={setCountUnreaded} isLoadingPersons={isLoadingPersons} countGetted={countGetted} getMorePersons={getMorePersons} count={countUnreaded} />}
         {activePage === 'allRequests' && <AdminAllRequsts />}
         {activePage === 'handAdding' && <AdminHandAdding />}
         {/* <Text size={40} font='Lora' weight={400}>Добро пожаловать, администратор!</Text> */}

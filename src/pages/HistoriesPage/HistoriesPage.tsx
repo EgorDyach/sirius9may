@@ -1,59 +1,52 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
 import './historiespage.css';
-import { collection, query, limit, getDocs, where } from 'firebase/firestore';
-import { db } from '../../firebase';
-import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-import { MainPreloader } from '../../shared/MainPreloader';
-import { removePersons, addPerson, PersonType } from '../../store/personsSlice';
-import { addNewPerson, removeNewPersons } from '../../store/newPersons';
-import { Container } from '../../components/Container';
+import { useLayoutEffect, useState } from 'react';
+import { useAppSelector } from '../../hooks/reduxHooks';
+import { PersonType } from '../../store/personsSlice';
 import { Text } from '../../components/Text';
+import { Container } from '../../components/Container';
 import { HistoriesCard } from '../../shared/HistoriesCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { HistoriesSwiperNav } from '../../shared/HistoriesSwiperNav';
+import { MainPreloader } from '../../shared/MainPreloader';
 
-const THREE_DAYS = 259_200;
 
 export function HistoriesPage() {
-  const [isPersonsLoading, setIsPersonsLoading] = useState(true);
-  const dispatch = useAppDispatch();
   const newPersons = useAppSelector(state => state.newPersons.persons);
+  const isPersonsLoading = useAppSelector(state => state.persons.isPersonLoading);
   const persons = useAppSelector(state => state.persons.persons);
-  const [sizeOfNew, setSizeOfNew] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
   const [historiesArrays, setHistoriesArrays] = useState<PersonType[][]>([[]]);
   const [offset, setOffset] = useState(6);
-  console.log(sizeOfNew);
-  useEffect(() => {
-    const getPersons = async () => {
-      const docRef = collection(db, "persons");
-      const q = query(docRef, limit(15), where("published", ">=", new Date().getTime() / 1000 - THREE_DAYS));
-      const querySnapshot = await getDocs(q);
-      setSizeOfNew(querySnapshot.size);
-      dispatch(removeNewPersons())
-      querySnapshot.forEach((doc) => {
-        const qq = doc.data();
-        dispatch(addNewPerson({ ...qq, id: doc.id }));
-      });
+  // useEffect(() => {
+  //   const getPersons = async () => {
+  //     const docRef = collection(db, "persons");
+  //     const q = query(docRef, limit(15), where("published", ">=", new Date().getTime() / 1000 - THREE_DAYS));
+  //     const querySnapshot = await getDocs(q);
+  //     setSizeOfNew(querySnapshot.size);
+  //     dispatch(removeNewPersons())
+  //     querySnapshot.forEach((doc) => {
+  //       const qq = doc.data();
+  //       dispatch(addNewPerson({ ...qq, id: doc.id }));
+  //     });
 
-      setIsPersonsLoading(false)
-    }
+  //     setIsPersonsLoading(false)
+  //   }
 
-    const getNewPersons = async () => {
-      const docRef = collection(db, "persons");
-      const qNotNew = query(docRef, where("published", "<", new Date().getTime() / 1000 - THREE_DAYS));
-      await getDocs(qNotNew).then(querySnapshotNotNew => {
-        dispatch(removePersons())
-        querySnapshotNotNew.forEach((doc) => {
-          const qq = doc.data();
-          dispatch(addPerson({ ...qq, id: doc.id }));
-        })
-      });
-    }
+  //   const getNewPersons = async () => {
+  //     const docRef = collection(db, "persons");
+  //     const qNotNew = query(docRef, where("published", "<", new Date().getTime() / 1000 - THREE_DAYS));
+  //     await getDocs(qNotNew).then(querySnapshotNotNew => {
+  //       dispatch(removePersons())
+  //       querySnapshotNotNew.forEach((doc) => {
+  //         const qq = doc.data();
+  //         dispatch(addPerson({ ...qq, id: doc.id }));
+  //       })
+  //     });
+  //   }
 
-    getNewPersons();
-    getPersons();
-  }, [])
+  //   getNewPersons();
+  //   getPersons();
+  // }, [])
 
 
   useLayoutEffect(() => {
@@ -62,7 +55,7 @@ export function HistoriesPage() {
     if (typeof newPersons !== 'undefined') {
       for (let i = 0; i < newPersons.length; i++) {
         if (typeof newPersons[i] !== 'undefined') {
-          if (i % (window.innerWidth > 850 ? 3 : (window.innerHeight > 600 ? 2 : 1)) === 0) {
+          if (i % (window.innerWidth > 1200 ? 3 : (window.innerHeight > 600 ? 2 : 1)) === 0) {
             q.push([])
           }
           q[q.length - 1].push(newPersons[i])
@@ -76,11 +69,11 @@ export function HistoriesPage() {
 
   return (
     <>
-      {(isPersonsLoading) && <MainPreloader />}
-      {(!isPersonsLoading) && <div className='historiesPage'>
+      {isPersonsLoading && <MainPreloader />}
+      {!isPersonsLoading && <div className='historiesPage'>
         <Container>
           <Text As='h2' size={80} color='#000' font='Lora' weight={400} >Истории</Text>
-          <div className='historiesPage__new'>
+          {newPersons.length ? <div className='historiesPage__new'>
             <div className="historiesPage__new-title">
               <Text size={70} color='#000' font='Lora' weight={400} >Новые</Text>
               <span className="historiesPage__new-count">
@@ -105,15 +98,15 @@ export function HistoriesPage() {
                 <HistoriesSwiperNav activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
               </Swiper>
             </div>
-          </div>
+          </div> : ''}
           <div className="historiesPage__all">
             <Text As='h3' size={70} color='#000' font='Lora' weight={400} >Все истории</Text>
             <div className="historiesPage__all-container">
-                {[...persons, ...newPersons].sort((a, b) => a.id.localeCompare(b.id)).slice(0, offset).map(e => {
-                  return <HistoriesCard e={e} />
-                })}
+              {[...persons].sort((a, b) => Number(a.id) - Number(b.id)).slice(0, offset).map(e => {
+                return <HistoriesCard e={e} />
+              })}
             </div>
-            <button disabled={offset >= [...persons, ...newPersons].length} onClick={() => setOffset(offset+6)} className='historiesPage__all-more'>
+            <button disabled={offset >= [...persons].length} onClick={() => setOffset(offset + 6)} className='historiesPage__all-more'>
               <Text size={24} font='Lora' color='#fff'>Показать ещё</Text></button>
           </div>
         </Container>

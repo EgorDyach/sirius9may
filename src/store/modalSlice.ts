@@ -18,8 +18,9 @@ export const modalSlice = createSlice({
     reducers: {
         openModal: (state, action) => {
             console.log(action.payload)
-            state.img = action.payload;
-           
+            state.title = action.payload.title;
+            state.img = action.payload.img;
+            
             state.isOpen = true;
         },
         closeModal: (state) => {

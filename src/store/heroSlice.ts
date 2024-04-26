@@ -3,54 +3,14 @@ import { PersonType } from "./personsSlice";
 
 export interface THeroPersons {
     persons: PersonType[];
+    isLoading: boolean;
 }
 
 // Определение начального состояния, используя тип
 const initialState: THeroPersons = {
     persons: [
-        // {
-        //     name: 'Федотов Николай Александрович',
-        //     city: '',
-        //     dateOfBirth: 0,
-        //     dateOfDeath: 0,
-        //     history: '',
-        //     mainPhoto: '',
-        //     medals: EMedals[];
-        //     photos: string[];
-        //     published: number;
-        //     rank: string;
-        //     isHero: boolean;
-        //     id: string;
-        // },
-        // {
-        //     name: string;
-        //     city: string;
-        //     dateOfBirth: number | "unknown" | "alive";
-        //     dateOfDeath: number | "unknown" | "alive";
-        //     history: string;
-        //     mainPhoto: string;
-        //     medals: EMedals[];
-        //     photos: string[];
-        //     published: number;
-        //     rank: string;
-        //     isHero: boolean;
-        //     id: string;
-        // },
-        // {
-        //     name: string;
-        //     city: string;
-        //     dateOfBirth: number | "unknown" | "alive";
-        //     dateOfDeath: number | "unknown" | "alive";
-        //     history: string;
-        //     mainPhoto: string;
-        //     medals: EMedals[];
-        //     photos: string[];
-        //     published: number;
-        //     rank: string;
-        //     isHero: boolean;
-        //     id: string;
-        // }
     ],
+    isLoading: true
 }
 
 export const heroPersonsSlice = createSlice({
@@ -62,11 +22,14 @@ export const heroPersonsSlice = createSlice({
         },
         removeHeroPersons: (state) => {
             state.persons = []
+        },
+        changeHeroLoading: (state, action) => {
+            state.isLoading = action.payload 
         }
     },
 })
 
 // Сгенерированные Создатели Действий/ action creators
-export const { addHeroPerson, removeHeroPersons } = heroPersonsSlice.actions
+export const { addHeroPerson, removeHeroPersons, changeHeroLoading } = heroPersonsSlice.actions
 
 export default heroPersonsSlice.reducer

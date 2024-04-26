@@ -16,16 +16,20 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
   useEffect(() => {
     const v = [];
     for (const [key, value] of Object.entries(EMedals)) {
-      v.push({ value: key, text: value, label: <div className='formMedals__option'>
-        <MedalComponent size={window.innerWidth > 700 ? 50 : 25} type={value} />
-        {value}
-      </div> })
+      key;
+      v.push({
+        value: value, text: value, label: <div className='formMedals__option'>
+          <MedalComponent size={window.innerWidth > 700 ? 50 : 25} type={value} />
+          {value}
+        </div>
+      })
     }
     setOptions(v);
   }, [])
 
+
   useLayoutEffect(() => {
-      setFormData({...formData, medals: checkedOptions})
+    setFormData({ ...formData, medals: checkedOptions })
   }, [checkedOptions])
 
   return (
@@ -50,7 +54,7 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
             fontSize: 20,
             padding: '20px 40px',
           }),
-          
+
           multiValue: (baseStyles) => ({
             ...baseStyles,
             border: "1px solid #333",
@@ -66,7 +70,7 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
         onChange={(q) => {
           const z: IOption[] = [];
           q.forEach((x) => {
-            const v = {value: x.value, text: x.text, label: x.text}
+            const v = { value: x.value, text: x.text, label: x.text }
             z.push(v as IOption);
           })
           setCheckedOptions(z);
@@ -88,16 +92,16 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
       />
       <label className='formMedals__label'>
         <Text size={20} weight={400} >Если вы не нашли подходящей награды, напишите нам об этом, и мы её обязательно добавим.</Text>
-        <textarea placeholder='Написать...' value={formData.messageMedals} onChange={(q) => {setFormData({...formData, messageMedals: q.target.value})}}></textarea>
+        <textarea placeholder='Написать...' value={formData.messageMedals} onChange={(q) => { setFormData({ ...formData, messageMedals: q.target.value }) }}></textarea>
       </label>
-        <div className="formMedals__buttons">
-          <button onClick={() => {
-            setMinusFormBlock();
-          }} className="formMainInfo__cancel"><Text color='#343434' font='Lora' size={24}>Назад</Text></button>
-          <button onClick={() => {
-            setActiveFormBlock();
-          }} className="formMainInfo__submit"><Text color='#fff' font='Lora' size={24}>Сохранить</Text></button>
-        </div>
+      <div className="formMedals__buttons">
+        <button onClick={() => {
+          setMinusFormBlock();
+        }} className="formMainInfo__cancel"><Text color='#343434' font='Lora' size={24}>Назад</Text></button>
+        <button onClick={() => {
+          setActiveFormBlock();
+        }} className="formMainInfo__submit"><Text color='#fff' font='Lora' size={24}>Сохранить</Text></button>
+      </div>
     </div>
   );
 }

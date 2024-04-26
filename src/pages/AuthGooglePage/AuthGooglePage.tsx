@@ -1,10 +1,12 @@
 import { useLayoutEffect, useState } from 'react';
 import './authgooglepage.css';
 import { auth } from '../../firebase';
-import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
-import { sha512 } from 'js-sha512';
+import { onAuthStateChanged } from 'firebase/auth';
+// import { sha512 } from 'js-sha512';
 import { Container } from '../../components/Container';
 import { Text } from '../../components/Text';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
 export function AuthGooglePage() {
@@ -12,6 +14,7 @@ export function AuthGooglePage() {
   const [login, setLogin] = useState('');
   const [pass, setPass] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
   useLayoutEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -32,13 +35,14 @@ export function AuthGooglePage() {
   const handleChangePass = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPass(event.target.value)
   }
-  const handleClick = () => {
-    signInWithEmailAndPassword(auth, login, sha512(pass)).then(() => {
-
-    }
-    ).catch(err => {
-      console.error(err)
-      setError(String(err))
+  const handleClick = async () => {
+    await axios.post(`https://for-9-may.onrender.com/api/v1/login?email=${login}&password=${pass}`).then(res => {
+      localStorage.setItem('token', res.data.ditails);
+      navigate('/admin')
+      window.location.reload();
+    }).catch(err => {
+      setError('Неверный логин или пароль!')
+      console.log(err)
     })
   }
   return (

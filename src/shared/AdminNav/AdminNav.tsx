@@ -21,24 +21,10 @@ export function AdminNav({ active, setActive, countUnreaded }: { active: TAdminB
           </span>}
         </button>
       </li>
-      <li className={active === 'content' ? 'adminNav__item adminNav__item-active' : 'adminNav__item'}>
-        <button onClick={() => handleClick('content')}>
-          <Text size={20} color='#333' weight={700}>
-            Контент
-          </Text>
-        </button>
-      </li>
       <li className={active === 'allRequests' ? 'adminNav__item adminNav__item-active' : 'adminNav__item'}>
         <button onClick={() => handleClick('allRequests')}>
           <Text size={20} color='#333' weight={700}>
             Анкеты на сайте
-          </Text>
-        </button>
-      </li>
-      <li className={active === 'handAdding' ? 'adminNav__item adminNav__item-active' : 'adminNav__item'}>
-        <button onClick={() => handleClick('handAdding')}>
-          <Text size={20} color='#333' weight={700}>
-            Ручное добавление
           </Text>
         </button>
       </li>

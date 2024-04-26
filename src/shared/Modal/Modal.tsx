@@ -2,10 +2,12 @@ import { useLayoutEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import './modal.css';
 import { closeModal } from '../../store/modalSlice';
+import { Text } from '../../components/Text';
 
 export function Modal() {
   const isOpen = useAppSelector(state => state.modalSlice.isOpen);
   const img = useAppSelector(state => state.modalSlice.img);
+  const text = useAppSelector(state => state.modalSlice.title);
   useLayoutEffect(() => {
     isOpen ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'scroll';
   }, [isOpen])
@@ -20,6 +22,7 @@ export function Modal() {
           </svg>
         </button>
         <img src={img} />
+        <Text weight={400} size={24} color='#fff'>{text}</Text>
       </div>
     </div>
   );
