@@ -1,5 +1,5 @@
 import './adminpage.css';
-import {  useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { AdminNav } from '../../shared/AdminNav';
 import { AdminUnreaded } from '../../shared/AdminUnreaded';
 import { useAppDispatch } from '../../hooks/reduxHooks';
@@ -25,6 +25,10 @@ export function AdminPage() {
   const navigate = useNavigate();
 
   useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+
+  useLayoutEffect(() => {
     setIsLoadingPersons(true)
     if (token) {
       axios.get(`https://for-9-may.onrender.com/api/v1/unreadedPersons?token_query=${token}`).then((res) => {
@@ -32,12 +36,13 @@ export function AdminPage() {
         dispatch(removeUnreadedPersons());
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         res.data.detail.forEach((e: any) => {
-          dispatch(addUnreadedPerson({ ...e,
-            name: e.SNL, 
-            photos: e.photo.split(','), 
-            mainPhoto: e.main_photo, 
-            dateOfBirth: e.date_birth, 
-            dateOfDeath: e.date_death, 
+          dispatch(addUnreadedPerson({
+            ...e,
+            name: e.SNL,
+            photos: e.photo.split(','),
+            mainPhoto: e.main_photo,
+            dateOfBirth: e.date_birth,
+            dateOfDeath: e.date_death,
             isHero: e.role,
             published: e.date_pulished,
             contacts: {
@@ -45,7 +50,8 @@ export function AdminPage() {
               email: e.contact_email,
               telegram: e.contact_telegram
             },
-            medals: (e.medals ? e.medals.split(',') : []) }));
+            medals: (e.medals ? e.medals.split(',') : [])
+          }));
         });
         console.log(res)
       }).catch(err => {

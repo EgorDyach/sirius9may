@@ -36,17 +36,18 @@ export function Gallary() {
     setGallaryArrays([])
     const q: GallaryItemType[][] = [];
     if (typeof gallary !== 'undefined') {
-      for (let i = 0; i<links.length; i++) {
+      for (let i = 0; i < links.length; i++) {
         if (typeof links[i] !== 'undefined') {
           if (i % (window.innerWidth > 1700 ? 5 : (window.innerWidth > 1200 ? 3 : (window.innerWidth > 800 ? 2 : 1))) === 0) {
             q.push([])
           }
-          q[q.length-1].push({img: links[i]} as GallaryItemType)
+          q[q.length - 1].push({ img: links[i] } as GallaryItemType)
         }
         setGallaryArrays(q)
-        }
+      }
     }
   }, [gallary]);
+
   return (
     <section className='gallary'>
       <Container>
@@ -57,9 +58,9 @@ export function Gallary() {
           spaceBetween={50}
           slidesPerView={1}
           navigation
-          onSlideChange={(q) => {setActiveIndex(q.activeIndex)}}
+          onSlideChange={(q) => { setActiveIndex(q.activeIndex) }}
           speed={850}>
-          {typeof gallaryArrays !== 'undefined' &&  gallaryArrays.map(e => {
+          {typeof gallaryArrays !== 'undefined' && gallaryArrays.map(e => {
             if (e.length === 0) {
               return;
             }

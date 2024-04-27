@@ -29,3 +29,7 @@
     gap: 100px;
     display: flex;
 }
+
+.formFeedback__checkbox-con {
+    margin-bottom: 40px;
+}

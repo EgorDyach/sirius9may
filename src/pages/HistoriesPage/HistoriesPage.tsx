@@ -17,38 +17,6 @@ export function HistoriesPage() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [historiesArrays, setHistoriesArrays] = useState<PersonType[][]>([[]]);
   const [offset, setOffset] = useState(6);
-  // useEffect(() => {
-  //   const getPersons = async () => {
-  //     const docRef = collection(db, "persons");
-  //     const q = query(docRef, limit(15), where("published", ">=", new Date().getTime() / 1000 - THREE_DAYS));
-  //     const querySnapshot = await getDocs(q);
-  //     setSizeOfNew(querySnapshot.size);
-  //     dispatch(removeNewPersons())
-  //     querySnapshot.forEach((doc) => {
-  //       const qq = doc.data();
-  //       dispatch(addNewPerson({ ...qq, id: doc.id }));
-  //     });
-
-  //     setIsPersonsLoading(false)
-  //   }
-
-  //   const getNewPersons = async () => {
-  //     const docRef = collection(db, "persons");
-  //     const qNotNew = query(docRef, where("published", "<", new Date().getTime() / 1000 - THREE_DAYS));
-  //     await getDocs(qNotNew).then(querySnapshotNotNew => {
-  //       dispatch(removePersons())
-  //       querySnapshotNotNew.forEach((doc) => {
-  //         const qq = doc.data();
-  //         dispatch(addPerson({ ...qq, id: doc.id }));
-  //       })
-  //     });
-  //   }
-
-  //   getNewPersons();
-  //   getPersons();
-  // }, [])
-
-
   useLayoutEffect(() => {
     setHistoriesArrays([])
     const q: PersonType[][] = [];
@@ -65,6 +33,9 @@ export function HistoriesPage() {
     }
   }, [newPersons]);
 
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
 
   return (

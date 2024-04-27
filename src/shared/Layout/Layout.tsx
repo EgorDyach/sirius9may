@@ -32,7 +32,7 @@ export const asy = async (dispatch: any) => {
       if (e.role) {
         dispatch(addHeroPerson(req));
       }
-      if (e.date_pulished > new Date().getTime()/1000 - 259_000) {
+      if (e.date_pulished > new Date().getTime() / 1000 - 259_000) {
         dispatch(addNewPerson(req));
       }
       dispatch(addPerson(req));
@@ -41,10 +41,17 @@ export const asy = async (dispatch: any) => {
     dispatch(setIsPersonsLoading(false));
   })
 }
+
+
 export function Layout({ children }: { children: React.ReactNode }) {
   const dispatch = useAppDispatch();
   useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+  useLayoutEffect(() => {
     asy(dispatch);
+    const inter = setInterval(async () => asy(dispatch), 600000)
+    return () => clearInterval(inter);
   }, [])
   return (
     <>

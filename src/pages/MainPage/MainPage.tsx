@@ -5,8 +5,12 @@ import { Histories } from '../../shared/Histories';
 import { useAppSelector } from '../../hooks/reduxHooks';
 import { MainPreloader } from '../../shared/MainPreloader';
 import { Steps } from '../../shared/Steps';
+import { useLayoutEffect } from 'react';
 
 export function MainPage() {
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
   const isPersonsLoading = useAppSelector(state => state.heroPersons.isLoading);
   return (
     <>

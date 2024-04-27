@@ -74,6 +74,10 @@ export function PersonPage() {
     setIsLoading(false)
   }, [])
 
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+
   return (
     <div className='personPage'>
       {isLoading && <Text size={80}>Загрузка...</Text>}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { Container } from '../../components/Container';
 import { Text } from '../../components/Text';
 import './formpage.css';
@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 // athz1th9i
 export type FormPersonType = {
   name: string;
+  isAgree: boolean;
   surName: string;
   lastName: string;
   city: string;
@@ -43,6 +44,7 @@ export function FormPage() {
   const [formData, setFormData] = useState<FormPersonType>(
     {
       name: '',
+      isAgree: false,
       surName: '',
       lastName: '',
       city: '',
@@ -77,10 +79,10 @@ export function FormPage() {
     if (formData.history === '') {
       setHistoryError(true)
     }
-    if (formData.contacts.email === "" || formData.contacts.name === "" || formData.contacts.surname === "" || formData.contacts.telegram === "") {
+    if (formData.contacts.email === "" || !formData.isAgree || formData.contacts.name === "" || formData.contacts.surname === "" || formData.contacts.telegram === "") {
       setContactsError(true)
     }
-    if ((formData.name !== '' && formData.surName !== '' && (formData.mainPhoto || formData.isNoMainPhoto) && (formData.dateOfBirth !== '' || formData.isBirthUnknown) && (formData.dateOfDeath !== '' || formData.isDeathUnknown || formData.isAlive) && formData.city !== '' && formData.rank !== '' && formData.history !== '' && formData.contacts.telegram !== '' && formData.contacts.email !== '' && formData.contacts.name !== '' && formData.contacts.surname !== '')) {
+    if ((formData.name !== '' && formData.isAgree && formData.surName !== '' && (formData.mainPhoto || formData.isNoMainPhoto) && (formData.dateOfBirth !== '' || formData.isBirthUnknown) && (formData.dateOfDeath !== '' || formData.isDeathUnknown || formData.isAlive) && formData.city !== '' && formData.rank !== '' && formData.history !== '' && formData.contacts.telegram !== '' && formData.contacts.email !== '' && formData.contacts.name !== '' && formData.contacts.surname !== '')) {
       const formDataMain = new FormData()
       if (formData.mainPhoto) {
         formDataMain.append('main_photo', formData.mainPhoto);
@@ -104,6 +106,10 @@ export function FormPage() {
     }
     setIsSendDisabled(false);
   }
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
   return (
     <div className="form">
