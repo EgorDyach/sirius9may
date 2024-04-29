@@ -4,6 +4,45 @@
     align-items: center;
 }
 
+.formMedals__gallary {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.formMedals__gallary-item {
+    display: flex;
+    flex-basis: 21%;
+    text-align: center;
+    align-items: center;
+    position: relative;
+    gap: 10px;
+    margin-bottom: 40px;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.formMedals__gallary-item button {
+    top: 0;
+    right: 0;
+    border: 0;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    padding: 0;
+    position: absolute;
+    cursor: pointer;
+}
+
+.formMedals__gallary-item svg {
+    width: 100%;
+    height: 100%;
+}
+
+.formMedals__gallary-item img {
+    width: 50%;
+}
+
 .formMedals {
     margin-top: 170px;
 }
@@ -65,5 +104,35 @@
     }
     .formMedals__select>div {
         padding: 10px;
+    }
+    .formMedals__gallary-item {
+        flex-basis: 27%;
+    }
+    
+}
+
+
+@media (max-width: 1000px) {
+    .formMedals__gallary-item {
+        flex-basis: 45%;
+    }
+
+    .formMedals__gallary-item img {
+        width: 30%;
+    }
+
+    .formMedals__gallary-item span {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 700px) {
+    .formMedals__gallary-item span {
+        font-size: 12px;
+    }
+
+    .formMedals__gallary-item button {
+        width: 25px;
+        height: 25px;
     }
 }

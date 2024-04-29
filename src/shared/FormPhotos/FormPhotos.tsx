@@ -91,7 +91,16 @@ export function FormPhotos({ setActiveFormBlock, formData, setFormData, setMinus
       <Text As='p' className='' size={40} weight={400} >Если у вас есть ещё фото, связанные с вашим предком, добавляйте их. Подойдут любые: семейные, домашние, с работы, фото документов и т.д.</Text>
       <div className='formPhotos__gallary'>
         {formData.photos.map(e => {
-          return <img src={URL.createObjectURL(e)} alt='Дополнительное фото предка' />
+          return <div className='formPhotos__gallary-item'>
+            <img src={URL.createObjectURL(e)} alt='Дополнительное фото предка' />
+            <button onClick={() => {
+              setFormData({ ...formData, photos: formData.photos.filter(q => q !== e) });
+            }}><svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="30" height="30" fill="white" />
+                <path d="M26 6.22357L23.7764 4L15 12.7764L6.22357 4L4 6.22357L12.7764 15L4 23.7764L6.22357 26L15 17.2236L23.7764 26L26 23.7764L17.2236 15L26 6.22357Z" fill="#848484" />
+              </svg>
+            </button>
+          </div>
         })}
       </div>
       <div className="formPhotos__content">

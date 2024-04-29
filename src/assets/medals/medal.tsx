@@ -10,5 +10,5 @@ export function getMedalKeyByName(name: string) {
   }
 
 export const MedalComponent =  ({type, size}: {type: string; size?: number; }) => {
-    return <img width={size}  src={getMedalKeyByName(type) === 'medalOther' ? other : `http://a0839389.xsph.ru/medals/${getMedalKeyByName(type)}.png`} />
+    return <img width={size}  src={getMedalKeyByName(type) === 'medalOther' ? other : `/medals/${getMedalKeyByName(type)}.png`} />
 }

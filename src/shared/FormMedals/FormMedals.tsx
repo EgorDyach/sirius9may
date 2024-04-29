@@ -5,8 +5,8 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { EMedals } from '../../store/personsSlice';
 import { Text } from '../../components/Text';
-import { MedalComponent } from '../../assets/medals/medal';
-
+import { MedalComponent, getMedalKeyByName } from '../../assets/medals/medal';
+import other from '../../assets/medals/medalOther.png'
 export interface IOption { value: string; text: string; label: ReactNode }
 
 export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinusFormBlock }: { setActiveFormBlock: () => void; formData: FormPersonType, setFormData: React.Dispatch<React.SetStateAction<FormPersonType>>; setMinusFormBlock: () => void; }) {
@@ -35,6 +35,21 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
   return (
     <div className="formMedals">
       <Text As='h3' className='formMainInfo__title' size={64} font='Lora' weight={500}>Награды</Text>
+      <div className="formMedals__gallary">
+        {checkedOptions.map((el) => {
+          return <div className='formMedals__gallary-item'>
+            <img src={getMedalKeyByName(el.text) === 'modalOther' ? other : `/medals/${getMedalKeyByName(el.text)}.png`} />
+            <Text size={24} >{el.text}</Text>
+            <button onClick={() => {
+              setCheckedOptions(checkedOptions.filter(q => q.text !== el.text))
+            }}><svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="30" height="30" fill="white" />
+                <path d="M26 6.22357L23.7764 4L15 12.7764L6.22357 4L4 6.22357L12.7764 15L4 23.7764L6.22357 26L15 17.2236L23.7764 26L26 23.7764L17.2236 15L26 6.22357Z" fill="#848484" />
+              </svg>
+            </button>
+          </div>
+        })}
+      </div>
       <Select
         className='formMedals__select'
         styles={{
@@ -57,6 +72,7 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
 
           multiValue: (baseStyles) => ({
             ...baseStyles,
+            display: "none",
             border: "1px solid #333",
             backgroundColor: "transparent",
             fontSize: (window.innerWidth > 700 ? 28 : 12),

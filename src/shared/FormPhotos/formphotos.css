@@ -2,6 +2,20 @@
     margin-top: 170px;
 }
 
+.formPhotos__gallary-item {
+    position: relative;
+}
+
+.formPhotos__gallary-item button {
+    top: 0;
+    right: 0;
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    position: absolute;
+    cursor: pointer;
+}
+
 .formPhotos__input-con {
     width: calc(100% - 100px);
     height: 200px;
