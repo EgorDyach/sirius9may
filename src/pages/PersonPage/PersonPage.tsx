@@ -1,5 +1,4 @@
 import { JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useLayoutEffect, useState } from 'react';
-import { storage } from '../../firebase';
 import './personpage.css';
 import { useParams } from "react-router-dom";
 import { Text } from '../../components/Text';
@@ -8,7 +7,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { MedalComponent, getMedalKeyByName } from '../../assets/medals/medal';
 import { PersonNav } from '../../shared/PersonNav';
 import unknown from "../../assets/UnknownSoldier.jpg";
-import { getDownloadURL, ref } from 'firebase/storage';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { openModal } from '../../store/modalSlice';
 import axios from 'axios';
@@ -109,15 +107,10 @@ export function PersonPage() {
               {activePerson.medals.length > 4 && <Swiper slidesPerGroup={window.innerWidth > 700 ? 4 : 2} slidesPerView={window.innerWidth > 700 ? 4 : 2}>
                 {activePerson.medals.map((e: string) => {
                   return <SwiperSlide onClick={() => {
-                    const medalRef = ref(storage, `medals/${getMedalKeyByName(e)}.png`);
-                    if (getMedalKeyByName(e) !== 'other') {
-                      getDownloadURL(medalRef).then(res => {
-                        dispatch(openModal({ img: res, title: e }))
-                      }).catch(() => {
-                        dispatch(openModal({ img: other, title: 'Неизвестная медаль' }))
-                      })
+                    if (getMedalKeyByName(e) !== 'medalOther') {
+                      dispatch(openModal({ img: `http://a0839389.xsph.ru/medals/${getMedalKeyByName(e)}.png`, title: e }))
                     } else {
-                      dispatch(openModal({ img: other, title: 'Неизвестная медаль' }))
+                      dispatch(openModal({ title: 'Неизвестная медаль', img: other }))
                     }
                   }} className='personPage__medals-slide' style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <MedalComponent type={e} />
@@ -128,11 +121,10 @@ export function PersonPage() {
               {activePerson.medals.length <= 4 && <div className='personPage__medalsCon'>
                 {activePerson.medals.map((e: string) => {
                   return <div onClick={() => {
-                    const medalRef = ref(storage, `medals/${getMedalKeyByName(e)}.png`);
-                    if (getMedalKeyByName(e) !== 'other') {
-                      getDownloadURL(medalRef).then(res => {
-                        dispatch(openModal({ img: res, title: e }))
-                      })
+                    if (getMedalKeyByName(e) !== 'medalOther') {
+                      dispatch(openModal({ img: `http://a0839389.xsph.ru/medals/${getMedalKeyByName(e)}.png`, title: e }))
+                    } else {
+                      dispatch(openModal({ title: "Неизвестная медаль", img: other }))
                     }
                   }}>
                     <MedalComponent size={140} type={e} />

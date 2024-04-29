@@ -7,7 +7,6 @@ import { addUnreadedPerson, removeUnreadedPersons } from '../../store/unreadedPe
 import { AdminAllRequsts } from '../../shared/AdminAllRequests/AdminAllRequests';
 import { AdminHandAdding } from '../../shared/AdminHandAdding';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 export type TAdminBlocks = 'unreaded' | 'content' | "allRequests" | "handAdding";
 
@@ -22,7 +21,6 @@ export function AdminPage() {
   const getMorePersons = async () => {
     // setLastUnreadedPerson(documentSnapshots.docs[documentSnapshots.docs.length - 1]);
   }
-  const navigate = useNavigate();
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -56,15 +54,16 @@ export function AdminPage() {
         console.log(res)
       }).catch(err => {
         localStorage.removeItem('token')
-        navigate('/auth')
+        window.location.href = '/auth'
         console.log(err)
       })
     } else {
-      navigate('/auth')
+      window.location.href = '/auth'
+
       localStorage.removeItem('token')
     }
     setIsLoadingPersons(false)
-  }, [token])
+  }, [countGetted, dispatch, token])
 
   return (
     <>

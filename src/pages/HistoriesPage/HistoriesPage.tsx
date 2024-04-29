@@ -77,6 +77,7 @@ export function HistoriesPage() {
                 return <HistoriesCard e={e} />
               })}
             </div>
+            {offset >= [...persons].length && <Text className='historiesPage__all-nomore' size={14} color='#999'>Истории закончились, но вы можете отправить заявку и их станет больше!</Text>}
             <button disabled={offset >= [...persons].length} onClick={() => setOffset(offset + 6)} className='historiesPage__all-more'>
               <Text size={24} font='Lora' color='#fff'>Показать ещё</Text></button>
           </div>

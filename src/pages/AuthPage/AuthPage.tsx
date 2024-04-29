@@ -4,8 +4,6 @@ import { sha512 } from 'js-sha512';
 import { useNavigate } from 'react-router-dom';
 import { Text } from '../../components/Text';
 import { Container } from '../../components/Container';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../../firebase';
 const CORRECT_HASH = '2ca73ae359e2b31f88dbb8b790e8f145eeeb20ad469c34507438d6227a8cbb8abc00d93dbe8d532aa6d8c7262810fdb96ad356d6b77beae299b7882aa1184f1d'
 
 export function AuthPage() {
@@ -23,12 +21,11 @@ export function AuthPage() {
     if (localStorage.getItem('isAuth2') === 'true') {
       window.location.href = '/auth2'
     }
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        window.location.href = '/admin'
-      }
-      setIsLoading(false)
-    })
+    const user = localStorage.getItem('token');
+    if (user) {
+      window.location.href = '/admin'
+    }
+    setIsLoading(false)
   }, [navigate])
 
   const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {

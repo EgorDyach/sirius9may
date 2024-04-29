@@ -46,9 +46,11 @@
   .steps__line {
     display: none !important;
   }
+
   .steps__item {
     gap: 40px !important;
   }
+
   .steps__item-icon {
     width: auto !important;
     display: inline-flex !important;
@@ -56,23 +58,19 @@
 }
 
 @media (max-width: 1000px) {
-    .steps .steps__item-text {
-      font-size: 16px;
-    }
+  .steps .steps__item-text {
+    font-size: 16px;
+  }
 
-    .steps__item-icon svg {
-      width: 80px;
-    }
+  .steps__item-icon svg {
+    width: 80px;
+  }
 
-    .steps .steps__item {
-      padding: 0;
-    }
-
-    .steps .steps__item-num {
-        font-size: 28px;
-        line-height: 50px;
-        padding: 0 20px ;
-    }
+  .steps .steps__item-num {
+    font-size: 28px;
+    line-height: 50px;
+    padding: 0 20px;
+  }
 }
 
 @keyframes colorLine {
@@ -80,10 +78,12 @@
     height: 0;
     opacity: 1;
   }
+
   95% {
     height: 100%;
     opacity: 1;
   }
+
   100% {
     height: 100%;
     opacity: 0;
@@ -102,12 +102,15 @@
 .steps__item:nth-child(2) {
   animation: opacity5 12s linear infinite;
 }
+
 .steps__item:nth-child(3) {
   animation: opacity25 12s linear infinite;
 }
+
 .steps__item:nth-child(4) {
   animation: opacity50 12s linear infinite;
 }
+
 .steps__item:nth-child(5) {
   animation: opacity75 12s linear infinite;
 }
@@ -116,54 +119,69 @@
   3% {
     opacity: 0.65;
   }
+
   5% {
     opacity: 1;
   }
+
   95% {
     opacity: 1;
   }
+
   100% {
     opacity: 0.65;
   }
 }
+
 @keyframes opacity25 {
   23% {
     opacity: 0.65;
   }
+
   25% {
     opacity: 1;
   }
+
   95% {
     opacity: 1;
   }
+
   100% {
     opacity: 0.65;
   }
 }
+
 @keyframes opacity50 {
   48% {
     opacity: 0.65;
   }
+
   50% {
     opacity: 1;
   }
+
   95% {
     opacity: 1;
   }
+
   100% {
     opacity: 0.65;
   }
 }
+
 @keyframes opacity75 {
   73% {
     opacity: 0.65;
   }
+
   75% {
     opacity: 1;
   }
+
   95% {
     opacity: 1;
   }
+
   100% {
     opacity: 0.65;
   }
@@ -188,7 +206,7 @@
 }
 
 .steps__item-icon {
-  max-width: 550px;
+  max-width: 41.4%;
   width: 100%;
   display: flex;
   justify-content: end;
@@ -218,5 +236,34 @@
   .steps__title {
     font-size: 40px;
     text-align: center;
+  }
+
+  .steps__item {
+    padding: 20px 0;
+    gap: 15px;
+    position: relative;
+  }
+
+  .steps .steps__item-text {
+    font-size: 13px;
+  }
+
+  .steps .steps__item-num {
+      position: absolute;
+      top: 5px;
+      left: 0;
+      font-size: 15px;
+      line-height: 9px;
+      padding: 10px;
+  }
+
+  .steps__item:nth-child(2n+1) .steps__item-num {
+    right: 0;
+    left: unset;
+  }
+
+  .steps__item-icon svg {
+    margin-top: 15px;
+     height: auto;
   }
 }

@@ -3,12 +3,26 @@
     padding: 175px 0;
 }
 
+.historiesPage .container {
+    padding: 0 130px;
+}
+
+.historiesPage__all-nomore {
+    font-style: italic;
+}
+
+.historiesPage__all>h3 {
+    text-align: start;
+}
+
 
 .historiesPage__new .swiper-slide {
 
     height: fit-content;
 
 }
+
+
 
 .historiesPage__new-swiper {
     padding-bottom: 65px;
@@ -82,8 +96,7 @@
 }
 
 .historiesPage__all-more:disabled {
-    background-color: #b6b6b6;
-    cursor: default;
+    display: none;
 }
 
 .historiesPage__new-swiper .swiper-slide {
@@ -91,24 +104,34 @@
 }
 
 @media (max-width: 1700px) {
-    .historiesPage__new-swiper .historiesCard {
-        max-width: 355px;
-        height: auto;
-    }
 
     .historiesCard__info {
         padding: 10px;
     }
+
+    .historiesCard {
+        flex-basis: 25.6%;
+    }
+
+    .historiesCard__info-text {
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 1400px) {
-    .historiesCard {
-        max-width: 300px;
+
+    .historiesCard__info-text {
+        font-size: 16px;
     }
 
+    .historiesCard__info-more span {
+        font-size: 12px;
+    }
+}
 
-    .historiesPage__all-container .historiesCard {
-        margin-right: 20px;
+@media (max-width: 1200px) {
+    .historiesCard {
+        flex-basis: 40%;
     }
 }
 
@@ -126,7 +149,8 @@
         margin-bottom: 20px;
     }
 
-    .historiesPage__new-title span {
+    .historiesPage__new-title span,
+    .historiesPage__all>h3 {
         font-size: 35px;
     }
 
@@ -138,11 +162,15 @@
         width: 40px;
         height: 40px;
     }
+
+    .historiesPage .container {
+        padding: 0 100px;
+    }
 }
 
 @media (max-width: 850px) {
-    .historiesPage__new-swiper .historiesCard {
-        max-width: 250px;
+    .historiesPage .historiesCard {
+        flex-basis: 47%;
     }
 
     .historiesPage__new-swiper {
@@ -162,9 +190,39 @@
 
 }
 
-@media (max-width: 600px) {
-    .historiesPage__all-container .historiesCard {
-        margin-right: 0;
+@media (max-width: 700px) {
+    .historiesPage .container {
+        padding: 0 55px;
+    }
+
+    .historiesPage {
+        padding: 80px 0;
+    }
+
+    .histories__link {
+        text-align: center;
+    }
+
+    .histories__link span {
+        font-size: 16px;
+    }
+
+    .histories__swiper {
+        width: calc(100vw - 110px);
+    }
+
+    .historiesPage h2 {
+        font-size: 42px;
+    }
+
+    .historiesPage__all>h3 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 520px) {
+    .historiesPage .historiesCard {
+        flex-basis: 90%;
     }
 
 }

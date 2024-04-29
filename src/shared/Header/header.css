@@ -1,7 +1,6 @@
 .header {
     background-color: #52575D;
     margin: 0;
-    padding: 17px 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -20,22 +19,9 @@
     margin: 0;
     position: absolute;
     left: 50%;
-    top: -18px;
     transform: translateX(-50%);
 }
 
-pre {
-    white-space: -moz-pre-wrap;
-    white-space: -pre-wrap;
-    /* Opera 4 - 6 */
-    white-space: -o-pre-wrap;
-    /* Opera 7 */
-    white-space: pre-wrap;
-    /* CSS3 - Text module (Candidate Recommendation) [url]http://www.w3.org/TR/css3-text/#white-space[/url] */
-    word-wrap: break-word;
-    /* IE 5.5+ */
-
-}
 
 .header__item {
     padding: 35px 38px;
@@ -81,11 +67,9 @@ pre {
 }
 
 .header__item-reg {
-    position: absolute;
     right: 0;
     background-color: #343434;
     padding: 36px 65px;
-    top: -19px;
     outline-offset: -3px;
     transition: .3s ease-in-out;
     outline: 2px solid transparent;
@@ -166,6 +150,10 @@ pre {
         padding: 0;
     }
 
+    .header {
+        padding: 17px 0;
+    }
+
     .headerMenu__close {
         z-index: 999999;
     }
@@ -232,11 +220,42 @@ pre {
         background-color: #fff;
     }
 
+    .header__item-reg {
+        margin-top: 40px;
+    }
+
     .header svg {
         height: 40px;
     }
 
     .header__item span {
         font-size: 20px;
+    }
+}
+
+@media (max-width: 700px) {
+    .header__burger {
+        width: 25px;
+        height: 20px;
+    }
+
+    .header__burger span {
+        height: 3px;
+    }
+
+    .headerMenu__close {
+        border: 0;
+
+        position: absolute;
+        background-color: transparent;
+        padding: 0;
+        top: 20px;
+        width: 25px;
+        height: 25px;
+        right: 10px;
+    }
+
+    .headerMenu__close span {
+        height: 3px;
     }
 }

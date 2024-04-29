@@ -1,8 +1,5 @@
-import {  storage } from '../../firebase';
 import { EMedals } from '../../store/personsSlice';
-import { getDownloadURL, ref } from "firebase/storage";
-import img from './medalOther.png';
-import { useState } from 'react';
+import other from '../../assets/medals/medalOther.png'
 export function getMedalKeyByName(name: string) {
     for (const [key, value] of Object.entries(EMedals)) {
       if (value === name) {
@@ -13,12 +10,5 @@ export function getMedalKeyByName(name: string) {
   }
 
 export const MedalComponent =  ({type, size}: {type: string; size?: number; }) => {
-    const medalRef = ref(storage, `medals/${getMedalKeyByName(type)}.png`);
-    const [refImg, setRefImg] = useState(img)
-    if (getMedalKeyByName(type) !== 'other') {
-      getDownloadURL(medalRef).then(res =>  {
-          setRefImg(res)
-      })
-    }
-    return <img width={size}  src={refImg} />
+    return <img width={size}  src={getMedalKeyByName(type) === 'medalOther' ? other : `http://a0839389.xsph.ru/medals/${getMedalKeyByName(type)}.png`} />
 }

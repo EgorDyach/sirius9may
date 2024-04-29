@@ -4,8 +4,14 @@ body, html {
 
 .container {
   max-width: 1410px;
-  padding: 0 15px;
+  padding: 0 130px;
   margin: 0 auto;
+}
+
+@media (max-width: 700px) {
+  .container {
+    padding: 0 30px;
+  }
 }
 
 a {

@@ -13,14 +13,30 @@ import { HeroSwiperPrev } from "./HeroSwiperPrev";
 import { HeroSwiperNext } from "./HeroSwiperNext";
 import { HeroSlide } from "./HeroSlide";
 import { useAppSelector } from "../../hooks/reduxHooks";
+import { useState, useLayoutEffect } from "react";
 
 export function Hero() {
   const content = useAppSelector((state) => state.heroPersons.persons);
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  useLayoutEffect(() => {
+    window.addEventListener("resize", () => {
+      setWindowWidth(window.innerWidth)
+    });
+    (() => {
+      setWindowWidth(window.innerWidth)
+    })();
+    return () => {
+      window.removeEventListener("resize", () => {
+        setWindowWidth(window.innerWidth)
+      });
+    };
+  }, [windowWidth])
+
   return (
     <section className="hero">
       <div className="hero__content">
-        {window.innerWidth > 1200 && <div className="hero__info">
+        {windowWidth > 1200 && <div className="hero__info">
           <Text
             className="hero__title"
             As="h2"
@@ -39,7 +55,7 @@ export function Hero() {
             </Text>
           </Link>
         </div>}
-        {window.innerWidth <= 1200 && <Text
+        {windowWidth <= 1200 && <Text
           className="hero__title"
           As="h2"
           size={80}
@@ -52,7 +68,7 @@ export function Hero() {
           className="hero__swiper"
           modules={[Navigation, A11y]}
           spaceBetween={50}
-          slidesPerView={window.innerWidth > 1000 ? 3 : 1}
+          slidesPerView={windowWidth > 1000 ? 3 : 1}
           navigation
           loop
           speed={550}
@@ -72,7 +88,7 @@ export function Hero() {
             <HeroSwiperNext />
           </div>
         </Swiper>
-        {window.innerWidth <= 1200 && <div className="hero__info-mob">
+        {windowWidth <= 1200 && <div className="hero__info-mob">
           <Text size={36} className="hero__descr" As="p" weight={400}>
             Расскажи историю своего предка
           </Text>

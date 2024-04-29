@@ -17,6 +17,21 @@ export function Header() {
   useLayoutEffect(() => {
     document.body.style.overflow = (isMenuOpened ? "hidden" : "auto");
   }, [isMenuOpened])
+  
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  useLayoutEffect(() => {
+    window.addEventListener("resize", () => {
+      setWindowWidth(window.innerWidth)
+    });
+    (() => {
+      setWindowWidth(window.innerWidth)
+    })();
+    return () => {
+      window.removeEventListener("resize", () => {
+        setWindowWidth(window.innerWidth)
+      });
+    };
+  }, [windowWidth])
 
   return (
     <header className='header'>
@@ -51,7 +66,7 @@ export function Header() {
           <span></span>
           <span></span>
         </button>
-        {window.innerWidth > 1400 ?
+        {windowWidth > 1400 ?
           <>
             <ul className='header__list'>
               {/* <li className={`header__item ${pathname === '/' ? 'header__item-active' : ""}`}> */}

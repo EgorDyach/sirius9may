@@ -1,7 +1,7 @@
 .histories__nav {
     position: absolute;
     bottom: 50px;
-    left: 6%;
+    left: 205px;
     display: flex;
     gap: 150px;
     transform: translateY(-50%);
