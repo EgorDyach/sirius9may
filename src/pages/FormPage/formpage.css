@@ -8,6 +8,43 @@
     margin-bottom: 100px;
 }
 
+@media (max-width: 1700px) {
+    .form h2 {
+        font-size: 56px;
+    }
+
+    .form .form__dot {
+        width: 30px;
+        height: 30px;
+    }
+
+    .form .form__dot::after {
+        top: 40px;
+        left: 10px;
+    }
+
+    .form .formMainInfo__title {
+        font-size: 48px;
+    }
+
+    .formMainInfo__img img, .formMainInfo__img svg {
+        width: 150px;
+        height: 150px;
+    }
+
+    .form .inputComp input {
+        padding: 16px;
+        width: -webkit-fill-available;
+        font-size: 24px;
+        line-height: 38px;
+        border-width: 1.5px;
+    }
+    
+    .form .inputComp input::placeholder {
+        font-size: 22px;
+    }
+}
+
 @media (max-width: 1400px) {
     .form .form__title {
         font-size: 48px;

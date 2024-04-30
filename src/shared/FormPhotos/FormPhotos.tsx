@@ -89,7 +89,7 @@ export function FormPhotos({ setActiveFormBlock, formData, setFormData, setMinus
     <div className="formPhotos">
       <Text As='h3' className='formMainInfo__title' size={64} font='Lora' weight={500}>Дополнительные фото</Text>
       <Text As='p' className='' size={40} weight={400} >Если у вас есть ещё фото, связанные с вашим предком, добавляйте их. Подойдут любые: семейные, домашние, с работы, фото документов и т.д.</Text>
-      <div className='formPhotos__gallary'>
+      {formData.photos.length !== 0 && <div className='formPhotos__gallary'>
         {formData.photos.map(e => {
           return <div className='formPhotos__gallary-item'>
             <img src={URL.createObjectURL(e)} alt='Дополнительное фото предка' />
@@ -102,7 +102,7 @@ export function FormPhotos({ setActiveFormBlock, formData, setFormData, setMinus
             </button>
           </div>
         })}
-      </div>
+      </div>}
       <div className="formPhotos__content">
         <div ref={dropZoneEl} className="formPhotos__input-con">
           <div className="formPhotos__placeHolder">

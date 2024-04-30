@@ -107,10 +107,10 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
           </Text>
         </div>}
       />
-      <label className='formMedals__label'>
+      {/* <label className='formMedals__label'>
         <Text size={20} weight={400} >Если вы не нашли подходящей награды, напишите нам об этом, и мы её обязательно добавим.</Text>
         <textarea placeholder='Написать...' value={formData.messageMedals} onChange={(q) => { setFormData({ ...formData, messageMedals: q.target.value }) }}></textarea>
-      </label>
+      </label> */}
       <div className="formMedals__buttons">
         <button onClick={() => {
           setMinusFormBlock();

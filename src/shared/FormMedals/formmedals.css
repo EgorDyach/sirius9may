@@ -90,7 +90,8 @@
     align-items: center;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1700px) {
+
     .select__placeholder {
         gap: 15px;
     }
@@ -102,14 +103,23 @@
     .select__placeholder span {
         font-size: 24px;
     }
+
     .formMedals__select>div {
         padding: 10px;
     }
+
     .formMedals__gallary-item {
-        flex-basis: 27%;
+        flex-basis: 26%;
     }
-    
+
+    .formMedals__gallary-item img {
+        width: 30%;
+    }
+
 }
+
+
+@media (max-width: 1400px) {}
 
 
 @media (max-width: 1000px) {

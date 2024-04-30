@@ -66,3 +66,13 @@
 .formPhotos__content {
     margin-bottom: 50px;
 }
+@media (max-width: 1700px) {
+    .formPhotos>p, .FormFeedback>p {
+        font-size: 32px;
+        font-family: "Lora";
+    }   
+
+    .FormFeedback__title {
+        font-size: 48px;
+    }
+}
