@@ -75,6 +75,7 @@
 .historiesPage .swiper-slide {
     display: flex;
     justify-content: space-between;
+    
 }
 
 .historiesPage__all {
@@ -136,9 +137,6 @@
 }
 
 @media (max-width: 1000px) {
-    .historiesPage__new-swiper .historiesCard {
-        max-width: 250px;
-    }
 
     .historiesPage h2 {
         font-size: 60px;

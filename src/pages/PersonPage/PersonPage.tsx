@@ -75,6 +75,21 @@ export function PersonPage() {
     window.scrollTo(0, 0);
   }, [])
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  useLayoutEffect(() => {
+    window.addEventListener("resize", () => {
+      setWindowWidth(window.innerWidth)
+    });
+    (() => {
+      setWindowWidth(window.innerWidth)
+    })();
+    return () => {
+      window.removeEventListener("resize", () => {
+        setWindowWidth(window.innerWidth)
+      });
+    };
+  }, [windowWidth])
+
   return (
     <div className='personPage'>
       {isLoading && <Text size={80}>Загрузка...</Text>}
@@ -82,7 +97,7 @@ export function PersonPage() {
         <>
           <div className="personPage__main">
             <Container flex>
-              {window.innerWidth <= 700 && <img src={activePerson.mainPhoto ? activePerson.mainPhoto : unknown} className='personPage__img' />}
+              {windowWidth <= 700 && <img src={activePerson.mainPhoto ? activePerson.mainPhoto : unknown} className='personPage__img' />}
               <div className="personPage__mainPhoto" style={{ backgroundImage: `linear-gradient(270deg, #1e1e1e 0%, rgba(30, 30, 30, 0) 20%), url("${activePerson.mainPhoto ? activePerson.mainPhoto : unknown}")` }}></div>
               <div className="personPage__mainInfo">
                 <Text As='h2' size={80} color='#fff' weight={400} font='Lora'>{activePerson.name}</Text>
@@ -103,7 +118,7 @@ export function PersonPage() {
           {activePerson.medals && activePerson.medals.length ? <div className='personPage__medals'>
             <Container>
               <Text size={80} As='h3' className='personPage__medals-title' font='Lora'>Награды</Text>
-              {activePerson.medals.length > 4 && <Swiper slidesPerGroup={window.innerWidth > 700 ? 4 : 2} slidesPerView={window.innerWidth > 700 ? 4 : 2}>
+              {activePerson.medals.length > 4 && <Swiper slidesPerGroup={windowWidth > 700 ? 4 : 2} slidesPerView={windowWidth > 700 ? 4 : 2}>
                 {activePerson.medals.map((e: string) => {
                   return <SwiperSlide onClick={() => {
                     dispatch(openModal({
@@ -148,7 +163,7 @@ export function PersonPage() {
               </Text>
             </Container>
           </div> : <></>}
-          {activePerson.photos && window.innerWidth > 1200 && activePerson.photos.length ? <div className='personPage__photos'>
+          {activePerson.photos && windowWidth > 1200 && activePerson.photos.length ? <div className='personPage__photos'>
             <Container>
               <Text size={80} As='h3' className='personPage__photos-title' font='Lora'>Фото</Text>
               {activePerson.photos.length > 2 && <Swiper spaceBetween={30} slidesPerGroup={2} slidesPerView={2}>
@@ -169,7 +184,7 @@ export function PersonPage() {
               })}
             </Container>
           </div> : <></>}
-          {activePerson.photos && window.innerWidth <= 1200 && activePerson.photos.length ? <div className='personPage__photos'>
+          {activePerson.photos && windowWidth <= 1200 && activePerson.photos.length ? <div className='personPage__photos'>
             <Container>
               <Text size={80} As='h3' className='personPage__photos-title' font='Lora'>Фото</Text>
               <div className="personPage__photos-mob">

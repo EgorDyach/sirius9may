@@ -17,13 +17,28 @@ export function HistoriesPage() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [historiesArrays, setHistoriesArrays] = useState<PersonType[][]>([[]]);
   const [offset, setOffset] = useState(6);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  useLayoutEffect(() => {
+    window.addEventListener("resize", () => {
+      setWindowWidth(window.innerWidth)
+    });
+    (() => {
+      setWindowWidth(window.innerWidth)
+    })();
+    return () => {
+      window.removeEventListener("resize", () => {
+        setWindowWidth(window.innerWidth)
+      });
+    };
+  }, [windowWidth])
+
   useLayoutEffect(() => {
     setHistoriesArrays([])
     const q: PersonType[][] = [];
     if (typeof newPersons !== 'undefined') {
       for (let i = 0; i < newPersons.length; i++) {
         if (typeof newPersons[i] !== 'undefined') {
-          if (i % (window.innerWidth > 1200 ? 3 : (window.innerHeight > 600 ? 2 : 1)) === 0) {
+          if (i % (windowWidth > 1200 ? 3 : (window.innerHeight > 600 ? 2 : 1)) === 0) {
             q.push([])
           }
           q[q.length - 1].push(newPersons[i])
@@ -31,7 +46,7 @@ export function HistoriesPage() {
         setHistoriesArrays(q)
       }
     }
-  }, [newPersons]);
+  }, [newPersons, windowWidth]);
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -55,7 +70,7 @@ export function HistoriesPage() {
               <Swiper
                 className='historiesPage__new-swiper'
                 slidesPerView={1}
-                spaceBetween={window.innerWidth > 1400 ? 50 : 60}
+                spaceBetween={windowWidth > 1400 ? 50 : 60}
                 speed={850}
                 onSlideChange={(q) => { setActiveIndex(q.activeIndex) }}
               >
