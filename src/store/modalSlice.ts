@@ -1,14 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { IGallaryItem } from "../shared/GallaryPhoto";
+import { IOption } from "../shared/FormMedals";
 
 export interface IModal {
-    img: string;
+    images: (IGallaryItem | IOption | {type: "personPhoto"; src: string; text: string})[];
     isOpen: boolean;
-    title?: string; 
+    title?: string;
+    activeIndex: number; 
 }
 
 // Определение начального состояния, используя тип
 const initialState: IModal = {
-    img: '',
+    images: [],
+    activeIndex: 0,
     isOpen: false,
 }
 
@@ -17,9 +21,9 @@ export const modalSlice = createSlice({
     initialState,
     reducers: {
         openModal: (state, action) => {
-            console.log(action.payload)
             state.title = action.payload.title;
-            state.img = action.payload.img;
+            state.activeIndex = action.payload.activeIndex;
+            state.images = action.payload.images;
             
             state.isOpen = true;
         },

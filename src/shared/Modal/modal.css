@@ -39,11 +39,18 @@ bottom: 0;
     position: absolute;
     top: 20px;
     right: 20px;
+    z-index: 99;
+    cursor: pointer;
+    padding: 0;
     background-color: transparent;
 }
 
+
+.modal__cancel svg {
+    background-color: #696D72;
+}
 .modal__content {
-    max-width: 800px;
+    max-width: 100%;
     background-color: #696D72;
     margin: 50px auto;
     height: fit-content;
@@ -56,19 +63,95 @@ bottom: 0;
     gap: 30px;
 }
 
+.modal__swiper {
+    max-width: 100%;
+}
+
+.modal__swiper::before {
+    top: 0;
+    bottom: 0;
+    content: '';
+    position: absolute;
+    left: 0;
+    z-index: 90;
+    width: 300px;
+    background: linear-gradient(90deg, rgba(105, 109, 114, 1) 50%, rgba(0, 0, 0, 0) 100%);
+}
+
+.modal__swiper::after {
+    top: 0;
+    bottom: 0;
+    content: '';
+    position: absolute;
+    right: 0;
+    z-index: 90;
+    width: 300px;
+    background: linear-gradient(270deg, rgba(105, 109, 114, 1) 50%, rgba(0, 0, 0, 0) 100%);
+}
+
+.modal__swiper .swiper-slide {
+    transition: transform .3s ease;
+    transform: scale(.3);
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.modal__swiper .swiper-slide span {
+    bottom: 0;
+}
+
+.modal__swiper .swiper-slide-next {
+    transform: scale(.9);
+}
+
 .modal__content span {
     text-align: center;
 }
+
 
 .modal__content img {
     height: 450px;
 }
 
-@media (max-width: 600px) {
+@media (max-width:1700px) {
+    .modal__content img {
+        height: 350px;
+    }
+}
+
+@media (max-width:1400px) {
+    .modal__content img {
+        height: 350px;
+    }
+
+    .modal__swiper::before, .modal__swiper::after {
+        content: unset;
+    }
+
+    .modal__swiper .swiper-slide {
+        transform: none;
+    }
+}
+
+@media (max-width: 1000px) {
     .modal__cancel svg {
         top: 10px;
         right: 10px;
         width: 40px;
         height: 40px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .modal__swiper img {
+        max-width: 250px;
+        height: 250px;
+        object-fit: cover;
     }
 }

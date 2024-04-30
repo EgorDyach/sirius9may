@@ -4,14 +4,13 @@ import { useParams } from "react-router-dom";
 import { Text } from '../../components/Text';
 import { Container } from '../../components/Container';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { MedalComponent, getMedalKeyByName } from '../../assets/medals/medal';
+import { MedalComponent } from '../../assets/medals/medal';
 import { PersonNav } from '../../shared/PersonNav';
 import unknown from "../../assets/UnknownSoldier.jpg";
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { openModal } from '../../store/modalSlice';
 import axios from 'axios';
-// import axios from 'axios';
-import other from '../../assets/medals/medalOther.png'
+
 
 function formatDateFromMilliseconds(milliseconds: number): string {
   const monthes = ['января', "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"]
@@ -107,11 +106,15 @@ export function PersonPage() {
               {activePerson.medals.length > 4 && <Swiper slidesPerGroup={window.innerWidth > 700 ? 4 : 2} slidesPerView={window.innerWidth > 700 ? 4 : 2}>
                 {activePerson.medals.map((e: string) => {
                   return <SwiperSlide onClick={() => {
-                    if (getMedalKeyByName(e) !== 'medalOther') {
-                      dispatch(openModal({ img: `http://a0839389.xsph.ru/medals/${getMedalKeyByName(e)}.png`, title: e }))
-                    } else {
-                      dispatch(openModal({ title: 'Неизвестная медаль', img: other }))
-                    }
+                    dispatch(openModal({
+                      images: [...activePerson.medals.map((q: string) => {
+                        return {
+                          type: "medal",
+                          text: q,
+                        }
+                      })],
+                      activeIndex: activePerson.medals.indexOf(e),
+                    }))
                   }} className='personPage__medals-slide' style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <MedalComponent type={e} />
                   </SwiperSlide>
@@ -121,11 +124,15 @@ export function PersonPage() {
               {activePerson.medals.length <= 4 && <div className='personPage__medalsCon'>
                 {activePerson.medals.map((e: string) => {
                   return <div onClick={() => {
-                    if (getMedalKeyByName(e) !== 'medalOther') {
-                      dispatch(openModal({ img: `http://a0839389.xsph.ru/medals/${getMedalKeyByName(e)}.png`, title: e }))
-                    } else {
-                      dispatch(openModal({ title: "Неизвестная медаль", img: other }))
-                    }
+                    dispatch(openModal({
+                      images: [...activePerson.medals.map((q: string) => {
+                        return {
+                          type: "medal",
+                          text: q,
+                        }
+                      })],
+                      activeIndex: activePerson.medals.indexOf(e),
+                    }))
                   }}>
                     <MedalComponent size={140} type={e} />
                   </div>
@@ -147,14 +154,18 @@ export function PersonPage() {
               {activePerson.photos.length > 2 && <Swiper spaceBetween={30} slidesPerGroup={2} slidesPerView={2}>
                 {activePerson.photos.map((e: string | undefined) => {
                   return <SwiperSlide style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <img src={e} onClick={() => dispatch(openModal(e))} className='personPage__photos-item' />
+                    <img src={e}onClick={() => dispatch(openModal(
+                    { images: [...activePerson.photos].map(q => {return {src: q, type: 'personPhoto', text: `Доп. фотография ${activePerson.name}`}}), activeIndex: activePerson.photos.indexOf(e)}
+                  ))} className='personPage__photos-item' />
                   </SwiperSlide>
                 })}
                 {/* <button style={{ margin: 50 }} onClick={handleClick}>click me</button> */}
                 <PersonNav activeIndex={photoActiveIndex} setActiveIndex={setPhotoActiveIndex} />
               </Swiper>}
               {activePerson.photos.length <= 2 && activePerson.photos.map((e: string | undefined) => {
-                return <img onClick={() => dispatch(openModal(e))} src={e} className='personPage__photos-item' />
+                return <img onClick={() => dispatch(openModal(
+                  { images: [...activePerson.photos].map(q => {return {src: q, type: 'personPhoto', text: `Доп. фотография ${activePerson.name}`}}), activeIndex: activePerson.photos.indexOf(e)}
+                ))} src={e} className='personPage__photos-item' />
               })}
             </Container>
           </div> : <></>}
@@ -163,7 +174,9 @@ export function PersonPage() {
               <Text size={80} As='h3' className='personPage__photos-title' font='Lora'>Фото</Text>
               <div className="personPage__photos-mob">
                 {activePerson.photos.map((e: string | undefined) => {
-                  return <img onClick={() => dispatch(openModal(e))} src={e} className='personPage__photos-item' />
+                  return <img onClick={() => dispatch(openModal(
+                    { images: [...activePerson.photos].map(q => {return {src: q, type: 'personPhoto', text: `Доп. фотография ${activePerson.name}`}}), activeIndex: activePerson.photos.indexOf(e)}
+                  ))} src={e} className='personPage__photos-item' />
                 })}
               </div>
             </Container>
@@ -175,7 +188,8 @@ export function PersonPage() {
         </>
         : <>
 
-        </>}
-    </div>
+        </>
+      }
+    </div >
   );
 }

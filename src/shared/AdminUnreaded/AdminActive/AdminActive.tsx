@@ -56,7 +56,7 @@ export function AdminActive(
         </div>
       })
     }
-    setOptions(v);
+    setOptions(v as IOption[]);
   }, [])
 
   useEffect(() => {
@@ -70,7 +70,7 @@ export function AdminActive(
         </div>
       })
     })
-    setCheckedOptions(v);
+    setCheckedOptions(v as IOption[]);
   }, [addMedal])
 
   useLayoutEffect(() => {

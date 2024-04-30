@@ -1,0 +1,31 @@
+.gallaryPage {
+    background-color: #EFEADE;
+    min-height: 90vh;
+    padding: 160px 0;
+}
+
+.gallaryPage .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.gallaryPage__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.gallaryPage .historiesPage__all-nomore {
+    text-align: center;
+}
+
+
+@media (max-width: 1000px) {
+
+    .gallaryPage h2 {
+        font-size: 48px;
+    }
+}

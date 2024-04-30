@@ -1,0 +1,27 @@
+.modalNav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-top: 30px;
+    justify-content: center;
+}
+
+.modalNav button {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.modalNav svg {
+    width: 100%;
+    height: 100%;
+}
+
+
+@media (max-width: 1000px) {
+    .modalNav button, .modalNav a {
+        width: 45px;
+        height: 45px;
+    }
+}

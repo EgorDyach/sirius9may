@@ -58,7 +58,7 @@ export function AdminUnreaded({ countGetted, isLoadingPersons, setCountUnreaded,
     }, {
       headers: {
         'Content-Type': 'application/json',
-        'Accept': "application/json"
+        'Accept': "application/json",
       }
     }).then(res => console.log(res)).then(() => {
       loadPersons().then(() => {

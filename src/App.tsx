@@ -8,11 +8,11 @@ import { AdminPage } from './pages/AdminPage'
 import { Layout } from './shared/Layout'
 import { FormPage } from './pages/FormPage'
 import { ThankYou } from './pages/ThankYou'
-import { UnderConstruction } from './pages/UnderConstruction'
 import { HistoriesPage } from './pages/HistoriesPage'
 import { PersonPage } from './pages/PersonPage'
 import { Footer } from './shared/Footer'
 import { Modal } from './shared/Modal'
+import { GallaryPage } from './pages/GallaryPage'
 
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
           <Route path='thankYou' element={<ThankYou />} />
           <Route path='histories' element={<HistoriesPage />} />
           <Route path='histories/:id' element={<PersonPage  />} />
-          <Route path='gallary' element={<UnderConstruction />} />
+          <Route path='gallary' element={<GallaryPage />} />
         </Routes>
         <Footer />
         <Modal />

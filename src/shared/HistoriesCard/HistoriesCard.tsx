@@ -36,7 +36,9 @@ function formatDateFromMilliseconds(milliseconds: number): string {
 export function HistoriesCard({ e }: { e: PersonType }) {
   return (
     <div className='historiesCard'>
+      <Link to={`./${e.id}`}>
       <img src={e.mainPhoto ? e.mainPhoto : unknown} alt="" className="historiesCard__img" />
+      </Link>
       <div className="historiesCard__info">
         <Text As='h3' className='historiesCard__info-text' size={24} font='Lora' weight={400}>{e.name} <br />({e.dateOfBirth} – {e.dateOfDeath})</Text>
         <div className="historiesCard__info-more">

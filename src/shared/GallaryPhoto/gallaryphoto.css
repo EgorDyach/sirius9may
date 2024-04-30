@@ -1,0 +1,104 @@
+.gallaryPhoto {
+    flex-basis: calc(32%);
+    aspect-ratio: 1.36 / 1;
+    overflow: hidden;
+    max-width: 450px;
+    max-height: 330px;
+    position: relative;
+    cursor: pointer;
+}
+
+.gallaryPhoto__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallaryPhoto__date {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    transform: translateY(200px);
+    transition: transform .3s ease-in-out;
+    z-index: 2;
+}
+
+.gallaryPhoto__info {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform .3s ease-in-out;
+    transform: translateY(200px);
+    z-index: 2;
+}
+
+.gallaryPhoto__info span {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.gallaryPhoto-withText:hover .gallaryPhoto__info {
+    transform: translateY(0);
+}
+
+.gallaryPhoto-withText::after {
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    transition: background-color .3s ease-in-out;
+    z-index: 1;
+}
+
+.gallaryPhoto-withText:hover::after {
+
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.gallaryPhoto-onlyDate:hover .gallaryPhoto__info {
+    transform: translateY(0);
+}
+
+.gallaryPhoto-onlyDate::after {
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    transition: opacity .3s ease-in-out;
+    z-index: 1;
+    opacity: 0;
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, .40) 0%, rgba(0, 0, 0, 0) 60%);
+}
+
+.gallaryPhoto-onlyDate:hover::after {
+    opacity: 1;
+}
+
+@media (max-width: 1000px) {
+    .gallaryPhoto {
+        flex-basis: 36%;
+    }
+}
+
+@media (max-width: 700px) {
+    .gallaryPhoto {
+        flex-basis: 40%;
+    }
+
+    .historiesPage__all-more {
+        padding: 15px 40px;
+    }
+
+    .historiesPage__all-more span {
+        font-size: 14px;
+    }
+}

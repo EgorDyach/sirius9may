@@ -7,7 +7,7 @@ import { EMedals } from '../../store/personsSlice';
 import { Text } from '../../components/Text';
 import { MedalComponent, getMedalKeyByName } from '../../assets/medals/medal';
 import other from '../../assets/medals/medalOther.png'
-export interface IOption { value: string; text: string; label: ReactNode }
+export interface IOption { type: 'medal'; value: string; text: string; label: ReactNode }
 
 export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinusFormBlock }: { setActiveFormBlock: () => void; formData: FormPersonType, setFormData: React.Dispatch<React.SetStateAction<FormPersonType>>; setMinusFormBlock: () => void; }) {
   const [options, setOptions] = useState<IOption[]>([]);
@@ -18,13 +18,14 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
     for (const [key, value] of Object.entries(EMedals)) {
       key;
       v.push({
+        type: 'medal',
         value: value, text: value, label: <div className='formMedals__option'>
           <MedalComponent size={window.innerWidth > 700 ? 50 : 25} type={value} />
           {value}
         </div>
       })
     }
-    setOptions(v);
+    setOptions(v as IOption[]);
   }, [])
 
 
