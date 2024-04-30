@@ -87,6 +87,10 @@
     .gallaryPhoto {
         flex-basis: 36%;
     }
+
+    .gallaryPhoto__date, .gallaryPhoto__info {
+        display: none;
+    }
 }
 
 @media (max-width: 700px) {
