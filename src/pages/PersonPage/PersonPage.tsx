@@ -115,7 +115,7 @@ export function PersonPage() {
               </div>
             </Container>
           </div>
-          {activePerson.medals && activePerson.medals.length ? <div className='personPage__medals'>
+          {activePerson.medals && activePerson.medals.length !== 0 ? <div className='personPage__medals'>
             <Container>
               <Text size={80} As='h3' className='personPage__medals-title' font='Lora'>Награды</Text>
               {activePerson.medals.length > 4 && <Swiper slidesPerGroup={windowWidth > 700 ? 4 : 2} slidesPerView={windowWidth > 700 ? 4 : 2}>
@@ -155,7 +155,7 @@ export function PersonPage() {
               </div>}
             </Container>
           </div> : <></>}
-          {activePerson.history ? <div className='personPage__history'>
+          {activePerson.history !== '' ? <div className='personPage__history'>
             <Container>
               <Text size={80} As='h3' className='personPage__history-title' font='Lora'>История</Text>
               <Text size={36} As='div' className='personPage__history-text' weight={400}>
@@ -163,7 +163,7 @@ export function PersonPage() {
               </Text>
             </Container>
           </div> : <></>}
-          {activePerson.photos && windowWidth > 1200 && activePerson.photos.length ? <div className='personPage__photos'>
+          {activePerson.photos  && windowWidth > 1200 && activePerson.photos.length !== 0 ? <div className='personPage__photos'>
             <Container>
               <Text size={80} As='h3' className='personPage__photos-title' font='Lora'>Фото</Text>
               {activePerson.photos.length > 2 && <Swiper spaceBetween={30} slidesPerGroup={2} slidesPerView={2}>
@@ -184,7 +184,7 @@ export function PersonPage() {
               })}
             </Container>
           </div> : <></>}
-          {activePerson.photos && windowWidth <= 1200 && activePerson.photos.length ? <div className='personPage__photos'>
+          {activePerson.photos && windowWidth <= 1200 && activePerson.photos.length !== 0 ? <div className='personPage__photos'>
             <Container>
               <Text size={80} As='h3' className='personPage__photos-title' font='Lora'>Фото</Text>
               <div className="personPage__photos-mob">

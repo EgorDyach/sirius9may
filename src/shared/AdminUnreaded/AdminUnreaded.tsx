@@ -52,7 +52,7 @@ export function AdminUnreaded({ countGetted, isLoadingPersons, setCountUnreaded,
 
   const handleApprove = async () => {
     console.log(activePerson.published)
-    await axios.post(`https://for-9-may.onrender.com/api/v1/persons?id=${activeId}&token_query=${token}&city=${city}&date_birth=${dateOfBirth}&date_death=${dateOfDeath}&history='${history}'&role=${isHero}&main_photo=${mainPhoto}&SNL=${name}&date_pulished=${activePerson.published ? Math.floor(Number(activePerson.published)) : 0}&rank=${rank}`, {
+    await axios.post(`https://for-9-may.onrender.com/api/v1/persons?id=${activeId}&token_query=${token}&city=${city}&date_birth=${dateOfBirth}&date_death=${dateOfDeath}&history=${history}&role=${isHero}&main_photo=${mainPhoto}&SNL=${name}&date_pulished=${activePerson.published ? Math.floor(Number(activePerson.published)) : new Date().getTime()/1000}&rank=${rank}`, {
       medals: [medals.join(',')],
       photo: [photos.join(',')]
     }, {
