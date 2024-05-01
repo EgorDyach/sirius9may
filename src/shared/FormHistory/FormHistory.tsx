@@ -13,7 +13,7 @@ export function FormHistory({setError, error, setActiveFormBlock, formData, setF
     <div className='formHistory'>
       <Text As='h3' className='formMainInfo__title' size={64} font='Lora' weight={500}>История</Text>
       <label className='formHistory__label'>
-        <Text size={20} weight={400} >Расскажите историю своего предка.</Text>
+        <Text size={20} weight={400} >*Расскажите историю своего предка</Text>
         <textarea className={error && formData.history === '' ? 'formHistory__error': ''} placeholder='Написать...' value={formData.history} onChange={(q) => {setFormData({ ...formData, history: q.target.value }) }}></textarea>
       </label>
       <div className="formMedals__buttons">

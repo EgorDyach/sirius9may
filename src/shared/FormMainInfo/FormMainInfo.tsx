@@ -12,7 +12,10 @@ export function FormMainInfo({ error, setError, setActiveFormBlock, formData, se
   }, [formData.city, formData.dateOfBirth, formData.dateOfDeath, formData.isAlive, formData.isBirthUnknown, formData.isDeathUnknown, formData.name, formData.surName, formData.mainPhoto, formData.rank, setError, formData.isNoMainPhoto])
   return (
     <div className="formMainInfo">
-      <Text As='h3' className='formMainInfo__title' size={64} font='Lora' weight={500} >Основная информация</Text>
+      <div className="formMainInfo__title-con">
+        <Text As='h3' className='formMainInfo__title' size={64} font='Lora' weight={500} >Основная информация</Text>
+        <Text As='span' color='#C4B695' size={20} font='Lora'>* - обязательные поля</Text>
+      </div>
       <div className="formMainInfo__top">
         <label className="formMainInfo__img">
           {!formData.mainPhoto ?
@@ -35,8 +38,8 @@ export function FormMainInfo({ error, setError, setActiveFormBlock, formData, se
           </label>
         </label>
         <div className="formMainInfo__top-info">
-          <Input error={error && !formData.name} className='formMainInfo__input' value={formData.name} onChange={(q) => setFormData({ ...formData, name: q })} placeholder='Семен' label={'Имя'} />
-          <Input error={error && !formData.surName} className='formMainInfo__input' value={formData.surName} onChange={(q) => setFormData({ ...formData, surName: q })} placeholder='Семенов' label={'Фамилия'} />
+          <Input error={error && !formData.name} className='formMainInfo__input' value={formData.name} onChange={(q) => setFormData({ ...formData, name: q })} placeholder='Семен' label={'*Имя'} />
+          <Input error={error && !formData.surName} className='formMainInfo__input' value={formData.surName} onChange={(q) => setFormData({ ...formData, surName: q })} placeholder='Семенов' label={'*Фамилия'} />
           <Input className='formMainInfo__input' value={formData.lastName} onChange={(q) => setFormData({ ...formData, lastName: q })} placeholder='Семенович' label={'Отчество (при наличии)'} />
         </div>
       </div>
@@ -52,7 +55,7 @@ export function FormMainInfo({ error, setError, setActiveFormBlock, formData, se
             }}
             type='number'
             placeholder='0000'
-            label={'Год рождения'}
+            label={'*Год рождения'}
           />
           <label className="formMainInfo__checkbox-con">
             <input
@@ -65,7 +68,7 @@ export function FormMainInfo({ error, setError, setActiveFormBlock, formData, se
           </label>
         </div>
         <div className="formMainInfo__bottom-date">
-          <Input error={error && (!formData.dateOfDeath && !formData.isAlive && !formData.isDeathUnknown)} type="number" className='formMainInfo__input' disabled={formData.isAlive || formData.isDeathUnknown} value={String(formData.isAlive || formData.isDeathUnknown ? "" : formData.dateOfDeath)} onChange={(q) => setFormData({ ...formData, dateOfDeath: String(q) })} placeholder='0000' label={'Дата смерти'} />
+          <Input error={error && (!formData.dateOfDeath && !formData.isAlive && !formData.isDeathUnknown)} type="number" className='formMainInfo__input' disabled={formData.isAlive || formData.isDeathUnknown} value={String(formData.isAlive || formData.isDeathUnknown ? "" : formData.dateOfDeath)} onChange={(q) => setFormData({ ...formData, dateOfDeath: String(q) })} placeholder='0000' label={'*Год смерти'} />
           <label className="formMainInfo__checkbox-con">
             <input
               onChange={() => {
@@ -82,10 +85,10 @@ export function FormMainInfo({ error, setError, setActiveFormBlock, formData, se
         </div>
         {/* <div style={{ display: "flex", justifyContent: 'space-between' }}> */}
         <div className="formMainInfo__bottom-date">
-          <Input error={error && !formData.city} className='formMainInfo__input' value={formData.city} onChange={(q) => setFormData({ ...formData, city: q })} placeholder='г. Ульяновск' label={'Место рождения'} />
+          <Input error={error && !formData.city} className='formMainInfo__input' value={formData.city} onChange={(q) => setFormData({ ...formData, city: q })} placeholder='г. Ульяновск' label={'*Место рождения'} />
         </div>
         <div className="formMainInfo__bottom-date">
-          <Input error={error && !formData.rank} className='formMainInfo__input' value={formData.rank} onChange={(q) => setFormData({ ...formData, rank: q })} placeholder='Майор' label={'Звание'} />
+          <Input error={error && !formData.rank} className='formMainInfo__input' value={formData.rank} onChange={(q) => setFormData({ ...formData, rank: q })} placeholder='Майор' label={'*Звание'} />
           {/* </div> */}
         </div>
       </div>

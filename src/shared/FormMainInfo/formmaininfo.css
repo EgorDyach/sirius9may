@@ -5,11 +5,25 @@
     flex-direction: column;
 }
 
+.form>.container>div:not(.formMainInfo) .formMainInfo__title {
+    margin-bottom: 70px;
+}
+
+.formMainInfo__title-con {
+    margin-bottom: 70px;
+    align-self: flex-start;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.formMainInfo__title-con span {
+    font-style: italic;
+}
 
 .formMainInfo__title {
     margin: 0;
-    margin-bottom: 50px;
-    align-self: flex-start;
 }
 
 .formMainInfo__top {
@@ -21,7 +35,7 @@
 
 .formMainInfo__img {
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
     margin: 0 10%;
     cursor: pointer;
     gap: 20px;
@@ -35,7 +49,8 @@
     object-fit: cover;
 }
 
-.formMainInfo__bottom>.formMainInfo__input, .formMainInfo__bottom>.formMainInfo__bottom-date {
+.formMainInfo__bottom>.formMainInfo__input,
+.formMainInfo__bottom>.formMainInfo__bottom-date {
     width: calc(50% - 60px);
 }
 

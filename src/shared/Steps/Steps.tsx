@@ -20,7 +20,7 @@ export function Steps() {
             </div>
             <div className="steps__item-info">
               <Text As='h3' className='steps__item-num' size={48} font='Lora' color='#fff'>1</Text>
-              <Text size={28} font='Lora' weight={400} className="steps__item-text">Нажмите на кнопку «Принять участие» и перейдите на страницу для заполнения формы</Text>
+              <Text size={28} font='Lora' weight={400} className="steps__item-text">Нажмите на кнопку “Принять участие” и перейдите на страницу для заполнения заявки</Text>
             </div>
           </li>
           <li className="steps__item">
@@ -32,7 +32,7 @@ export function Steps() {
             </div>
             <div className="steps__item-info">
               <Text As='h3' className='steps__item-num' size={48} font='Lora' color='#fff'>2</Text>
-              <Text size={28} font='Lora' weight={400} className="steps__item-text">Заполните форму и оставьте свою почту. Нажмите на кнопку «Отправить», чтобы ваша заявка была отправлена на рассмотрение администрацией</Text>
+              <Text size={28} font='Lora' weight={400} className="steps__item-text">Заполните заявку и оставьте почту. Нажмите на кнопку “Отправить”, чтобы заявка отправилась на рассмотрение администрацией</Text>
             </div>
           </li>
           <li className="steps__item">
@@ -45,7 +45,7 @@ export function Steps() {
             </div>
             <div className="steps__item-info">
               <Text As='h3' className='steps__item-num' size={48} font='Lora' color='#fff'>3</Text>
-              <Text size={28} font='Lora' weight={400} className="steps__item-text">После отправки ваша заявка будет отправлена администрации, которая проверит её в ближайшие сроки</Text>
+              <Text size={28} font='Lora' weight={400} className="steps__item-text">После отправки заявка будет проверена администрацией в ближайшие сроки</Text>
             </div>
           </li>
           <li className="steps__item">
@@ -58,7 +58,7 @@ export function Steps() {
             </div>
             <div className="steps__item-info">
               <Text As='h3' className='steps__item-num' size={48} font='Lora' color='#fff'>4</Text>
-              <Text size={28} font='Lora' weight={400} className="steps__item-text">Если ваша заявка будет успешно одобрена, мы пришлём вам на почту уведомление и история вашего предка появится на сайте</Text>
+              <Text size={28} font='Lora' weight={400} className="steps__item-text">Если заявка будет одобрена, вам на почту придёт уведомление и история ветерана появится на сайте</Text>
             </div>
           </li>
         </ul>

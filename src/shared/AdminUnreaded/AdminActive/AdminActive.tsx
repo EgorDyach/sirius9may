@@ -319,7 +319,7 @@ export function AdminActive(
           <Text size={28} weight={500}>Контакты</Text>
           <br />
           <br />
-          <Text size={20} weight={400}>ФИО: {e.name}</Text>
+          <Text size={20} weight={400}>ФИО: {e.contacts.name}</Text>
           <br />
           <Text size={20} weight={400}>telegram: <a href={`https://t.me/${e.contacts && e.contacts.telegram}`}>{e.contacts && e.contacts.telegram}</a></Text>
           <br />

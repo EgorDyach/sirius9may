@@ -15,7 +15,7 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
   const [checkedOptions, setCheckedOptions] = useState<IOption[]>(formData.medals);
   useEffect(() => {
     const v = [];
-    for (const [key, value] of Object.entries(EMedals)) {
+    for (const [key, value] of Object.entries(EMedals).sort((a,b) => a[1] > b[1] ? 1 : -1)) {
       key;
       v.push({
         type: 'medal',
@@ -42,7 +42,10 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
             <img src={getMedalKeyByName(el.text) === 'modalOther' ? other : `/medals/${getMedalKeyByName(el.text)}.png`} />
             <Text size={24} >{el.text}</Text>
             <button onClick={() => {
-              setCheckedOptions(checkedOptions.filter(q => q.text !== el.text))
+              const medalsWas = [...checkedOptions]
+              const newMedals = medalsWas.splice(medalsWas.findIndex((q) => q.text === el.text), 1);
+              newMedals;
+              setCheckedOptions(medalsWas )
             }}><svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="30" height="30" fill="white" />
                 <path d="M26 6.22357L23.7764 4L15 12.7764L6.22357 4L4 6.22357L12.7764 15L4 23.7764L6.22357 26L15 17.2236L23.7764 26L26 23.7764L17.2236 15L26 6.22357Z" fill="#848484" />
@@ -85,17 +88,16 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
           }),
         }}
         onChange={(q) => {
-          const z: IOption[] = [];
-          q.forEach((x) => {
-            const v = { value: x.value, text: x.text, label: x.text }
-            z.push(v as IOption);
+          const z: IOption[] = [...checkedOptions];
+          q.forEach(e => {
+            z.push(e)
           })
           setCheckedOptions(z);
         }}
         closeMenuOnSelect={false}
         components={animatedComponents}
         isMulti
-        value={checkedOptions}
+        value={[]}
         defaultValue={checkedOptions}
         options={options}
         placeholder={<div className='select__placeholder'>
