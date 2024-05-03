@@ -145,4 +145,16 @@
         width: 25px;
         height: 25px;
     }
+
+    .formMedals {
+        margin-top: 25px;
+    }
+
+    .form>.container>div:not(.formMainInfo) .formMainInfo__title {
+        margin-bottom: 20px;
+    }
+
+    .formMedals__option {
+        gap: 25px;
+    }
 }

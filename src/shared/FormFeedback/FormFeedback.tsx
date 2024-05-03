@@ -4,12 +4,13 @@ import { Input } from '../../components/Input';
 import { FormPersonType } from '../../pages/FormPage';
 import { Text } from '../../components/Text';
 
-export function FormFeedback({ error, isSendDisabled, setError, setMinusFormBlock, formData, setFormData, handleSend }: { setMinusFormBlock: () => void; setError: React.Dispatch<React.SetStateAction<boolean>>, error: boolean; formData: FormPersonType, isSendDisabled: boolean, setFormData: React.Dispatch<React.SetStateAction<FormPersonType>>; handleSend: () => void; }) {
+export function FormFeedback({ error, errorMsg, setErrorMsg, isSendDisabled, setError, setMinusFormBlock, formData, setFormData, handleSend }: { setMinusFormBlock: () => void; errorMsg: string, setError: React.Dispatch<React.SetStateAction<boolean>>, error: boolean; formData: FormPersonType, setErrorMsg: React.Dispatch<React.SetStateAction<string>>; isSendDisabled: boolean, setFormData: React.Dispatch<React.SetStateAction<FormPersonType>>; handleSend: () => void; }) {
   useLayoutEffect(() => {
     if (formData.contacts.email && formData.contacts.telegram && formData.contacts.surname && formData.contacts.name) {
-      setError(false)
+      setError(false);
+      setErrorMsg('');
     }
-  }, [formData.contacts.email, formData.contacts.name, formData.contacts.surname, formData.contacts.telegram, setError])
+  }, [formData.contacts.email, formData.contacts.name, formData.contacts.surname, formData.contacts.telegram, setError, setErrorMsg])
   return (
     <div className="FormFeedback">
       <Text As='h3' className='FormFeedback__title' size={64} font='Lora' weight={500} >Обратная связь</Text>
@@ -31,10 +32,14 @@ export function FormFeedback({ error, isSendDisabled, setError, setMinusFormBloc
           <Text weight={700} color={error && !formData.isAgree ? "red" : '#333'} size={16}> *Нажимая на кнопку "Отправить", даю согласие на <a href='/soglasie.pdf' download>обработку персональных данных</a></Text>
         </label>
       </div>
+      {errorMsg !== '' && <div style={{ textAlign: 'center', marginBottom: 40 }}>
+        <Text size={16} color='red'>{errorMsg}</Text>
+      </div>}
       <div className="FormFeedback__buttons">
-        {window.innerWidth < 700 && error && <Text size={16} color='red'>Не все обязательные поля заполнены!</Text>}
         <button onClick={setMinusFormBlock} className="formMainInfo__cancel"><Text color='#343434' font='Lora' size={24}>Назад</Text></button>
-        <button disabled={isSendDisabled} onClick={handleSend} className="formMainInfo__submit"><Text color='#fff' font='Lora' size={24}>Отправить</Text></button>
+        <button disabled={isSendDisabled} onClick={handleSend} className="formMainInfo__submit">
+          {isSendDisabled && <span className="form__loader"></span>}
+          <Text color='#fff' font='Lora' size={24}>Отправить</Text></button>
       </div>
     </div>
 

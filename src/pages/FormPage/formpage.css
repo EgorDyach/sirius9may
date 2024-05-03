@@ -8,6 +8,10 @@
     margin-bottom: 100px;
 }
 
+.form .formPhotos__input {
+    width: 0;
+}
+
 @media (max-width: 1700px) {
     .form h2 {
         font-size: 56px;
@@ -27,7 +31,8 @@
         font-size: 48px;
     }
 
-    .formMainInfo__img img, .formMainInfo__img svg {
+    .formMainInfo__img img,
+    .formMainInfo__img svg {
         width: 150px;
         height: 150px;
     }
@@ -39,7 +44,7 @@
         line-height: 38px;
         border-width: 1.5px;
     }
-    
+
     .form .inputComp input::placeholder {
         font-size: 22px;
     }
@@ -81,6 +86,11 @@
     .formPhotos p {
         font-size: 20px;
     }
+
+    .form .formPhotos>p,
+    .form .FormFeedback>p {
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 700px) {
@@ -89,36 +99,130 @@
     }
 
     .form .form__title {
-        font-size: 32px;
-        margin-bottom: 55px;
+        font-size: 24px;
+        margin-bottom: 30px;
     }
+
+    .form {
+        text-align: center;
+    }
+
+    .form .formMainInfo__title {
+        text-align: center;
+    }
+
+
 
     .form .form__nav {
         display: none;
     }
 
     .form .formMainInfo__title {
-        font-size: 24px;
+        font-size: 20px;
     }
 
     .form .formPhotos,
     .form .formHistory,
     .form .formMainInfo {
-        margin-top: 60px;
+        margin-top: 0;
+    }
+
+    .formMainInfo__img img,
+    .formMainInfo__img svg {
+        width: 75px;
+        height: 75px;
+    }
+
+    .form .formMainInfo__img>input {
+        width: 0;
     }
 
     .form .formMainInfo {
         padding: 0;
-    }
-
-    .formMainInfo__top {
+        text-align: center;
+        align-items: center;
+        justify-content: center;
         display: flex;
         flex-direction: column;
     }
 
-    .formMainInfo__bottom {
-        flex-direction: column;
+    .form .formMainInfo__bottom {
+        gap: 20px;
+        margin-bottom: 20px;
     }
+
+
+    .formMainInfo__bottom-date {
+        flex-basis: 45%;
+        width: unset;
+    }
+
+    .formMainInfo__checkbox-con {
+        align-items: center;
+        display: flex;
+        gap: 5px;
+
+    }
+
+    .formMainInfo__checkbox-con input {
+        width: 10px;
+    }
+
+    .formMainInfo__checkbox-con span {
+        font-size: 8px;
+    }
+
+    .form .formMainInfo__bottom>.formMainInfo__input,
+    .form .formMainInfo__bottom>.formMainInfo__bottom-date {
+        width: unset !important;
+    }
+
+    .form .formMainInfo__top-info {
+        gap: 10px;
+    }
+
+    .formMainInfo__img span {
+        font-size: 10px;
+    }
+
+    [type="checkbox"],
+    [type="radio"] {
+        width: 10px;
+    }
+
+    .form .inputComp input,
+    .form .inputComp input::placeholder {
+        font-size: 10px;
+        line-height: 10px;
+        padding: 5px;
+    }
+
+    .form .inputComp span {
+        font-size: 13px;
+    }
+
+    .form .inputComp {
+        gap: 5px;
+    }
+
+    .form .formMainInfo__top {
+        gap: 25px;
+    }
+
+    .form .formMainInfo__title-con {
+        text-align: center;
+        margin: 0 auto;
+        margin-bottom: 25px;
+    }
+
+    .form .formMainInfo__title-con span {
+        font-size: 10px;
+    }
+
+    .formMainInfo__top {
+        display: flex;
+    }
+
 
     .form .formMainInfo__bottom>.formMainInfo__input,
     .form .formMainInfo__bottom>.formMainInfo__bottom-date {
@@ -133,6 +237,19 @@
     .form .formMainInfo__cancel,
     .form .formMainInfo__submit {
         padding: 20px 40px;
+        display: none;
+    }
+
+    .form .select__placeholder {
+        height: inherit;
+    }
+
+    .form .select__placeholder span {
+        font-size: 13px;
+    }
+
+    .form .select__placeholder svg {
+        width: 30px;
     }
 
     .form .formMedals__option {
@@ -141,22 +258,52 @@
 
     .form .formHistory__label textarea {
         font-size: 14px;
+        height: 200px;
     }
 
     .form .formPhotos__placeHolder {
         gap: 20px;
+        align-items: center;
+    }
+
+    .form .formPhotos__placeHolder svg {
+        width: 20px;
+        height: 20px;
     }
 
     .form .formPhotos__placeHolder span {
-        font-size: 16px;
+        font-size: 10px;
     }
 
-    .formPhotos p {
-        font-size: 16px;
+    .form .formPhotos p {
+        font-size: 13px;
+    }
+
+    .form .formPhotos__input-con {
+        padding: 13px;
+        justify-content: center;
+        height: inherit;
+        width: calc(100% - 26px);
+    }
+
+    .form .formPhotos__gallary {
+        overflow: auto;
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
     }
 
     .form .formPhotos__gallary {
         gap: 20px;
+    }
+
+    .form .formPhotos__gallary button {
+        width: 20px;
+        height: 20px;
+    }
+    .form .formPhotos__gallary svg {
+        width: 20px;
+        height: 20px;
     }
 
     .form .formPhotos__gallary img {
@@ -167,14 +314,24 @@
         font-size: 32px;
     }
 
+    .form .FormFeedback {
+        margin: 0;
+    }
+
+    .FormFeedback__contacts .FormFeedback__input {
+        width: 100%;
+    }
+
     .FormFeedback__contacts {
         display: flex;
         flex-direction: column;
+        gap: 10px;
 
     }
 
-    .form .FormFeedback__contacts .FormFeedback__input, .form .FormFeedback__contacts .FormFeedback__input input {
-        width: 90%;
+    .form .FormFeedback__contacts .FormFeedback__input,
+    .form .FormFeedback__contacts .FormFeedback__input input {
+        width: calc(100% -  6px);
     }
 
 
@@ -189,5 +346,14 @@
     .form .FormFeedback__buttons {
         flex-direction: column;
         gap: 20px;
+    }
+
+    .form .FormFeedback .formMainInfo__submit span {
+        font-size: 16px;
+    }
+
+    .form .FormFeedback .formMainInfo__submit {
+        display: block;
+        padding: 10px 25px;
     }
 }

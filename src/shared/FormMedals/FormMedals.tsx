@@ -15,7 +15,7 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
   const [checkedOptions, setCheckedOptions] = useState<IOption[]>(formData.medals);
   useEffect(() => {
     const v = [];
-    for (const [key, value] of Object.entries(EMedals).sort((a,b) => a[1] > b[1] ? 1 : -1)) {
+    for (const [key, value] of Object.entries(EMedals).sort((a, b) => a[1] > b[1] ? 1 : -1)) {
       key;
       v.push({
         type: 'medal',
@@ -28,6 +28,21 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
     setOptions(v as IOption[]);
   }, [])
 
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  useLayoutEffect(() => {
+    window.addEventListener("resize", () => {
+      setWindowWidth(window.innerWidth)
+    });
+    (() => {
+      setWindowWidth(window.innerWidth)
+    })();
+    return () => {
+      window.removeEventListener("resize", () => {
+        setWindowWidth(window.innerWidth)
+      });
+    };
+  }, [windowWidth])
 
   useLayoutEffect(() => {
     setFormData({ ...formData, medals: checkedOptions })
@@ -45,7 +60,7 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
               const medalsWas = [...checkedOptions]
               const newMedals = medalsWas.splice(medalsWas.findIndex((q) => q.text === el.text), 1);
               newMedals;
-              setCheckedOptions(medalsWas )
+              setCheckedOptions(medalsWas)
             }}><svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="30" height="30" fill="white" />
                 <path d="M26 6.22357L23.7764 4L15 12.7764L6.22357 4L4 6.22357L12.7764 15L4 23.7764L6.22357 26L15 17.2236L23.7764 26L26 23.7764L17.2236 15L26 6.22357Z" fill="#848484" />
@@ -56,22 +71,27 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
       </div>
       <Select
         className='formMedals__select'
+    
         styles={{
           control: (baseStyles) => ({
             ...baseStyles,
             borderColor: "#B3B3B3",
             borderRadius: 0,
-            borderWidth: 5,
+            borderWidth: (windowWidth <= 700 ? 2 : 5),
             background: 'transparent',
-            padding: "34px 50px",
-            marginBotttom: (window.innerWidth > 700 ? 50 : 25),
+            padding: (windowWidth > 700 ?"34px 50px" : '15px 30px'),
+            marginBotttom: (windowWidth > 700 ? 50 : 25),
             cursor: 'pointer',
+          }),
+          placeholder: (base) =>  ({
+              ...base,
+              height: (windowWidth <= 700 ? 30 : 'unset')
           }),
           option: (baseStyles) => ({
             ...baseStyles,
             fontFamily: "Lora",
             fontSize: 20,
-            padding: '20px 40px',
+            padding: (windowWidth > 700 ? '20px 40px' : "10px 20px"),
           }),
 
           multiValue: (baseStyles) => ({
@@ -79,7 +99,7 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
             display: "none",
             border: "1px solid #333",
             backgroundColor: "transparent",
-            fontSize: (window.innerWidth > 700 ? 28 : 12),
+            fontSize: (windowWidth > 700 ? 28 : 12),
           }),
           multiValueLabel: (baseStyles) => ({
             ...baseStyles,
@@ -109,10 +129,6 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
           </Text>
         </div>}
       />
-      {/* <label className='formMedals__label'>
-        <Text size={20} weight={400} >Если вы не нашли подходящей награды, напишите нам об этом, и мы её обязательно добавим.</Text>
-        <textarea placeholder='Написать...' value={formData.messageMedals} onChange={(q) => { setFormData({ ...formData, messageMedals: q.target.value }) }}></textarea>
-      </label> */}
       <div className="formMedals__buttons">
         <button onClick={() => {
           setMinusFormBlock();

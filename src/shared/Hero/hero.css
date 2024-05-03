@@ -33,10 +33,15 @@
   font-style: normal;
   line-height: 102px;
   color: #000000;
-  margin-bottom: 75px;
+  margin-bottom: 50px;
 }
 
-.hero__descr {
+.hero .hero__descr {
+  font-size: 28px;
+  max-width: 550px;
+  margin: 0;
+  margin-bottom: 80px;
+  line-height: 36px;
   margin-bottom: 140px;
 }
 
@@ -161,8 +166,8 @@
   }
 
   .hero .hero__descr {
-    font-size: 24px;
-    max-width: 550px;
+    font-size: 22px;
+    max-width: 450px;
     margin: 0;
     margin-bottom: 80px;
     line-height: 36px;
@@ -231,6 +236,9 @@
 
   .hero .hero__descr {
     margin: 0 auto 20px;
+    font-size: 22px;
+    line-height: 32px;
+    text-align: center;
   }
 
   .hero .hero__swiper {
@@ -255,7 +263,7 @@
 
   .hero__content {
     padding: 60px 0 46px 0px;
-}
+  }
 }
 
 @media (max-width: 1000px) {

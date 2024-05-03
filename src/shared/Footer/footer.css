@@ -73,3 +73,14 @@
         width: initial;
     }
 }
+
+@media (max-width: 700px) {
+    .footer .container {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .footer svg {
+        height: 50px;
+    }
+}

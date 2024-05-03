@@ -4,3 +4,33 @@
     height: calc(100vh - 298px);
     text-align: center;
 }
+
+@media (max-width: 1400px) {
+    .thankYou h2 {
+        font-size: 48px;
+    }   
+
+    .thankYou p {
+        font-size: 24px;
+    }   
+}
+
+@media (max-width: 1000px) {
+    .thankYou h2 {
+        font-size: 42px;
+    }   
+
+    .thankYou p {
+        font-size: 20px;
+    }   
+}
+
+@media (max-width: 700px) {
+    .thankYou h2 {
+        font-size: 32px;
+    }   
+
+    .thankYou p {
+        font-size: 16px;
+    }   
+}

@@ -47,7 +47,7 @@ export function Hero() {
             “Никто не забыт, <br /> ничто не забыто”
           </Text>
           <Text size={36} className="hero__descr" As="p" weight={400}>
-            Расскажи историю своего предка
+            Присоединяйся к онлайн движению "Бессмертный полк Сириус" и поделись историей ветерана
           </Text>
           <Link to={"/form"} className="hero__link">
             <Text color="#fff" size={24} font="Lora">
@@ -90,7 +90,7 @@ export function Hero() {
         </Swiper>
         {windowWidth <= 1200 && <div className="hero__info-mob">
           <Text size={36} className="hero__descr" As="p" weight={400}>
-            Расскажи историю своего предка
+            Присоединяйся к онлайн движению "Бессмертный полк Сириус" и поделись историей ветерана
           </Text>
           <Link to={"/form"} className="hero__link">
             <Text color="#fff" size={24} font="Lora">

@@ -38,7 +38,7 @@ export function HistoriesPage() {
     if (typeof newPersons !== 'undefined') {
       for (let i = 0; i < newPersons.length; i++) {
         if (typeof newPersons[i] !== 'undefined') {
-          if (i % (windowWidth > 1200 ? 3 : (window.innerHeight > 600 ? 2 : 1)) === 0) {
+          if (i % (windowWidth > 1200 ? 3 : (windowWidth > 600 ? 2 : 1)) === 0) {
             q.push([])
           }
           q[q.length - 1].push(newPersons[i])
