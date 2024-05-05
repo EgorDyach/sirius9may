@@ -83,6 +83,7 @@ export function PersonPage() {
     (() => {
       setWindowWidth(window.innerWidth)
     })();
+    console.log(activePerson)
     return () => {
       window.removeEventListener("resize", () => {
         setWindowWidth(window.innerWidth)
@@ -163,34 +164,36 @@ export function PersonPage() {
               </Text>
             </Container>
           </div> : <></>}
-          {activePerson.photos  && windowWidth > 1200 && activePerson.photos.length !== 0 ? <div className='personPage__photos'>
+          {windowWidth > 1200 && activePerson.photos[0] !== '' ? <div className='personPage__photos'>
             <Container>
               <Text size={80} As='h3' className='personPage__photos-title' font='Lora'>Фото</Text>
               {activePerson.photos.length > 2 && <Swiper spaceBetween={30} slidesPerGroup={2} slidesPerView={2}>
                 {activePerson.photos.map((e: string | undefined) => {
                   return <SwiperSlide style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <img src={e}onClick={() => dispatch(openModal(
-                    { images: [...activePerson.photos].map(q => {return {src: q, type: 'personPhoto', text: `Доп. фотография ${activePerson.name}`}}), activeIndex: activePerson.photos.indexOf(e)}
-                  ))} className='personPage__photos-item' />
+                    <img src={e} onClick={() => dispatch(openModal(
+                      { images: [...activePerson.photos].map(q => { return { src: q, type: 'personPhoto', text: `Доп. фотография ${activePerson.name}` } }), activeIndex: activePerson.photos.indexOf(e) }
+                    ))} className='personPage__photos-item' />
                   </SwiperSlide>
                 })}
                 {/* <button style={{ margin: 50 }} onClick={handleClick}>click me</button> */}
                 <PersonNav activeIndex={photoActiveIndex} setActiveIndex={setPhotoActiveIndex} />
               </Swiper>}
-              {activePerson.photos.length <= 2 && activePerson.photos.map((e: string | undefined) => {
-                return <img onClick={() => dispatch(openModal(
-                  { images: [...activePerson.photos].map(q => {return {src: q, type: 'personPhoto', text: `Доп. фотография ${activePerson.name}`}}), activeIndex: activePerson.photos.indexOf(e)}
-                ))} src={e} className='personPage__photos-item' />
-              })}
+              {activePerson.photos.length <= 2 &&
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  {activePerson.photos.map((e: string | undefined) => {
+                    return <img onClick={() => dispatch(openModal(
+                      { images: [...activePerson.photos].map(q => { return { src: q, type: 'personPhoto', text: `Доп. фотография ${activePerson.name}` } }), activeIndex: activePerson.photos.indexOf(e) }
+                    ))} src={e} className='personPage__photos-item' />
+                  })}</div>}
             </Container>
           </div> : <></>}
-          {activePerson.photos && windowWidth <= 1200 && activePerson.photos.length !== 0 ? <div className='personPage__photos'>
+          {activePerson.photos && windowWidth <= 1200 && activePerson.photos[0] !== '' ? <div className='personPage__photos'>
             <Container>
               <Text size={80} As='h3' className='personPage__photos-title' font='Lora'>Фото</Text>
               <div className="personPage__photos-mob">
                 {activePerson.photos.map((e: string | undefined) => {
                   return <img onClick={() => dispatch(openModal(
-                    { images: [...activePerson.photos].map(q => {return {src: q, type: 'personPhoto', text: `Доп. фотография ${activePerson.name}`}}), activeIndex: activePerson.photos.indexOf(e)}
+                    { images: [...activePerson.photos].map(q => { return { src: q, type: 'personPhoto', text: `Доп. фотография ${activePerson.name}` } }), activeIndex: activePerson.photos.indexOf(e) }
                   ))} src={e} className='personPage__photos-item' />
                 })}
               </div>

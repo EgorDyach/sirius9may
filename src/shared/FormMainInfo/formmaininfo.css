@@ -4,6 +4,9 @@
     display: flex;
     flex-direction: column;
 }
+.form .formMainInfo__img>input {
+    display: none;
+}
 
 .form>.container>div:not(.formMainInfo) .formMainInfo__title {
     margin-bottom: 70px;

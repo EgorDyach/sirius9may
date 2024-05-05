@@ -3,7 +3,7 @@
     background-color: #fff;
     flex-direction: column;
     flex-basis: 32%;
-    height: inherit;
+    height: auto;
 }
 
 .historiesCard__img {

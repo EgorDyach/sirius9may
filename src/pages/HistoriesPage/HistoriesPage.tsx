@@ -15,6 +15,7 @@ export function HistoriesPage() {
   const isPersonsLoading = useAppSelector(state => state.persons.isPersonLoading);
   const persons = useAppSelector(state => state.persons.persons);
   const [activeIndex, setActiveIndex] = useState(0);
+  activeIndex;
   const [historiesArrays, setHistoriesArrays] = useState<PersonType[][]>([[]]);
   const [offset, setOffset] = useState(6);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -81,7 +82,7 @@ export function HistoriesPage() {
                     })}
                   </SwiperSlide>
                 })}
-                <HistoriesSwiperNav activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
+                <HistoriesSwiperNav setActiveIndex={setActiveIndex} />
               </Swiper>
             </div>
           </div> : ''}

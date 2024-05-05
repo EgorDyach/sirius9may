@@ -7,6 +7,10 @@
     padding: 30px;
 }
 
+.nomedals__admin {
+    margin: 50px 0;
+}
+
 .adminUnreaded__active-img {
     width: 350px;
     height: 350px;
@@ -84,6 +88,10 @@
 .adminUnreaded__controls {
     display: flex;
     gap: 50px;
+}
+
+.adminUnreaded__isHero {
+    margin-bottom: 40px;
 }
 
 .adminUnreaded__controls-btn {

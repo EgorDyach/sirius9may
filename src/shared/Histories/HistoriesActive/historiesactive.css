@@ -33,7 +33,7 @@
     line-height: 38px;
     color: #FFFFFF;
     display: -webkit-box;
-    -webkit-line-clamp: 8;
+    -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
