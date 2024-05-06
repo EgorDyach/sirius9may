@@ -40,12 +40,12 @@ interface IAdminActive {
 }
 
 export function AdminActive(
-  { e, handleApprove, handleDisapprove, handleChange, isChanged, name, dateOfBirth, dateOfDeath, city, isHero, rank, medals, history, photos, mainPhoto, setName, setDateOFBirth, setDateOfDeath, setCity, setRank, setMedals, setHistory, setPhotos, setIsHero, setMainPhoto, handleSave, handleCancel }: IAdminActive) {
+  { e, handleApprove, handleDisapprove, handleChange, isChanged, name, dateOfBirth, dateOfDeath, city, isHero, rank, history, photos, mainPhoto, setName, setDateOFBirth, setDateOfDeath, setCity, setRank, setMedals, setHistory, setPhotos, setIsHero, setMainPhoto, handleSave, handleCancel }: IAdminActive) {
   const [options, setOptions] = useState<IOption[]>([]);
   const animatedComponents = makeAnimated();
   const [checkedOptions, setCheckedOptions] = useState<IOption[]>(e.medals.map(value => ({
     type: 'medal',
-    value: value, text: value, label: <div className='formMedals__option' key={e.medals.indexOf(value)}>
+    value: value, text: value, label: <div className='formMedals__option' key={Math.floor(Math.random()*10000000)}>
       <MedalComponent size={window.innerWidth > 700 ? 50 : 25} type={value} />
       {value}
     </div>
@@ -67,14 +67,14 @@ export function AdminActive(
   }, [])
 
   useEffect(() => {
-    setCheckedOptions(medals.map(value => ({
+    setCheckedOptions(e.medals.map(value => ({
       type: 'medal',
       value: value, text: value, label: <div className='formMedals__option'>
         <MedalComponent size={window.innerWidth > 700 ? 50 : 25} type={value} />
         {value}
       </div>
     })))
-  }, [medals])
+  }, [e.medals])
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useLayoutEffect(() => {
@@ -133,7 +133,7 @@ export function AdminActive(
         </div>
         {<><div className="formMedals__gallary">
           {checkedOptions.map((el) => {
-            return <div key={checkedOptions.indexOf(el)} className='formMedals__gallary-item'>
+            return <div key={Math.floor(Math.random()*10000000)} className='formMedals__gallary-item'>
               <img src={getMedalKeyByName(el.text) === 'modalOther' ? other : `/medals/${getMedalKeyByName(el.text)}.png`} />
               <Text size={24} >{el.text}</Text>
               <button onClick={() => {
@@ -224,7 +224,7 @@ export function AdminActive(
           <br />
           <div className="adminUnreaded__photos-con">
             {photos[0] !== '' && photos.map(j => {
-              return <div key={photos.indexOf(j)}>
+              return <div key={Math.floor(Math.random()*10000000)}>
                 <img src={j} />
                 <button onClick={() => handleRemovePhoto(photos.indexOf(j))}>
                   <svg width="25" height="25" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -280,7 +280,7 @@ export function AdminActive(
       {e.medals && e.medals.length === 0 ? <Text As='h3' className='nomedals__admin' size={32}>Нет медалей</Text> :
         <div className="formMedals__gallary">
           {e.medals.map((el) => {
-            return <div key={e.medals.indexOf(el)} className='formMedals__gallary-item'>
+            return <div key={Math.floor(Math.random()*10000000)} className='formMedals__gallary-item'>
               <img src={getMedalKeyByName(el) === 'modalOther' ? other : `/medals/${getMedalKeyByName(el)}.png`} />
               <Text size={24} >{el}</Text>
             </div>
@@ -290,7 +290,7 @@ export function AdminActive(
       <div className="adminUnreaded__history">
         <Text className='adminUnreaded__descr-title' size={28} weight={500} font='Lora'>История: </Text>
         <br />
-        <Text className='adminUnreaded__descr' size={16} weight={400} font='Lora'>{e.history.split('|').map(q => <p key={e.history.split('|').indexOf(q)}>{q}</p>)}</Text>
+        <Text className='adminUnreaded__descr' size={16} weight={400} font='Lora'>{e.history.split('|').map(q => <p key={Math.floor(Math.random()*10000000)}>{q}</p>)}</Text>
       </div>
       <br />
       <br />
@@ -303,7 +303,7 @@ export function AdminActive(
             if (!j) {
               return;
             }
-            return <img key={e.photos.indexOf(j)} src={j} />
+            return <img key={Math.floor(Math.random()*10000000)} src={j} />
           })}
         </div>
       </div>}

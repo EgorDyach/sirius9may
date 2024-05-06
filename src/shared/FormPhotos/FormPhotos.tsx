@@ -85,6 +85,10 @@ export function FormPhotos({ setActiveFormBlock, formData, setFormData, setMinus
     }
   }
 
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+
   return (
     <div className="formPhotos">
       <Text As='h3' className='formMainInfo__title' size={64} font='Lora' weight={500}>Дополнительные фото</Text>

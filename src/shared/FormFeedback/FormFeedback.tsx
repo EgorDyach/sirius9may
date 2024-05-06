@@ -11,6 +11,9 @@ export function FormFeedback({ error, errorMsg, setErrorMsg, isSendDisabled, set
       setErrorMsg('');
     }
   }, [formData.contacts.email, formData.contacts.name, formData.contacts.surname, formData.contacts.telegram, setError, setErrorMsg])
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
   return (
     <div className="FormFeedback">
       <Text As='h3' className='FormFeedback__title' size={64} font='Lora' weight={500} >Обратная связь</Text>

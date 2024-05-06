@@ -10,7 +10,6 @@ export const asy = async (dispatch: any) => {
   dispatch(changeHeroLoading(true));
   dispatch(setIsPersonsLoading(true));
   axios.get('https://for-9-may.onrender.com/api/v1/persons').then((res) => {
-    console.log(res)
     dispatch(removeHeroPersons());
     dispatch(removeNewPersons());
     dispatch(removePersons());

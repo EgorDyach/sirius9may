@@ -100,9 +100,8 @@ export function FormPage() {
           'Content-Type': 'multipart/form-data',
         },
       })
-        .then(data => {
+        .then(() => {
           navigate('/thankyou')
-          console.log(data); // handle response data
         })
         .catch(error => {
           console.error(error);

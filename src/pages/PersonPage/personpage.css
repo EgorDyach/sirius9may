@@ -124,25 +124,43 @@
 }
 
 @media (max-width: 1700px) {
-    .personPage__history-text{
+    .personPage__history-text {
         font-size: 19px;
         line-height: 30px;
+    }
+
+    .personPage__mainInfo {
+        padding: 80px 0 80px 100px;
+    }
+
+    .personPage__mainPhoto {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 1400px) {
+    .personPage__mainInfo {
+        padding: 60px 0 45px 70px;
+    }
+
+    .personPage__mainPhoto {
+        max-width: 300px;
     }
 
 }
 
 @media (max-width: 1000px) {
     .personPage__mainInfo h2 {
-        font-size: 45px;
-    }   
+        font-size: 36px;
+    }
 
     .personPage__mainInfo h3 {
-        font-size: 45px;
-        margin: 15px 0;
-    }   
+        font-size: 32px;
+        margin: 30px 0;
+    }
 
     .personPage__mainInfo {
-        padding: 60px 0 60px 60px;
+        padding: 60px 0 ;
     }
 
     .personPage__mainInfo-city p {
@@ -152,30 +170,80 @@
     .personPage__medalsCon {
         flex-wrap: wrap;
     }
+
+    .personPage__img {
+        width: 45%;
+        max-width: 235px;
+        aspect-ratio: 1 / 1.2;
+        object-fit: cover;
+    }
+
+    .personPage__mainInfo-more {
+        margin-top: 20px;
+    }
+
+    .personPage__mainPhoto {
+        display: none;
+    }
+
+    .personPage__mainInfo-top {
+        display: flex;
+        gap: 35px;
+    }
+
+    .personPage__photos-item {
+        max-width: 300px;
+    }
+
+    .personPage .personPage__medals-title, .personPage .personPage__history-title, .personPage .personPage__photos-title {
+        text-align: center;
+        font-size: 64px;
+    }
+
+    .personPage .personPage__history-text {
+        font-size: 17px;
+        line-height: 27px;
+    }
+
+    .personPage__photos, .personPage__history, .personPage__medals {
+        padding: 40px 0;
+    }
 }
 
 @media (max-width: 700px) {
+    .personPage__img {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .personPage .personPage__history-text {
+        font-size: 14px;
+        line-height: 25px;
+    }
+
+    .personPage .personPage__medals-title, .personPage .personPage__history-title, .personPage .personPage__photos-title {
+        text-align: center;
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
     .personPage__main .container {
         display: flex;
         flex-direction: column;
     }
 
-    .personPage__img {
-        width: 80%;
-        max-width: 300px;
-        margin: 30px auto 0;
-        aspect-ratio: 1 / 1.2;
-        object-fit: cover;
+    .personPage__mainInfo-top {
+        flex-direction: column;
     }
 
     .personPage__mainInfo h2 {
         font-size: 24px;
-    }   
+    }
 
     .personPage__mainInfo h3 {
         font-size: 20px;
         margin: 15px 0;
-    }   
+    }
 
     .personPage__mainInfo {
         padding: 60px 0 60px;
@@ -198,6 +266,7 @@
     .personPage__history {
         padding: 30px 0;
     }
+
     .personPage__history-title {
         font-size: 40px;
     }
@@ -210,6 +279,7 @@
     .personPage__date {
         font-size: 12px;
     }
+
     .personPage .gallary__nav button {
         width: 40px;
     }

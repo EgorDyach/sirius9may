@@ -47,7 +47,7 @@ export function Hero() {
             “Никто не забыт, <br /> ничто не забыто”
           </Text>
           <Text size={36} className="hero__descr" As="p" weight={400}>
-            Присоединяйся к онлайн движению "Бессмертный полк Сириус" и поделись историей ветерана
+            Присоединяйся к онлайн движению «Сириус» – бессмертный полк» и поделись историей ветерана
           </Text>
           <Link to={"/form"} className="hero__link">
             <Text color="#fff" size={24} font="Lora">

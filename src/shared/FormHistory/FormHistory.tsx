@@ -1,20 +1,23 @@
 import './formhistory.css';
 import { FormPersonType } from '../../pages/FormPage';
 import { Text } from '../../components/Text';
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 
-export function FormHistory({setError, error, setActiveFormBlock, formData, setFormData, setMinusFormBlock }: {setError: React.Dispatch<React.SetStateAction<boolean>>,  error: boolean; setActiveFormBlock: () => void; formData: FormPersonType, setFormData: React.Dispatch<React.SetStateAction<FormPersonType>>; setMinusFormBlock: () => void; }) {
-    useEffect(() => {
-      if (formData.history !== '') {
-        setError(false)
-      }
-    }, [formData.history, setError])
+export function FormHistory({ setError, error, setActiveFormBlock, formData, setFormData, setMinusFormBlock }: { setError: React.Dispatch<React.SetStateAction<boolean>>, error: boolean; setActiveFormBlock: () => void; formData: FormPersonType, setFormData: React.Dispatch<React.SetStateAction<FormPersonType>>; setMinusFormBlock: () => void; }) {
+  useEffect(() => {
+    if (formData.history !== '') {
+      setError(false)
+    }
+  }, [formData.history, setError])
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
   return (
     <div className='formHistory'>
       <Text As='h3' className='formMainInfo__title' size={64} font='Lora' weight={500}>История</Text>
       <label className='formHistory__label'>
         <Text size={20} weight={400} >*Расскажите историю своего предка</Text>
-        <textarea className={error && formData.history === '' ? 'formHistory__error': ''} placeholder='Написать...' value={formData.history} onChange={(q) => {setFormData({ ...formData, history: q.target.value }) }}></textarea>
+        <textarea className={error && formData.history === '' ? 'formHistory__error' : ''} placeholder='Написать...' value={formData.history} onChange={(q) => { setFormData({ ...formData, history: q.target.value }) }}></textarea>
       </label>
       <div className="formMedals__buttons">
         <button onClick={() => {

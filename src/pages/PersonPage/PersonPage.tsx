@@ -63,7 +63,7 @@ export function PersonPage() {
           published: item.date_pulished,
           medals: item.medals.split(','),
           photos: item.photo.split(',')
-        }); console.log(item)
+        });
       })
     }
     setIsLoading(true)
@@ -83,7 +83,6 @@ export function PersonPage() {
     (() => {
       setWindowWidth(window.innerWidth)
     })();
-    console.log(activePerson)
     return () => {
       window.removeEventListener("resize", () => {
         setWindowWidth(window.innerWidth)
@@ -98,19 +97,23 @@ export function PersonPage() {
         <>
           <div className="personPage__main">
             <Container flex>
-              {windowWidth <= 700 && <img src={activePerson.mainPhoto ? activePerson.mainPhoto : unknown} className='personPage__img' />}
               <div className="personPage__mainPhoto" style={{ backgroundImage: `linear-gradient(270deg, #1e1e1e 0%, rgba(30, 30, 30, 0) 20%), url("${activePerson.mainPhoto ? activePerson.mainPhoto : unknown}")` }}></div>
               <div className="personPage__mainInfo">
-                <Text As='h2' size={80} color='#fff' weight={400} font='Lora'>{activePerson.name}</Text>
-                <Text As='h3' size={64} color='#fff' weight={400} font='Lora'>{activePerson.dateOfBirth} – {activePerson.dateOfDeath}</Text>
+                <div className="personPage__mainInfo-top">
+                  {windowWidth <= 1000 && <img src={activePerson.mainPhoto ? activePerson.mainPhoto : unknown} className='personPage__img' />}
+                  <div className="personPage__mainInfo-text">
+                    <Text As='h2' size={windowWidth > 1700 ? 80 : (windowWidth > 1400 ? 48 : 40)} color='#fff' weight={400} font='Lora'>{activePerson.name}</Text>
+                    <Text As='h3' size={windowWidth > 1700 ? 64 : 32} color='#fff' weight={400} font='Lora'>{activePerson.dateOfBirth} – {activePerson.dateOfDeath}</Text>
+                  </div>
+                </div>
                 <div className="personPage__mainInfo-more">
                   <div className="personPage__mainInfo-city">
-                    <Text As='p' size={24} color='#848484' weight={400} font='Lora'>Родной город:</Text>
-                    <Text As='p' size={20} color='#fff' weight={400} >{activePerson.city}</Text>
+                    <Text As='p' size={windowWidth > 1400 ? 24 : 20} color='#848484' weight={400} font='Lora'>Родной город:</Text>
+                    <Text As='p' size={windowWidth > 1700 ? 20 : 16} color='#fff' weight={400} >{activePerson.city}</Text>
                   </div>
                   <div className="personPage__mainInfo-city">
-                    <Text As='p' size={24} color='#848484' weight={400} font='Lora'>Звание:</Text>
-                    <Text As='p' size={20} color='#fff' weight={400} >{activePerson.rank}</Text>
+                    <Text As='p' size={windowWidth > 1400 ? 24 : 20} color='#848484' weight={400} font='Lora'>Звание:</Text>
+                    <Text As='p' size={windowWidth > 1700 ? 20 : 16} color='#fff' weight={400} >{activePerson.rank}</Text>
                   </div>
                 </div>
               </div>
@@ -119,7 +122,7 @@ export function PersonPage() {
           {activePerson.medals && activePerson.medals.length !== 0 ? <div className='personPage__medals'>
             <Container>
               <Text size={80} As='h3' className='personPage__medals-title' font='Lora'>Награды</Text>
-              {activePerson.medals.length > 4 && <Swiper slidesPerGroup={windowWidth > 700 ? 4 : 2} slidesPerView={windowWidth > 700 ? 4 : 2}>
+              {activePerson.medals.length > (windowWidth > 1000 ? 4 : 1) && <Swiper onSlideChange={q => setMedalActiveIndex(q.activeIndex)} spaceBetween={windowWidth > 1000 ? 50 : 0} slidesPerGroup={windowWidth > 1000 ? 4 : 1} slidesPerView={windowWidth > 1000 ? 4 : 1}>
                 {activePerson.medals.map((e: string) => {
                   return <SwiperSlide onClick={() => {
                     dispatch(openModal({
@@ -164,10 +167,10 @@ export function PersonPage() {
               </Text>
             </Container>
           </div> : <></>}
-          {windowWidth > 1200 && activePerson.photos[0] !== '' ? <div className='personPage__photos'>
+          {activePerson.photos[0] !== '' ? <div className='personPage__photos'>
             <Container>
               <Text size={80} As='h3' className='personPage__photos-title' font='Lora'>Фото</Text>
-              {activePerson.photos.length > 2 && <Swiper spaceBetween={30} slidesPerGroup={2} slidesPerView={2}>
+              {activePerson.photos.length >= 2 && <Swiper onSlideChange={q => setPhotoActiveIndex(q.activeIndex)} spaceBetween={30} slidesPerGroup={windowWidth > 1000 ? 2 : 1} slidesPerView={windowWidth > 1000 ? 2 : 1}>
                 {activePerson.photos.map((e: string | undefined) => {
                   return <SwiperSlide style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <img src={e} onClick={() => dispatch(openModal(
@@ -185,18 +188,6 @@ export function PersonPage() {
                       { images: [...activePerson.photos].map(q => { return { src: q, type: 'personPhoto', text: `Доп. фотография ${activePerson.name}` } }), activeIndex: activePerson.photos.indexOf(e) }
                     ))} src={e} className='personPage__photos-item' />
                   })}</div>}
-            </Container>
-          </div> : <></>}
-          {activePerson.photos && windowWidth <= 1200 && activePerson.photos[0] !== '' ? <div className='personPage__photos'>
-            <Container>
-              <Text size={80} As='h3' className='personPage__photos-title' font='Lora'>Фото</Text>
-              <div className="personPage__photos-mob">
-                {activePerson.photos.map((e: string | undefined) => {
-                  return <img onClick={() => dispatch(openModal(
-                    { images: [...activePerson.photos].map(q => { return { src: q, type: 'personPhoto', text: `Доп. фотография ${activePerson.name}` } }), activeIndex: activePerson.photos.indexOf(e) }
-                  ))} src={e} className='personPage__photos-item' />
-                })}
-              </div>
             </Container>
           </div> : <></>}
           <Container>

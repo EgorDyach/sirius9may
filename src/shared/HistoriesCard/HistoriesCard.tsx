@@ -29,9 +29,6 @@ function formatDateFromMilliseconds(milliseconds: number): string {
   return `${dayString} ${monthString} ${year}, ${hoursString}:${minutesString}`;
 }
 
-// Пример использования функции
-// const millisecondsSinceEpoch = Date.now(); // Текущее время в миллисекундах
-// console.log(formatDateFromMilliseconds(millisecondsSinceEpoch));
 
 export function HistoriesCard({ e }: { e: PersonType }) {
   return (

@@ -28,6 +28,9 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
     setOptions(v as IOption[]);
   }, [])
 
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useLayoutEffect(() => {
@@ -71,7 +74,7 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
       </div>
       <Select
         className='formMedals__select'
-    
+
         styles={{
           control: (baseStyles) => ({
             ...baseStyles,
@@ -79,13 +82,13 @@ export function FormMedals({ setActiveFormBlock, formData, setFormData, setMinus
             borderRadius: 0,
             borderWidth: (windowWidth <= 700 ? 2 : 5),
             background: 'transparent',
-            padding: (windowWidth > 700 ?"34px 50px" : '15px 30px'),
+            padding: (windowWidth > 700 ? "34px 50px" : '15px 30px'),
             marginBotttom: (windowWidth > 700 ? 50 : 25),
             cursor: 'pointer',
           }),
-          placeholder: (base) =>  ({
-              ...base,
-              height: (windowWidth <= 700 ? 30 : 'unset')
+          placeholder: (base) => ({
+            ...base,
+            height: (windowWidth <= 700 ? 30 : 'unset')
           }),
           option: (baseStyles) => ({
             ...baseStyles,

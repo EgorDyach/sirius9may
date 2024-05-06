@@ -51,7 +51,6 @@ export function AdminPage() {
             medals: (e.medals ? e.medals.split(',') : [])
           }));
         });
-        console.log(res)
       }).catch(err => {
         localStorage.removeItem('token')
         window.location.href = '/auth'

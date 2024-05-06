@@ -33,6 +33,7 @@ const NO_UNREADED_PERSON = {
 export function AdminUnreaded({ countGetted, isLoadingPersons, setCountUnreaded, setIsLoadingPersons }: { setIsLoadingPersons: React.Dispatch<React.SetStateAction<boolean>>; isLoadingPersons: boolean; getMorePersons: () => Promise<void>; count: number; countGetted: number; setCountUnreaded: React.Dispatch<React.SetStateAction<number>>; setCountGetted: React.Dispatch<React.SetStateAction<number>>; }) {
   const token = localStorage.getItem('token');
   const unreadedPersons = useAppSelector(state => state.unreadedPersons.unreadedPersons);
+
   const [activeId, setActiveId] = useState('');
   const [activePerson, setActivePerson] = useState<UnreadedPersonType>(NO_UNREADED_PERSON);
   const [isChanged, setIsChanged] = useState(false);
@@ -46,13 +47,12 @@ export function AdminUnreaded({ countGetted, isLoadingPersons, setCountUnreaded,
   const [history, setHistory] = useState(activePerson.history)
   const [photos, setPhotos] = useState(activePerson.photos)
   const [isHero, setIsHero] = useState(false)
+  const [datePublished] = useState(activePerson.published);
   const [mainPhoto, setMainPhoto] = useState(activePerson.mainPhoto)
   const dispatch = useAppDispatch()
 
-
   const handleApprove = async () => {
-    console.log(activePerson.published)
-    await axios.post(`https://for-9-may.onrender.com/api/v1/persons?id=${activeId}&token_query=${token}&city=${city}&date_birth=${dateOfBirth}&date_death=${dateOfDeath}&history=${history}&role=${isHero}&main_photo=${mainPhoto}&SNL=${name}&date_pulished=${activePerson.published ? Math.floor(Number(activePerson.published)) : new Date().getTime()/1000}&rank=${rank}`, {
+    await axios.post(`https://for-9-may.onrender.com/api/v1/persons?id=${activeId}&token_query=${token}&city=${city}&date_birth=${dateOfBirth}&date_death=${dateOfDeath}&history=${history}&role=${isHero}&main_photo=${mainPhoto}&SNL=${name}&date_pulished=${datePublished}&rank=${rank}`, {
       medals: [medals.join(',')],
       photo: [photos.join(',')]
     }, {
@@ -60,7 +60,7 @@ export function AdminUnreaded({ countGetted, isLoadingPersons, setCountUnreaded,
         'Content-Type': 'application/json',
         'Accept': "application/json",
       }
-    }).then(res => console.log(res)).then(() => {
+    }).then(() => {
       loadPersons().then(() => {
         if (unreadedPersons.length > 1) {
           setActivePerson(unreadedPersons[1])
@@ -71,7 +71,7 @@ export function AdminUnreaded({ countGetted, isLoadingPersons, setCountUnreaded,
   }
 
   const handleDisapprove = async () => {
-    await axios.delete(`https://for-9-may.onrender.com/api/v1/unreadedPersons/${activeId}?token_query=${token}`).then(res => console.log(res)).then(() => {
+    await axios.delete(`https://for-9-may.onrender.com/api/v1/unreadedPersons/${activeId}?token_query=${token}`).then(() => {
       loadPersons().then(() => {
         if (unreadedPersons.length > 0) {
           setActivePerson(unreadedPersons[0])
@@ -109,8 +109,7 @@ export function AdminUnreaded({ countGetted, isLoadingPersons, setCountUnreaded,
             medals: (e.medals ? e.medals.split(',') : [])
           }));
         });
-        console.log(res)
-      }).catch(err => {
+      }).catch((err) => {
         localStorage.removeItem('token')
         navigate('/auth')
         console.log(err)

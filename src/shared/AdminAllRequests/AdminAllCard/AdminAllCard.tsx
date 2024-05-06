@@ -39,7 +39,7 @@ export function AdminAllCard({ e }: { e: PersonType; }) {
   const token = localStorage.getItem('token')
   const dispatch = useAppDispatch();
   const handleDelete = async () => {
-    await axios.delete(`https://for-9-may.onrender.com/api/v1/unreadedPersons/${e.id}?token_query=${token}`).then(res => console.log(res)).then(() => {
+    await axios.delete(`https://for-9-may.onrender.com/api/v1/unreadedPersons/${e.id}?token_query=${token}`).then(() => {
       asy(dispatch);
     })
   }

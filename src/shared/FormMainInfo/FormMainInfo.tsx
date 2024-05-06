@@ -10,6 +10,9 @@ export function FormMainInfo({ error, setError, setActiveFormBlock, formData, se
       setError(false);
     }
   }, [formData.city, formData.dateOfBirth, formData.dateOfDeath, formData.isAlive, formData.isBirthUnknown, formData.isDeathUnknown, formData.name, formData.surName, formData.mainPhoto, formData.rank, setError, formData.isNoMainPhoto])
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
   return (
     <div className="formMainInfo">
       <div className="formMainInfo__title-con">
