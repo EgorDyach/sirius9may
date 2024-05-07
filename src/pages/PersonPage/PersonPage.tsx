@@ -108,7 +108,7 @@ export function PersonPage() {
                 </div>
                 <div className="personPage__mainInfo-more">
                   <div className="personPage__mainInfo-city">
-                    <Text As='p' size={windowWidth > 1400 ? 24 : 20} color='#848484' weight={400} font='Lora'>Родной город:</Text>
+                    <Text As='p' size={windowWidth > 1400 ? 24 : 20} color='#848484' weight={400} font='Lora'>Место рождения:</Text>
                     <Text As='p' size={windowWidth > 1700 ? 20 : 16} color='#fff' weight={400} >{activePerson.city}</Text>
                   </div>
                   <div className="personPage__mainInfo-city">
@@ -183,7 +183,7 @@ export function PersonPage() {
               {activePerson.photos.length <= 2 &&
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 20, alignItems: "center", justifyContent: "center" }}>
                   {activePerson.photos.map((e: string | undefined) => {
-                    return <img style={{maxWidth: 540}} onClick={() => dispatch(openModal(
+                    return <img style={{maxWidth: 540, width: '100%'}} onClick={() => dispatch(openModal(
                       { images: [...activePerson.photos].map(q => { return { src: q, type: 'personPhoto', text: `Доп. фотография ${activePerson.name}` } }), activeIndex: activePerson.photos.indexOf(e) }
                     ))} src={e} className='personPage__photos-item' />
                   })}</div>}

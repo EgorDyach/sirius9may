@@ -8,6 +8,25 @@ import { HistoriesCard } from '../../shared/HistoriesCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { HistoriesSwiperNav } from '../../shared/HistoriesSwiperNav';
 import { MainPreloader } from '../../shared/MainPreloader';
+import { Input } from '../../components/Input';
+
+const runSearch = (query: string, listOfPersons: PersonType[]) => {
+
+  if (!query) {
+    return listOfPersons;
+  }
+
+  const lowerCaseQuery = query.toLowerCase();
+
+  // return listOfPersons.filter(
+  //     (track) => 
+  //     track.title.toLowerCase().includes(lowerCaseQuery) || 
+  //     track.artists.toLowerCase().includes(lowerCaseQuery))
+
+  return listOfPersons.filter(
+    (track) =>
+      track.name.toLowerCase().includes(lowerCaseQuery))
+}
 
 
 export function HistoriesPage() {
@@ -19,6 +38,9 @@ export function HistoriesPage() {
   const [historiesArrays, setHistoriesArrays] = useState<PersonType[][]>([[]]);
   const [offset, setOffset] = useState(6);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [inputValue, setInputValue] = useState('');
+  const [filteredPersons, setFilteredPersons] = useState(persons);
+
   useLayoutEffect(() => {
     window.addEventListener("resize", () => {
       setWindowWidth(window.innerWidth)
@@ -53,6 +75,17 @@ export function HistoriesPage() {
     window.scrollTo(0, 0);
   }, [])
 
+  useLayoutEffect(() => {
+    const timerId = setTimeout(function () {
+      const val = inputValue.trim();
+      if (val != '') {
+        setFilteredPersons(runSearch(inputValue, persons));
+      } else {
+        setFilteredPersons(persons);
+      }
+    }, 300);
+    return () => clearTimeout(timerId);
+  }, [inputValue, persons])
 
   return (
     <>
@@ -88,13 +121,14 @@ export function HistoriesPage() {
           </div> : ''}
           <div className="historiesPage__all">
             <Text As='h3' size={70} color='#000' font='Lora' weight={400} >Все истории</Text>
+            <Input placeholder='Найти...' value={inputValue} onChange={q => setInputValue(q)} />
             <div className="historiesPage__all-container">
-              {[...persons].sort((a, b) => Number(a.id) - Number(b.id)).slice(0, offset).map(e => {
+              {[...filteredPersons].sort((a, b) => Number(a.id) - Number(b.id)).slice(0, offset).map(e => {
                 return <HistoriesCard e={e} />
               })}
             </div>
-            {offset >= [...persons].length && <Text className='historiesPage__all-nomore' size={14} color='#999'>Истории закончились, но вы можете отправить заявку и их станет больше!</Text>}
-            <button disabled={offset >= [...persons].length} onClick={() => setOffset(offset + 6)} className='historiesPage__all-more'>
+            {offset >= [...filteredPersons].length && <Text className='historiesPage__all-nomore' size={14} color='#999'>Истории закончились, но вы можете отправить заявку и их станет больше!</Text>}
+            <button disabled={offset >= [...filteredPersons].length} onClick={() => setOffset(offset + 6)} className='historiesPage__all-more'>
               <Text size={24} font='Lora' color='#fff'>Показать ещё</Text></button>
           </div>
         </Container>

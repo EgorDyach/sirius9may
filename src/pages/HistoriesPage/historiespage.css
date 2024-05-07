@@ -11,7 +11,8 @@
     font-style: italic;
 }
 
-.historiesPage__new .swiper-wrapper, .historiesPage__new .swiper-slide {
+.historiesPage__new .swiper-wrapper,
+.historiesPage__new .swiper-slide {
     align-items: stretch;
 }
 
@@ -21,12 +22,16 @@
 
 
 .historiesPage__new .swiper-slide {
-
     height: fit-content;
-
 }
 
+.historiesPage .inputComp input {
+    padding: 15px;
+}
 
+.historiesPage .inputComp {
+    margin-bottom: 30px;
+}
 
 .historiesPage__new-swiper {
     padding-bottom: 65px;
@@ -79,7 +84,7 @@
 .historiesPage .swiper-slide {
     display: flex;
     justify-content: space-between;
-    
+
 }
 
 .historiesPage__all {
@@ -89,7 +94,7 @@
 .historiesPage__all-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .historiesPage__all-more {
@@ -131,6 +136,14 @@
 
     .historiesCard__info-more span {
         font-size: 12px;
+    }
+
+    .historiesPage .inputComp input {
+        padding: 5px;
+    }
+
+    .historiesPage .inputComp {
+        margin-bottom: 30px;
     }
 }
 
@@ -188,7 +201,7 @@
         flex-direction: column;
         gap: 20px;
     }
-    
+
     .historiesCard__info-more span {
         margin: 0 auto;
     }
@@ -231,4 +244,12 @@
         flex-basis: 90%;
     }
 
+    .historiesPage .inputComp {
+        margin: 0 auto 30px;
+        width: 90%;
+    }
+
+    .historiesPage__all-container {
+        justify-content: center;
+    }
 }
