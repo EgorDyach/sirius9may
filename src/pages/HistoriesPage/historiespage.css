@@ -188,6 +188,10 @@
         flex-direction: column;
         gap: 20px;
     }
+    
+    .historiesCard__info-more span {
+        margin: 0 auto;
+    }
 
 
 }

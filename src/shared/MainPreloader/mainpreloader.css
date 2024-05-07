@@ -30,11 +30,26 @@
         fill: transparent;
         background-size: 0;
     }
-     50% {
+
+    50% {
         fill: #fff;
         background-size: cover;
-     }
-     100% {
+    }
+
+    100% {
         fill: transparent;
-     }
+    }
+}
+
+@media (max-width: 1000px) {
+    .preloader__main svg {
+        width: 150px;
+        height: 150px;
+    }
+}
+@media (max-width: 700px) {
+    .preloader__main svg {
+        width: 60px;
+        height: 60px;
+    }
 }

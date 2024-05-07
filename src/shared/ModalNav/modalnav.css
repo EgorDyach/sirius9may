@@ -1,7 +1,7 @@
 .modalNav {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 120px;
     margin-top: 30px;
     justify-content: center;
 }
@@ -18,10 +18,50 @@
     height: 100%;
 }
 
+.modalNav button svg {
+    transition: background-color .3s ease-in-out;
+}
+
+.modalNav button path {
+    transition: fill .3s ease-in-out;
+}
+
+.modalNav button rect {
+    transition: stroke .3s ease-in-out;
+}
+
+.modalNav button:hover:not(.modalNav__btn-disabled) svg {
+    background-color: #C9C9C9;
+}
+
+.modalNav button:active:not(.modalNav__btn-disabled) svg {
+    background-color: #fff;
+}
+
+.modalNav button:active:not(.modalNav__btn-disabled) path {
+    fill: #696D72;
+}
+
+.modalNav button.modalNav__btn-disabled {
+    cursor: default;
+}
+
+.modalNav button.modalNav__btn-disabled path {
+    fill: #888888;
+}
+
+.modalNav button.modalNav__btn-disabled rect {
+    stroke: #888888;
+}
+
 
 @media (max-width: 1000px) {
     .modalNav button, .modalNav a {
         width: 45px;
         height: 45px;
+    }
+
+    .modalNav {
+        gap: 60px;
     }
 }

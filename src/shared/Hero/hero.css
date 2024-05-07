@@ -133,6 +133,21 @@
   cursor: pointer;
   width: 50px;
   height: 50px;
+  outline: 3px solid transparent;
+  outline-offset: -3px;
+  transition: outline-color .3s ease-in-out, outline-width .3s ease-in-out;
+}
+
+
+.hero__swiper .swiper-button-prev rect,
+.hero__swiper .swiper-button-next rect,
+.gallary__nav .swiper-button-prev rect,
+.gallary__nav .swiper-button-next rect,
+.gallary__nav .swiper-button-prev path,
+.gallary__nav .swiper-button-next path,
+.hero__swiper .swiper-button-prev path,
+.hero__swiper .swiper-button-next path {
+  transition: fill .3s ease-in-out;
 }
 
 .hero__slide-navigation {
@@ -155,6 +170,34 @@
 
 .hero__swiper .swiper-slide {
   justify-content: center;
+}
+
+.hero__swiper .swiper-button-prev:hover path,
+.hero__swiper .swiper-button-next:hover path,
+.gallary__nav .gal-swiper-button-prev:hover path,
+.gallary__nav .gal-swiper-button-next:hover path {
+  fill: #989898;
+}
+
+.hero__swiper .swiper-button-prev:hover rect,
+.hero__swiper .swiper-button-next:hover rect,
+.gallary__nav .gal-swiper-button-prev:hover rect,
+.gallary__nav .gal-swiper-button-next:hover rect {
+  fill: #52575D;
+}
+
+.hero__swiper .swiper-button-prev:focus-visible:not(:active),
+.hero__swiper .swiper-button-next:focus-visible:not(:active),
+.gallary__nav .gal-swiper-button-prev:focus-visible:not(:active),
+.gallary__nav .gal-swiper-button-next:focus-visible:not(:active) {
+  outline-color: #fff;
+}
+
+.hero__swiper .swiper-button-prev:active rect,
+.hero__swiper .swiper-button-next:active rect,
+.gallary__nav .gal-swiper-button-prev:active rect,
+.gallary__nav .gal-swiper-button-next:active rect {
+  fill: #46494C;
 }
 
 @media (max-width: 1700px) {
@@ -297,6 +340,10 @@
     padding: 20px 0 50px;
   }
 
+  .hero .hero__swiper {
+    padding: 20px 0 0px;
+  }
+
   .hero .hero__title {
     font-size: 32px;
     line-height: 40px;
@@ -305,6 +352,7 @@
   .hero .hero__descr {
     font-size: 16px;
     line-height: 30px;
+    padding: 0 15px;
   }
 
   .hero__link span {

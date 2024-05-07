@@ -140,7 +140,7 @@ export function PersonPage() {
                 })}
                 <PersonNav activeIndex={medalsActiveIndex} setActiveIndex={setMedalActiveIndex} />
               </Swiper>}
-              {activePerson.medals.length <= 4 && <div className='personPage__medalsCon'>
+              {activePerson.medals.length <= (windowWidth > 1000 ? 4 : 1) && <>
                 {activePerson.medals.map((e: string) => {
                   return <div onClick={() => {
                     dispatch(openModal({
@@ -152,11 +152,10 @@ export function PersonPage() {
                       })],
                       activeIndex: activePerson.medals.indexOf(e),
                     }))
-                  }}>
-                    <MedalComponent size={140} type={e} />
+                  }} className='personPage__medals-slide' style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <MedalComponent type={e} />
                   </div>
-                })}
-              </div>}
+                })}</>}
             </Container>
           </div> : <></>}
           {activePerson.history !== '' ? <div className='personPage__history'>
@@ -170,7 +169,7 @@ export function PersonPage() {
           {activePerson.photos[0] !== '' ? <div className='personPage__photos'>
             <Container>
               <Text size={80} As='h3' className='personPage__photos-title' font='Lora'>Фото</Text>
-              {activePerson.photos.length >= 2 && <Swiper onSlideChange={q => setPhotoActiveIndex(q.activeIndex)} spaceBetween={30} slidesPerGroup={windowWidth > 1000 ? 2 : 1} slidesPerView={windowWidth > 1000 ? 2 : 1}>
+              {activePerson.photos.length > 2 && <Swiper onSlideChange={q => setPhotoActiveIndex(q.activeIndex)} spaceBetween={30} slidesPerGroup={windowWidth > 1000 ? 2 : 1} slidesPerView={windowWidth > 1000 ? 2 : 1}>
                 {activePerson.photos.map((e: string | undefined) => {
                   return <SwiperSlide style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <img src={e} onClick={() => dispatch(openModal(
@@ -182,7 +181,7 @@ export function PersonPage() {
                 <PersonNav activeIndex={photoActiveIndex} setActiveIndex={setPhotoActiveIndex} />
               </Swiper>}
               {activePerson.photos.length <= 2 &&
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 20, alignItems: "center", justifyContent: "center" }}>
                   {activePerson.photos.map((e: string | undefined) => {
                     return <img onClick={() => dispatch(openModal(
                       { images: [...activePerson.photos].map(q => { return { src: q, type: 'personPhoto', text: `Доп. фотография ${activePerson.name}` } }), activeIndex: activePerson.photos.indexOf(e) }

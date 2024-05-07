@@ -6,12 +6,18 @@
     max-height: 330px;
     position: relative;
     cursor: pointer;
+    outline: 6px solid transparent;
+    transition: outline-color .3s ease-in-out;
 }
 
 .gallaryPhoto__img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.gallaryPhoto:focus-visible {
+    outline-color: #fff;
 }
 
 .gallaryPhoto__date {
@@ -40,6 +46,10 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+.gallaryPhoto:focus-visible .gallaryPhoto__info {
+    transform: translateY(0);
 }
 
 .gallaryPhoto-withText:hover .gallaryPhoto__info {
@@ -83,12 +93,21 @@
     opacity: 1;
 }
 
+.gallaryPhoto:focus-visible.gallaryPhoto-onlyDate::after {
+    opacity: 1;
+}
+
+.gallaryPhoto:focus-visible.gallaryPhoto-withText::after {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
 @media (max-width: 1000px) {
     .gallaryPhoto {
         flex-basis: 36%;
     }
 
-    .gallaryPhoto__date, .gallaryPhoto__info {
+    .gallaryPhoto__date,
+    .gallaryPhoto__info {
         display: none;
     }
 }

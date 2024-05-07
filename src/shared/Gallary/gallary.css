@@ -1,9 +1,15 @@
 .gallary {
   padding: 120px 0;
 }
+
 .gallary__title {
   margin: 0;
   margin-bottom: 60px;
+}
+
+.gallary__nav-link-mob {
+  display: none;
+  text-decoration: underline;
 }
 
 .gallary__slide-content {
@@ -17,38 +23,57 @@
   gap: 30px;
 }
 
+.gallary__nav {
+  position: absolute;
+  left: 50%;
+  top: 5px;
+  transform: translateX(-50%);
+  width: 100%;
+  gap: 60px;
+}
+
 @media (max-width: 1700px) {
 
-    .gallary .gallary__photo {
-      width: 100%;
-    }
+  .gallary .gallary__photo {
+    width: 100%;
+  }
 
-    .histories .histories__active-img img {
-      max-width: 500px;
-    }
+  .histories .histories__active-img img {
+    max-width: 500px;
+  }
 
-    .gallary__slide-content {
-      justify-content: space-around;
-    }
+  .gallary__slide-content {
+    justify-content: space-around;
+  }
 }
 
 @media (max-width: 1200px) {
   .gallary__slide-photos {
     display: none;
   }
+
   .gallary__photo-big {
     margin: auto;
   }
+
   .gallary__title {
     text-align: center;
   }
+
   .gallary__slide-content {
     position: relative;
   }
+
   .gallary .gallary__nav {
+    position: relative;
     width: 100%;
-    display: flex;
     gap: 180px;
+  }
+
+  .gallary__nav-link-mob {
+    display: flex;
+    margin-top: 40px;
+    justify-content: center;
   }
 }
 
@@ -56,36 +81,53 @@
   .gallary .gallary__photo {
     filter: grayscale(0) !important;
   }
+
   .gallary__nav {
+    top: unset;
+    left: unset;
+    position: relative;
+    transform: translate(0);
     width: 100%;
     gap: 60px;
   }
 }
 
 @media (max-width: 700px) {
-    .gallary .gallary__title {
-      font-size: 42px;
-    }
+  .gallary .gallary__title {
+    font-size: 42px;
+  }
 
-    .gallary .gallary__nav {
-      gap: 80px;
-    }
+  .gallary .gallary__nav {
+    gap: 80px;
+  }
 
-    .gallary .gallary__nav button {
-      width: 30px;
-      height: 30px;
-    }
+  .gallary__nav-link-mob {
+    font-size: 20px;
+  }
 
-    .gallary .gallary__pagination {
-      display: none;
-    }
+  .gallary .gallary__controls {
+    margin: 20px 0;
+  }
 
-    span.gallary__nav-link {
-      font-size: 24px;
-      margin-top: 20px;
-    }
-    
-    
+  .gallary {
+    padding: 70px 0;
+  }
+
+  .gallary .gallary__nav button {
+    width: 30px;
+    height: 30px;
+  }
+
+  .gallary .gallary__pagination {
+    display: none;
+  }
+
+  span.gallary__nav-link {
+    font-size: 24px;
+    margin-top: 20px;
+  }
+
+
 }
 
 .gallary__photo-big {
@@ -145,11 +187,12 @@
 .gallary__nav {
   display: flex;
   gap: 60px;
+  width: auto;
   justify-content: center;
 }
 
-.gallary__nav .swiper-button-prev,
-.gallary__nav .swiper-button-next {
+.gallary__nav .gal-swiper-button-prev,
+.gallary__nav .gal-swiper-button-next {
   position: relative;
   border: none;
   padding: 0;
@@ -157,25 +200,42 @@
   cursor: pointer;
   width: 65px;
   height: 65px;
+}
+
+.gallary__nav .gal-swiper-button-prev svg,
+.gallary__nav .gal-swiper-button-next svg {
+  width: 100%;
+  height: 100%;
+  outline: 3px solid transparent;
+  outline-offset: -3px;
+  transition: outline-color .3s ease-in-out;
 
 }
 
-.gallary__nav .swiper-button-prev rect,
-.gallary__nav .swiper-button-next rect {
+.gallary__nav .gal-swiper-button-prev rect,
+.gallary__nav .gal-swiper-button-next rect,
+.gallary__nav .gal-swiper-button-prev path,
+.gallary__nav .gal-swiper-button-next path {
   transition: fill .3s ease-in-out;
 }
 
-
-.gallary__nav .swiper-button-prev:hover rect,
-.gallary__nav .swiper-button-next:hover rect {
-  fill: #858585;
+.gallary__nav .gal-swiper-button-prev:focus-visible:not(:active) svg,
+.gallary__nav .gal-swiper-button-next:focus-visible:not(:active) svg {
+  outline-color: rgb(192, 192, 192);
 }
 
-.gallary__nav .swiper-button-prev:disabled rect,
-.gallary__nav .swiper-button-next:disabled rect {
-  fill: #a4a2a2;
+
+.gallary__nav .gal-swiper-button-prev:disabled rect,
+.gallary__nav .gal-swiper-button-next:disabled rect {
+  fill: #c4c4c4;
 }
 
-.gallary__nav .swiper-button-next:disabled, .gallary__nav .swiper-button-prev:disabled {
+.gallary__nav .gal-swiper-button-prev:disabled path,
+.gallary__nav .gal-swiper-button-next:disabled path {
+  fill: #fff;
+}
+
+.gallary__nav .gal-swiper-button-next:disabled,
+.gallary__nav .gal-swiper-button-prev:disabled {
   cursor: default;
 }

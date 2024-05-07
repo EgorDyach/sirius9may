@@ -100,6 +100,8 @@
 .personPage .gallary__nav {
     margin-top: 50px;
     gap: 100px;
+    position: static;
+    transform: none;
 }
 
 .personPage__date {

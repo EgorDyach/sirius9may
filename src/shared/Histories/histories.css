@@ -29,11 +29,48 @@
 .histories__swiper .swiper-slide {
   transition: outline 0.3s ease-in-out;
   outline: 3px solid transparent;
+  outline-offset: -3px;
+  height: auto;
+}
+
+.histories .histories__nav button svg {
+  width: 100%;
+  height: 100%;
 }
 
 .histories__swiper .history__slide-active {
   outline-color: #fff;
 }
+
+.histories__nav button {
+  cursor: pointer;
+}
+
+.histories__nav button svg {
+  transition: background-color .3s ease-in-out;
+}
+
+.histories__nav button path {
+  transition: fill .3s ease-in-out;
+}
+
+.histories__nav button rect {
+  transition: stroke .3s ease-in-out;
+}
+
+.histories__nav button:hover svg {
+  background-color: #C9C9C9;
+}
+
+.histories__nav button:active svg {
+  background-color: #fff;
+}
+
+.histories__nav button:active path {
+  fill: #696D72;
+}
+
+
 
 @media (max-width: 1700px) {
   .histories__active-img {
@@ -188,6 +225,7 @@
 
   .histories .histories__nav button {
     width: 40px;
+    height: 40px;
   }
 
   .histories .histories__nav {
@@ -200,7 +238,4 @@
     width: calc(100vw - 60px);
   }
 
-  .hero .hero__swiper {
-    padding: 20px 0 70px;
-  }
 }

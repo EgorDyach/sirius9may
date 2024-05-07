@@ -47,8 +47,18 @@ bottom: 0;
 
 
 .modal__cancel svg {
+    transition: background-color .3s ease-in-out;
     background-color: #696D72;
 }
+
+.modal__cancel:hover svg {
+    background-color: #52575D;
+}
+
+.modal__cancel:active svg {
+    background-color: #4B4E51;
+}
+
 .modal__content {
     max-width: 100%;
     background-color: #696D72;
@@ -130,7 +140,8 @@ bottom: 0;
         height: 350px;
     }
 
-    .modal__swiper::before, .modal__swiper::after {
+    .modal__swiper::before,
+    .modal__swiper::after {
         content: unset;
     }
 

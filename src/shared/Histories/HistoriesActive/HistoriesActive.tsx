@@ -3,11 +3,15 @@ import { Text } from '../../../components/Text';
 import { PersonType } from '../../../store/personsSlice';
 import './historiesactive.css';
 import unkown from '../../../assets/UnknownSoldier.jpg';
-export function HistoriesActive({ active, fadingUp, fadingDown }: { fadingUp: boolean; fadingDown: boolean; active: PersonType }) {
+import React, { SetStateAction } from 'react';
+export function HistoriesActive({ active, fadingUp, fadingDown, setIsImgLoading, isImgLoading}: { isImgLoading: boolean; setIsImgLoading: React.Dispatch<SetStateAction<boolean>>; fadingUp: boolean; fadingDown: boolean; active: PersonType }) {
   return (
     <div className={`histories__active ${fadingDown ? "fadingDown" : ""} ${fadingUp ? "fadingUp" : ""}`}>
       <div className="histories__active-img">
-        <img src={active?.mainPhoto ? active?.mainPhoto : unkown} alt={`${active.name} - основное фото`} />
+        {isImgLoading && <span className="img__loader">
+            <span></span>
+          </span>}
+        <img onLoad={() => setIsImgLoading(false)} src={active?.mainPhoto ? active?.mainPhoto : unkown} alt={`${active.name} - основное фото`} />
       </div>
       <div className="histories__active-info">
         <Text size={64} font='Lora' color='#fff'>{active.name}</Text>

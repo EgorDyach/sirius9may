@@ -5,10 +5,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { GallaryItemType } from '../../store/gallarySlice';
 import { useLayoutEffect, useState } from 'react';
 import { GallarySlide } from './GallarySlide';
-import { Navigation, A11y } from 'swiper/modules';
+import { A11y } from 'swiper/modules';
 import { GallarySwiperNav } from './GallarySwiperNav';
 import { Pagination } from 'swiper/modules';
 import { useAppSelector } from '../../hooks/reduxHooks';
+import { Link } from 'react-router-dom';
 
 const links = [
   'https://sirius-ft.ru/upload/iblock/c74/nfxgg0uoekrarpcf9cs9kzjgqtyewkq5.jpg',
@@ -38,7 +39,7 @@ export function Gallary() {
     if (typeof gallary !== 'undefined') {
       for (let i = 0; i < links.length; i++) {
         if (typeof links[i] !== 'undefined') {
-          if (i % (window.innerWidth > 1700 ? 5 : (window.innerWidth > 1200 ? 3 : (window.innerWidth > 800 ? 2 : 1))) === 0) {
+          if (i % (window.innerWidth > 1700 ? 5 : (window.innerWidth > 1200 ? 3 : (window.innerWidth > 1000 ? 2 : 1))) === 0) {
             q.push([])
           }
           q[q.length - 1].push({ img: links[i] } as GallaryItemType)
@@ -48,13 +49,29 @@ export function Gallary() {
     }
   }, [gallary]);
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  useLayoutEffect(() => {
+    window.addEventListener("resize", () => {
+      setWindowWidth(window.innerWidth)
+    });
+    (() => {
+      setWindowWidth(window.innerWidth)
+    })();
+    return () => {
+      window.removeEventListener("resize", () => {
+        setWindowWidth(window.innerWidth)
+      });
+    };
+  }, [windowWidth])
+
+
   return (
     <section className='gallary'>
       <Container>
         <Text As='h2' className='gallary__title' size={80} weight={500} font='Lora'>Галерея</Text>
         <Swiper
           className='gallary__swiper'
-          modules={[Navigation, A11y, Pagination]}
+          modules={[A11y, Pagination]}
           spaceBetween={50}
           slidesPerView={1}
           navigation
@@ -69,6 +86,9 @@ export function Gallary() {
             </SwiperSlide>)
           })}
           <GallarySwiperNav activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
+          {windowWidth <= 1200 && <Link to={'/gallary'}>
+            <Text size={36} className='gallary__nav-link-mob' font='Lora' color='#000'>Все материалы</Text>
+          </Link>}
         </Swiper>
       </Container>
     </section>

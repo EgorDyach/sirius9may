@@ -13,12 +13,12 @@ export function Histories() {
   const [activePerson, setActivePerson] = useState(persons[0]);
   const [fadingDown, setFadingDown] = useState(false);
   const [fadingUp, setFadingUp] = useState(false);
-  
+  const [isImgLoading, setIsImgLoading] = useState(true);
   return (
     <section className='histories'>
       <Container>
         <Text As='h2' className='histories__title' color='#fff' font='Lora' size={80}>Истории</Text>
-        <HistoriesActive fadingDown={fadingDown} fadingUp={fadingUp} active={activePerson} />
+        <HistoriesActive isImgLoading={isImgLoading} setIsImgLoading={setIsImgLoading} fadingDown={fadingDown} fadingUp={fadingUp} active={activePerson} />
         <Swiper
           className='histories__swiper'
           // modules={[Navigation, A11y, Pagination]}
@@ -39,7 +39,8 @@ export function Histories() {
           minusSlide={() => {
             setFadingDown(true)
             setTimeout(() => {
-              setActivePerson(persons[persons.indexOf(activePerson)-1 < 0 ? persons.length-1 : persons.indexOf(activePerson)-1])
+              setActivePerson(persons[persons.indexOf(activePerson)-1 <= 0 ? persons.length-1 : persons.indexOf(activePerson)-1])
+              setIsImgLoading(true)
               setFadingUp(true)
               setFadingDown(false)
               setTimeout(() => {
@@ -49,8 +50,10 @@ export function Histories() {
           }}
           plusSlide={() => {
             setFadingDown(true)
+            console.log(persons.findIndex(q => q.id === activePerson.id))
             setTimeout(() => {
-              setActivePerson(persons[persons.indexOf(activePerson)+1 === persons.length ? 0 : persons.indexOf(activePerson)+1])
+              setActivePerson(persons[persons.findIndex(q => q.id === activePerson.id)+1 >= persons.length-1 ? 0 : persons.findIndex(q => q.id === activePerson.id)+1])
+              setIsImgLoading(true)
               setFadingDown(false)
               setFadingUp(true)
               setTimeout(() => {
