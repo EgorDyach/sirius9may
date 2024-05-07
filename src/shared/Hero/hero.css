@@ -174,15 +174,15 @@
 
 .hero__swiper .swiper-button-prev:hover path,
 .hero__swiper .swiper-button-next:hover path,
-.gallary__nav .gal-swiper-button-prev:hover path,
-.gallary__nav .gal-swiper-button-next:hover path {
+.gallary__nav .gal-swiper-button-prev:hover:not(.swiper-button-disabled) path,
+.gallary__nav .gal-swiper-button-next:hover:not(.swiper-button-disabled) path {
   fill: #989898;
 }
 
 .hero__swiper .swiper-button-prev:hover rect,
 .hero__swiper .swiper-button-next:hover rect,
-.gallary__nav .gal-swiper-button-prev:hover rect,
-.gallary__nav .gal-swiper-button-next:hover rect {
+.gallary__nav .gal-swiper-button-prev:hover:not(.swiper-button-disabled) rect,
+.gallary__nav .gal-swiper-button-next:hover:not(.swiper-button-disabled) rect {
   fill: #52575D;
 }
 
@@ -195,8 +195,8 @@
 
 .hero__swiper .swiper-button-prev:active rect,
 .hero__swiper .swiper-button-next:active rect,
-.gallary__nav .gal-swiper-button-prev:active rect,
-.gallary__nav .gal-swiper-button-next:active rect {
+.gallary__nav .gal-swiper-button-prev:active:not(.swiper-button-disabled) rect,
+.gallary__nav .gal-swiper-button-next:active:not(.swiper-button-disabled) rect {
   fill: #46494C;
 }
 

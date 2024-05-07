@@ -47,12 +47,11 @@ export function AdminUnreaded({ countGetted, isLoadingPersons, setCountUnreaded,
   const [history, setHistory] = useState(activePerson.history)
   const [photos, setPhotos] = useState(activePerson.photos)
   const [isHero, setIsHero] = useState(false)
-  const [datePublished] = useState(activePerson.published);
   const [mainPhoto, setMainPhoto] = useState(activePerson.mainPhoto)
   const dispatch = useAppDispatch()
 
   const handleApprove = async () => {
-    await axios.post(`https://for-9-may.onrender.com/api/v1/persons?id=${activeId}&token_query=${token}&city=${city}&date_birth=${dateOfBirth}&date_death=${dateOfDeath}&history=${history}&role=${isHero}&main_photo=${mainPhoto}&SNL=${name}&date_pulished=${datePublished}&rank=${rank}`, {
+    await axios.post(`https://for-9-may.onrender.com/api/v1/persons?id=${activeId}&token_query=${token}&city=${city}&date_birth=${dateOfBirth}&date_death=${dateOfDeath}&history=${history}&role=${isHero}&main_photo=${mainPhoto}&SNL=${name}&date_pulished=${Math.floor(new Date().getTime()/1000)}&rank=${rank}`, {
       medals: [medals.join(',')],
       photo: [photos.join(',')]
     }, {

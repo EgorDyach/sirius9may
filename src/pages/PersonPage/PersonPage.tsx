@@ -12,31 +12,31 @@ import { openModal } from '../../store/modalSlice';
 import axios from 'axios';
 
 
-function formatDateFromMilliseconds(milliseconds: number): string {
-  const monthes = ['января', "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"]
-  const date = new Date(milliseconds);
+// function formatDateFromMilliseconds(milliseconds: number): string {
+//   const monthes = ['января', "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"]
+//   const date = new Date(milliseconds);
 
-  // Получаем день, месяц и год
-  const day = date.getDate();
-  const month = date.getMonth(); // Месяцы начинаются с 0, поэтому добавляем 1
-  const year = date.getFullYear();
+//   // Получаем день, месяц и год
+//   const day = date.getDate();
+//   const month = date.getMonth(); // Месяцы начинаются с 0, поэтому добавляем 1
+//   const year = date.getFullYear();
 
-  // Получаем часы и минуты
-  // const hours = date.getHours();
-  // const minutes = date.getMinutes();
+//   // Получаем часы и минуты
+//   // const hours = date.getHours();
+//   // const minutes = date.getMinutes();
 
-  // Форматируем день, месяц и год
-  const dayString = day.toString().padStart(2, '0'); // Добавляем ведущие нули, если нужно
-  const monthString = monthes[month];
+//   // Форматируем день, месяц и год
+//   const dayString = day.toString().padStart(2, '0'); // Добавляем ведущие нули, если нужно
+//   const monthString = monthes[month];
 
-  // Форматируем часы и минуты
-  // const hoursString = hours.toString().padStart(2, '0');
-  // const minutesString = minutes.toString().padStart(2, '0');
+//   // Форматируем часы и минуты
+//   // const hoursString = hours.toString().padStart(2, '0');
+//   // const minutesString = minutes.toString().padStart(2, '0');
 
-  // Собираем строку с датой
-  // return `${dayString} ${monthString} ${year} в ${hoursString}:${minutesString}`;
-  return `${dayString} ${monthString} ${year} г.`;
-}
+//   // Собираем строку с датой
+//   // return `${dayString} ${monthString} ${year} в ${hoursString}:${minutesString}`;
+//   return `${dayString} ${monthString} ${year} г.`;
+// }
 
 
 export function PersonPage() {
@@ -189,10 +189,10 @@ export function PersonPage() {
                   })}</div>}
             </Container>
           </div> : <></>}
-          <Container>
+          {/* <Container> */}
             {/* <button style={{ margin: 50 }} onClick={handleClick}>click me</button> */}
-            <span className='personPage__date'>опубликовано {formatDateFromMilliseconds(activePerson.published * 1000)}</span>
-          </Container>
+            {/* <span className='personPage__date'>опубликовано {formatDateFromMilliseconds(activePerson.published * 1000)}</span> */}
+          {/* </Container> */}
         </>
         : <>
 

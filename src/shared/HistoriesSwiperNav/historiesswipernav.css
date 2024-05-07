@@ -1,0 +1,8 @@
+.historiesPage .swiper-button-disabled rect {
+        fill: #bababa;
+        
+}
+.historiesPage .swiper-button-disabled {
+        cursor: default;
+        
+}
