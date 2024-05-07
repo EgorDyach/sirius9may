@@ -124,9 +124,15 @@ bottom: 0;
     text-align: center;
 }
 
-
 .modal__content img {
     height: 450px;
+    max-width: 200%;
+    object-fit: cover;
+    /* aspect-ratio: 2 / 1; */
+}
+
+.modal__swiper .swiper-slide.swiper-slide-next img {
+    z-index: 999999;
 }
 
 @media (max-width:1700px) {
