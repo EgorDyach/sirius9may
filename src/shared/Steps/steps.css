@@ -55,6 +55,10 @@
     width: auto !important;
     display: inline-flex !important;
   }
+
+  .steps__title {
+    font-size: 42px;
+  }
 }
 
 @media (max-width: 1000px) {

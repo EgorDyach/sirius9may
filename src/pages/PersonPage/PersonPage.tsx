@@ -140,7 +140,7 @@ export function PersonPage() {
                 })}
                 <PersonNav activeIndex={medalsActiveIndex} count={activePerson.medals.length} setActiveIndex={setMedalActiveIndex} />
               </Swiper>}
-              {activePerson.medals.length <= (windowWidth > 1000 ? 4 : 1) && <>
+              {activePerson.medals.length <= (windowWidth > 1000 ? 4 : 1) && <div style={{display: 'flex', justifyContent: "space-between"}}>
                 {activePerson.medals.map((e: string) => {
                   return <div onClick={() => {
                     dispatch(openModal({
@@ -155,7 +155,7 @@ export function PersonPage() {
                   }} className='personPage__medals-slide' style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <MedalComponent type={e} />
                   </div>
-                })}</>}
+                })}</div>}
             </Container>
           </div> : <></>}
           {activePerson.history !== '' ? <div className='personPage__history'>
