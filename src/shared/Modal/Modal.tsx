@@ -60,7 +60,7 @@ export function Modal() {
             })}
             {windowWidth > 1400 && <SwiperSlide></SwiperSlide>}
             <div className="modal__swiper-nav">
-              <ModalNav active={img[active]} />
+              <ModalNav />
             </div>
           </Swiper>
         </div>

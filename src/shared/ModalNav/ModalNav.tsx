@@ -1,12 +1,10 @@
 import './modalnav.css';
-import { IGallaryItem } from '../GallaryPhoto';
-import { IOption } from '../FormMedals';
 import { useSwiper } from 'swiper/react';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { openModal } from '../../store/modalSlice';
 import { useLayoutEffect, useState } from 'react';
 
-export function ModalNav({ active }: { active: IGallaryItem | IOption | { type: "personPhoto"; src: string; text: string } }) {
+export function ModalNav() {
   const swiper = useSwiper();
   const dispatch = useAppDispatch();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -26,7 +24,7 @@ export function ModalNav({ active }: { active: IGallaryItem | IOption | { type: 
     };
   }, [windowWidth])
 
-  if (!active) return;
+  if (!modalData.activeIndex) return;
   return (
     <div className='modalNav'>
       <button
@@ -43,7 +41,7 @@ export function ModalNav({ active }: { active: IGallaryItem | IOption | { type: 
         </svg>
       </button>
       <button
-        className={modalData.activeIndex >= (modalData.images.length - (windowWidth <= 1400 ? 1 : 1)) ? `modalNav__btn-disabled` : ``}
+        className={modalData.activeIndex >= modalData.images.length - 1 ? `modalNav__btn-disabled` : ``}
         onClick={() => {
           swiper.slideNext();
           if (modalData.activeIndex < (modalData.images.length - (windowWidth <= 1400 ? 1 : 1))) {

@@ -138,7 +138,7 @@ export function PersonPage() {
                     <MedalComponent type={e} />
                   </SwiperSlide>
                 })}
-                <PersonNav activeIndex={medalsActiveIndex} setActiveIndex={setMedalActiveIndex} />
+                <PersonNav activeIndex={medalsActiveIndex} count={activePerson.medals.length} setActiveIndex={setMedalActiveIndex} />
               </Swiper>}
               {activePerson.medals.length <= (windowWidth > 1000 ? 4 : 1) && <>
                 {activePerson.medals.map((e: string) => {
@@ -178,7 +178,7 @@ export function PersonPage() {
                   </SwiperSlide>
                 })}
                 {/* <button style={{ margin: 50 }} onClick={handleClick}>click me</button> */}
-                <PersonNav activeIndex={photoActiveIndex} setActiveIndex={setPhotoActiveIndex} />
+                <PersonNav count={activePerson.photos.length} activeIndex={photoActiveIndex} setActiveIndex={setPhotoActiveIndex} />
               </Swiper>}
               {activePerson.photos.length <= 2 &&
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 20, alignItems: "center", justifyContent: "center" }}>
