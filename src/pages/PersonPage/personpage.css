@@ -125,6 +125,10 @@
     line-height: 38px;
 }
 
+.personPage__photos-item {
+    max-width: 100%;
+}
+
 @media (max-width: 1700px) {
     .personPage__history-text {
         font-size: 19px;

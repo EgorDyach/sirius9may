@@ -24,14 +24,13 @@ export function ModalNav() {
     };
   }, [windowWidth])
 
-  if (!modalData.activeIndex) return;
   return (
     <div className='modalNav'>
       <button
         className={modalData.activeIndex <= 0 ? `modalNav__btn-disabled` : ``}
         onClick={() => {
-          swiper.slidePrev();
           if (modalData.activeIndex > 0) {
+            swiper.slidePrev();
             dispatch(openModal({ ...modalData, activeIndex: modalData.activeIndex - 1 }))
           }
         }}>
@@ -43,8 +42,8 @@ export function ModalNav() {
       <button
         className={modalData.activeIndex >= modalData.images.length - 1 ? `modalNav__btn-disabled` : ``}
         onClick={() => {
-          swiper.slideNext();
           if (modalData.activeIndex < (modalData.images.length - (windowWidth <= 1400 ? 1 : 1))) {
+            swiper.slideNext();
             dispatch(openModal({ ...modalData, activeIndex: modalData.activeIndex + 1 }));
           }
         }}>

@@ -183,7 +183,7 @@ export function PersonPage() {
               {activePerson.photos.length <= 2 &&
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 20, alignItems: "center", justifyContent: "center" }}>
                   {activePerson.photos.map((e: string | undefined) => {
-                    return <img onClick={() => dispatch(openModal(
+                    return <img style={{maxWidth: 540}} onClick={() => dispatch(openModal(
                       { images: [...activePerson.photos].map(q => { return { src: q, type: 'personPhoto', text: `Доп. фотография ${activePerson.name}` } }), activeIndex: activePerson.photos.indexOf(e) }
                     ))} src={e} className='personPage__photos-item' />
                   })}</div>}
