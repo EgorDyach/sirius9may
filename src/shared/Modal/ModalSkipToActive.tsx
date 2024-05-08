@@ -4,9 +4,7 @@ import { useSwiper } from 'swiper/react'
 const ModalSkipToActive = ({ active }: { active: number }) => {
     const swiper = useSwiper();
     useLayoutEffect(() => {
-        if (!swiper.destroyed) {
-            swiper.slideTo(active )
-        }
+        swiper.slideTo(active)
     }, [active, swiper])
     return (
         <></>

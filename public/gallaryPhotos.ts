@@ -184,5 +184,112 @@ export const gallaryPagePhotos: IGallaryItem[] = [
         text: "День Победы в «Сириусе» 2023",
         type: "gallaryPhoto"
     },
-
+    {
+        src: 'https://sun77-2.userapi.com/impg/dXHRXe76LTAurB6eeNydwBCVoX8KdZ4XQxOd0A/69nTWc_i94k.jpg?size=1280x851&quality=95&sign=4ddc523363c19e765b8aa75c0574c203&type=album',
+        date: "Май 2024 г.",
+        text: "Акция «Георгиевская лента» 2024 г.",
+        type: "gallaryPhoto"
+    },
+    {
+        src: 'https://sun9-30.userapi.com/impg/3N8Nr3MqfVG0EtpTyhugwZbeD4ANikSpk9-sMg/O6vVuU3XTvs.jpg?size=1280x851&quality=95&sign=b5e18d78a10f490ec8453ba4bf318f22&type=album',
+        date: "Май 2024 г.",
+        text: "Акция «Георгиевская лента» 2024 г.",
+        type: "gallaryPhoto"
+    },
+    {
+        src: 'https://sun9-64.userapi.com/impg/ILvJ5R3ZkSFpOXb6uIGAYIHAF3HghQrT0ggPEQ/2HWB0mBhQW0.jpg?size=1280x851&quality=95&sign=1acf77dcaa1e75829fde76942b133fa1&type=album',
+        date: "Май 2024 г.",
+        text: "Акция «Георгиевская лента» 2024 г.",
+        type: "gallaryPhoto"
+    },
+    {
+        src: 'https://sun9-44.userapi.com/impg/ueQd-kUz49G6ODuZMqw9QuCcoxwN-4uiL19a8Q/I88z6MEc4L0.jpg?size=1280x851&quality=95&sign=1dd56a14464b5909708ad5b343eaab84&type=album',
+        date: "Май 2024 г.",
+        text: "Акция «Георгиевская лента» 2024 г.",
+        type: "gallaryPhoto"
+    },
+    {
+        src: 'https://sun9-70.userapi.com/impg/iCa2dg3MltCZor2LluB5ziQCpjp98OWuz4jWtg/JlznRakNCa0.jpg?size=1280x851&quality=95&sign=18bafe03a10f0fa450645fafd64558a6&type=album',
+        date: "Май 2024 г.",
+        text: "Акция «Георгиевская лента» 2024 г.",
+        type: "gallaryPhoto"
+    },
+    {
+        src: 'https://sun9-74.userapi.com/impg/V6nLUGJuMPqh1PhQc0uyZP_5kvpeQrUBQrbacQ/Gs10z-ElW9s.jpg?size=1280x851&quality=95&sign=486145a2548da99abb5375edd643c981&type=album',
+        date: "Май 2024 г.",
+        text: "Акция «Георгиевская лента» 2024 г.",
+        type: "gallaryPhoto"
+    },
+    {
+        src: 'https://sun9-77.userapi.com/impg/sKBl2-z6Eu3DpqBoTNVs5g_OFrqPBbrm7-lmZg/VM2d5tLXpgw.jpg?size=1280x851&quality=95&sign=2b339bb1ab668134e1a96ad4a33f48bc&type=album',
+        date: "7 мая 2024 г.",
+        text: "Торжественная линейка «Мы этой памяти верны»",
+        type: "gallaryPhoto"
+    },
+    {
+        src: 'https://sun9-36.userapi.com/impg/y6DVF7UWGZpHyAv2QdOurIA3ySvv1pB92FheCg/lcdTCeFqWVg.jpg?size=1280x851&quality=95&sign=1c3ac9d3b14b417a606c7dbc54709d29&type=album',
+        date: "7 мая 2024 г.",
+        text: "Торжественная линейка «Мы этой памяти верны»",
+        type: "gallaryPhoto"
+    },
+    {
+        src: 'https://sun9-63.userapi.com/impg/zdPj2dMttftcBqo9GGgxZTHu33IzqJ5_WOIqJA/U-ILOdkuJqo.jpg?size=1280x851&quality=95&sign=49e9efec7ee434e29784e1436b10738f&type=album',
+        date: "7 мая 2024 г.",
+        text: "Торжественная линейка «Мы этой памяти верны»",
+        type: "gallaryPhoto"
+    },
+    {
+        src: 'https://sun9-73.userapi.com/impg/odv6N6rQ6ycxvDTKtU0WIrb2F41CNgwtsPRbLw/lq3gZHUIECE.jpg?size=1280x851&quality=95&sign=b45a67e5b16cf6c2f229ecf0c7f3292a&type=album',
+        date: "7 мая 2024 г.",
+        text: "Торжественная линейка «Мы этой памяти верны»",
+        type: "gallaryPhoto"
+    },
+    {
+        src: 'https://sun9-69.userapi.com/impg/eFX8CliJMjfb_wHWDIRGZiYDtokUFTTT2nOYrQ/PkFDxEVQa_o.jpg?size=1280x851&quality=95&sign=08804efd3b74fa4ad7e80c7ab486f0ef&type=album',
+        date: "7 мая 2024 г.",
+        text: "Торжественная линейка «Мы этой памяти верны»",
+        type: "gallaryPhoto"
+    },
+    {
+        src: 'https://sun9-73.userapi.com/impg/4tiRnU0oTf4-KLtrf0GdKZbrQYNT7qy44QVhzA/5Ur351-j2_I.jpg?size=1280x851&quality=95&sign=c05ef8269bed524b9dbe09bb3f75de35&type=album',
+        date: "7 мая 2024 г.",
+        text: "Фестиваль военно-патриотической песни",
+        type: "gallaryPhoto"
+    },
+    {
+        src: 'https://sun9-80.userapi.com/impg/ksdpDVfo5vBsPZSAyLoI_V0cvvLAHfJfvyjIWQ/bawxv-mlqT0.jpg?size=1280x851&quality=95&sign=e8fe31b65a02e3b124771d6206814369&type=album',
+        date: "7 мая 2024 г.",
+        text: "Фестиваль военно-патриотической песни",
+        type: "gallaryPhoto"
+    },
+    {
+        src: 'https://sun9-46.userapi.com/impg/e3p1bnyCSFrGZMLbDrsKUibMKDQ4PzkVMvKrUQ/O81jVD9gRHA.jpg?size=1280x851&quality=95&sign=f0d8da2b15f13346c40aaf7536767e77&type=album',
+        date: "7 мая 2024 г.",
+        text: "Фестиваль военно-патриотической песни",
+        type: "gallaryPhoto"
+    },
+    {
+        src: 'https://sun9-74.userapi.com/impg/jMqiiVGhW9ZEif8IpbKW0-pJKeZPGnI6CC3SYQ/4-yLB6y8zSI.jpg?size=1280x851&quality=95&sign=9c09b018b857f3daa68446b02e40b58b&type=album',
+        date: "7 мая 2024 г.",
+        text: "Фестиваль военно-патриотической песни",
+        type: "gallaryPhoto"
+    },
+    {
+        src: 'https://sun9-9.userapi.com/impg/F-wHF5rMobn-Xbd9bIFfjIteR40SEdUVA_BhNA/lPPNSGdW8Pg.jpg?size=1280x851&quality=95&sign=25273a6dfed21e14473323300b7552f7&type=album',
+        date: "7 мая 2024 г.",
+        text: "Фестиваль военно-патриотической песни",
+        type: "gallaryPhoto"
+    },
+    {
+        src: 'https://sun9-16.userapi.com/impg/b9QlZwlzwG3F0Iy36v67e-giq5vm5lKrwGxvjQ/htBV-WmtEU8.jpg?size=1280x851&quality=95&sign=b6a422909ad550d2269ead776051c957&type=album',
+        date: "7 мая 2024 г.",
+        text: "Фестиваль военно-патриотической песни",
+        type: "gallaryPhoto"
+    },
+    {
+        src: 'https://sun9-12.userapi.com/impg/HhZ_O_IsOor4nIP_nwfXqB84Sh-po7H60a0Mzg/6ZSi9jPEGoY.jpg?size=1280x851&quality=95&sign=f02815aadee001e271994f11a449d543&type=album',
+        date: "7 мая 2024 г.",
+        text: "Фестиваль военно-патриотической песни",
+        type: "gallaryPhoto"
+    },
 ];
