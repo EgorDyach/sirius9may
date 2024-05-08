@@ -1,6 +1,7 @@
 .historiesPage {
     background-color: #EFEADE;
     padding: 175px 0;
+    min-height: 100vh;
 }
 
 .historiesPage .container {

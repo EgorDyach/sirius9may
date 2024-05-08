@@ -1,6 +1,7 @@
 .personPage {
     padding: 60px 0 30px;
     background-color: #EFEADE;
+    min-height: 100vh;
 
 }
 

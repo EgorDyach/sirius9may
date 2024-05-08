@@ -219,8 +219,8 @@
   transition: fill .3s ease-in-out;
 }
 
-.gallary__nav .gal-swiper-button-prev:focus-visible:not(:active) svg,
-.gallary__nav .gal-swiper-button-next:focus-visible:not(:active) svg {
+.gallary__nav .gal-swiper-button-prev:focus-visible:not(:active):not(:disabled) svg,
+.gallary__nav .gal-swiper-button-next:focus-visible:not(:active):not(:disabled) svg {
   outline-color: rgb(192, 192, 192);
 }
 

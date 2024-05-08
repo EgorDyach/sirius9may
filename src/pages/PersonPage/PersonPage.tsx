@@ -140,7 +140,7 @@ export function PersonPage() {
                 })}
                 <PersonNav activeIndex={medalsActiveIndex} count={activePerson.medals.length} setActiveIndex={setMedalActiveIndex} />
               </Swiper>}
-              {activePerson.medals.length <= (windowWidth > 1000 ? 4 : 1) && <div style={{display: 'flex', justifyContent: "space-between"}}>
+              {activePerson.medals.length <= (windowWidth > 1000 ? 4 : 1) && <div style={{display: 'flex', justifyContent: "space-around"}}>
                 {activePerson.medals.map((e: string) => {
                   return <div onClick={() => {
                     dispatch(openModal({
