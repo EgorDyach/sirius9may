@@ -37,7 +37,7 @@ const handleClick = async () => {
     localStorage.setItem('token', res.data.ditails);
     alert(res.data.ditails)
     alert(res.data.status)
-    // navigate('/admin')
+    navigate('/admin')
     // window.location.reload();
   }).catch(err => {
     setError('Неверный логин или пароль!')
