@@ -33,10 +33,12 @@ const handleChangePass = (event: React.ChangeEvent<HTMLInputElement>) => {
   setPass(event.target.value)
 }
 const handleClick = async () => {
-  await axios.post(`https://for-9-may.onrender.com/api/v1/login?email=${login}&password=${pass}`).then(res => {
+  await axios.post(`http://62.76.228.78:8991/api/v1/login?email=${login}&password=${pass}`).then(res => {
     localStorage.setItem('token', res.data.ditails);
-    navigate('/admin')
-    window.location.reload();
+    alert(res.data.ditails)
+    alert(res.data.status)
+    // navigate('/admin')
+    // window.location.reload();
   }).catch(err => {
     setError('Неверный логин или пароль!')
     console.log(err)

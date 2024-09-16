@@ -29,7 +29,7 @@ export function AdminPage() {
   useLayoutEffect(() => {
     setIsLoadingPersons(true)
     if (token) {
-      axios.get(`https://for-9-may.onrender.com/api/v1/unreadedPersons?token_query=${token}`).then((res) => {
+      axios.get(`http://62.76.228.78:8991/api/v1/unreadedPersons?token_query=${token}`).then((res) => {
         setCountUnreaded(countGetted + res.data.detail.length);
         dispatch(removeUnreadedPersons());
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -37,7 +37,7 @@ export function AdminPage() {
           dispatch(addUnreadedPerson({
             ...e,
             name: e.SNL,
-            photos: e.photo.split(','),
+            photos: e ? e.photo.split(',') : '',
             mainPhoto: e.main_photo,
             dateOfBirth: e.date_birth,
             dateOfDeath: e.date_death,
@@ -52,13 +52,14 @@ export function AdminPage() {
           }));
         });
       }).catch(err => {
-        localStorage.removeItem('token')
-        window.location.href = '/auth'
-        console.log(err)
+        if (err.response.status === 403) {
+          localStorage.removeItem('token')
+          window.location.href = '/auth'
+        }
       })
     } else {
+      console.log(token)
       window.location.href = '/auth'
-
       localStorage.removeItem('token')
     }
     setIsLoadingPersons(false)

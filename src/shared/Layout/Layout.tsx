@@ -9,7 +9,7 @@ import { addPerson, removePersons, setIsPersonsLoading } from "../../store/perso
 export const asy = async (dispatch: any) => {
   dispatch(changeHeroLoading(true));
   dispatch(setIsPersonsLoading(true));
-  axios.get('https://for-9-may.onrender.com/api/v1/persons').then((res) => {
+  axios.get('http://62.76.228.78:8991/api/v1/persons').then((res) => {
     dispatch(removeHeroPersons());
     dispatch(removeNewPersons());
     dispatch(removePersons());

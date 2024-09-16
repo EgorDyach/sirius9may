@@ -98,7 +98,7 @@ export function FormPage() {
         formDataMain.append('photo', e);
       })
       formDataMain.append('medals', formData.medals.map(e => e.text).toString());
-      await axios.post(`https://for-9-may.onrender.com/api/v1/unreadedPersons?snl=${`${formData.surName} ${formData?.name} ${formData.lastName}`}&date_birth=${formData.isBirthUnknown ? 1 : formData.dateOfBirth}&date_death=${formData.isAlive ? 0 : (formData.isDeathUnknown ? 1 : formData.dateOfDeath)}&city=${formData?.city}&date_pulished=${Math.floor(new Date().getTime() / 1000)}&rank=${formData?.rank}&role=${true}&contact_email=${formData.contacts.email}&contact_SNL=${formData.contacts.surname + formData.contacts.name + formData.contacts.lastName}&contact_telegram=${formData.contacts.telegram}&history=${formData.history.replace(/\n/gi, '|')}`, formDataMain, {
+      await axios.post(`http://62.76.228.78:8991/api/v1/unreadedPersons?snl=${`${formData.surName} ${formData?.name} ${formData.lastName}`}&date_birth=${formData.isBirthUnknown ? 1 : formData.dateOfBirth}&date_death=${formData.isAlive ? 0 : (formData.isDeathUnknown ? 1 : formData.dateOfDeath)}&city=${formData?.city}&date_pulished=${Math.floor(new Date().getTime() / 1000)}&rank=${formData?.rank}&role=${true}&contact_email=${formData.contacts.email}&contact_SNL=${formData.contacts.surname + formData.contacts.name + formData.contacts.lastName}&contact_telegram=${formData.contacts.telegram}&history=${formData.history.replace(/\n/gi, '|')}`, formDataMain, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

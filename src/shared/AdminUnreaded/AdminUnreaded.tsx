@@ -51,7 +51,7 @@ export function AdminUnreaded({ countGetted, isLoadingPersons, setCountUnreaded,
   const dispatch = useAppDispatch()
 
   const handleApprove = async () => {
-    await axios.post(`https://for-9-may.onrender.com/api/v1/persons?id=${activeId}&token_query=${token}&city=${city}&date_birth=${dateOfBirth}&date_death=${dateOfDeath}&history=${history}&role=${isHero}&main_photo=${mainPhoto}&SNL=${name}&date_pulished=${Math.floor(new Date().getTime()/1000)}&rank=${rank}`, {
+    await axios.post(`http://62.76.228.78:8991/api/v1/persons?id=${activeId}&token_query=${token}&city=${city}&date_birth=${dateOfBirth}&date_death=${dateOfDeath}&history=${history}&role=${isHero}&main_photo=${mainPhoto}&SNL=${name}&date_pulished=${Math.floor(new Date().getTime()/1000)}&rank=${rank}`, {
       medals: [medals.join(',')],
       photo: [photos.join(',')]
     }, {
@@ -70,7 +70,7 @@ export function AdminUnreaded({ countGetted, isLoadingPersons, setCountUnreaded,
   }
 
   const handleDisapprove = async () => {
-    await axios.delete(`https://for-9-may.onrender.com/api/v1/unreadedPersons/${activeId}?token_query=${token}`).then(() => {
+    await axios.delete(`http://62.76.228.78:8991/api/v1/unreadedPersons/${activeId}?token_query=${token}`).then(() => {
       loadPersons().then(() => {
         if (unreadedPersons.length > 0) {
           setActivePerson(unreadedPersons[0])
@@ -87,7 +87,7 @@ export function AdminUnreaded({ countGetted, isLoadingPersons, setCountUnreaded,
   const loadPersons = async () => {
     setIsLoadingPersons(true)
     if (token) {
-      await axios.get(`https://for-9-may.onrender.com/api/v1/unreadedPersons?token_query=${token}`).then((res) => {
+      await axios.get(`http://62.76.228.78:8991/api/v1/unreadedPersons?token_query=${token}`).then((res) => {
         setCountUnreaded(countGetted + res.data.detail.length);
         dispatch(removeUnreadedPersons());
         res.data.detail.forEach((e: { SNL: any; date_published:any; photo: string; main_photo: any; date_birth: any; date_death: any; role: any; contact_SNL: any; contact_email: any; contact_telegram: any; medals: string; }) => { // eslint-disable-line

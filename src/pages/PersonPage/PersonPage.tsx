@@ -49,7 +49,7 @@ export function PersonPage() {
   const [activePerson, setActivePerson] = useState<any | undefined>(undefined);
   useLayoutEffect(() => {
     const asyc = async () => {
-      axios.get(`https://for-9-may.onrender.com/api/v1/persons/${params.id}`).then(e => {
+      axios.get(`http://62.76.228.78:8991/api/v1/persons/${params.id}`).then(e => {
         const item = e.data.details[0]
         setActivePerson({
           name: item.SNL,
