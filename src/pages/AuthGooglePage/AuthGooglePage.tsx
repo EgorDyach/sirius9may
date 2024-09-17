@@ -33,7 +33,7 @@ const handleChangePass = (event: React.ChangeEvent<HTMLInputElement>) => {
   setPass(event.target.value)
 }
 const handleClick = async () => {
-  await axios.post(`http://62.76.228.78:8991/api/v1/login?email=${login}&password=${pass}`).then(res => {
+  await axios.post(`https://siriuspolk.online/api/v1/login?email=${login}&password=${pass}`).then(res => {
     localStorage.setItem('token', res.data.ditails);
     alert(res.data.ditails)
     alert(res.data.status)

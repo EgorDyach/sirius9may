@@ -9,7 +9,7 @@ import { addPerson, removePersons, setIsPersonsLoading } from "../../store/perso
 export const asy = async (dispatch: any) => {
   dispatch(changeHeroLoading(true));
   dispatch(setIsPersonsLoading(true));
-  axios.get('http://62.76.228.78:8991/api/v1/persons').then((res) => {
+  axios.get('https://siriuspolk.online/api/v1/persons').then((res) => {
     dispatch(removeHeroPersons());
     dispatch(removeNewPersons());
     dispatch(removePersons());

@@ -29,7 +29,7 @@ export function AdminPage() {
   useLayoutEffect(() => {
     setIsLoadingPersons(true)
     if (token) {
-      axios.get(`http://62.76.228.78:8991/api/v1/unreadedPersons?token_query=${token}`).then((res) => {
+      axios.get(`https://siriuspolk.online/api/v1/unreadedPersons?token_query=${token}`).then((res) => {
         setCountUnreaded(countGetted + res.data.detail.length);
         dispatch(removeUnreadedPersons());
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
